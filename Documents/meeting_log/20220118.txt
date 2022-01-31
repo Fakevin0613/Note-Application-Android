@@ -1,0 +1,10 @@
+Date Monday Jan 18 Team 114
+
+Present: All
+
+Agenda
+- share interview answers
+- choose targetted non-functional requirements
+
+TODO
+- play with Kotlin :)

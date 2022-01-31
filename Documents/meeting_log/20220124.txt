@@ -1,0 +1,16 @@
+Date Monday Jan 24 Team 114
+
+Present: All
+
+Agenda
+
+- UX Design
+
+Decision
+
+- 3 major views: Calendar, Course Management, List of Notes
+- Use top navigation bar
+    - hamburger menu to navigate between list view and calendar view
+- on 'List of Notes' view
+    - the title of the top navigation bar indicates which courses does the notes belongs to
+    - if the title of top navigation bar is tabbed, it shows drop down menu of all selectable courses.

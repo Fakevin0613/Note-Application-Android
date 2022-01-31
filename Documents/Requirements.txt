@@ -1,0 +1,15 @@
+functional requirements
+- create, edit, delete notes
+- calendar view of classes
+- list view of notes
+- keyword search
+- being able to group notes by classes
+- calendar view gesture interaction
+- insert images in the notes
+- alarm for upcoming tasks
+
+Non-functional requirements
+- Usability
+- Maintainability
+- Performace
+- Recoverability

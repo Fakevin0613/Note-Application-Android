@@ -1,0 +1,13 @@
+Date Monday Jan 17 Team 114
+
+Present: All
+
+Agenda
+- Finish interview questions
+- Start filling project backlog as project features
+
+Decisions
+- Interview questions completed
+
+TODO
+- interview students with prepared interview question

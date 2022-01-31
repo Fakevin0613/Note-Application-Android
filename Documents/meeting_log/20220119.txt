@@ -1,0 +1,15 @@
+Date Monday Jan 19 Team 114
+
+Present: All
+
+Agenda
+- Finalize the requirements
+- Choose architecture pattern
+
+Decision
+- requirements posted in 'manifest' section
+- we are going with MVVM for architectural pattern
+
+TODO
+- Draw architectural diagram
+- UI navigation diagram
