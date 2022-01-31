@@ -1,0 +1,25 @@
+**Scope**
+
+purpose:
+ - A note taking app to organize daily agendas for each courses
+ - Easy and quick usage for schedule
+ - use on mobile phone, desktop 
+
+included:
+ - manage weekly schedule of students - i.e. lectures
+ - allow making notes for individual lectures
+ - allow arbitrary 'schedule item' that can be placed in any time in any particular date
+
+**Stakeholders**
+- The project builders
+- Users...(from target user)
+
+**Milestones**
+- 
+**Resources**
+- Team member of the project
+- Git, Kotlin
+**Constraints**
+- Other course that might take more time which could effect development speed.
+**Risks**
+- failure to implement some critical features, to avoid such issue, we will try and determine in early stage whether it is implementable.
