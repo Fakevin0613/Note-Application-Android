@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< Updated upstream
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
@@ -16,4 +17,8 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+=======
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16_PREVIEW" project-jdk-name="temurin-16" project-jdk-type="JavaSDK" />
+>>>>>>> Stashed changes
 </project>
