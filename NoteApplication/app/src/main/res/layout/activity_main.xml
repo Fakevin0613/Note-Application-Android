@@ -22,7 +22,8 @@
             android:orientation="horizontal"
             android:id="@+id/toolBar"
 
-            android:layout_marginHorizontal="12dp"
+            android:layout_margin="8dp"
+            android:paddingHorizontal="4dp"
             android:layout_below="@id/title">
         <TextView
                 android:layout_width="wrap_content"
@@ -53,7 +54,8 @@
             <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="4dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="4dp"
                     android:background="@color/black"/>
 
             <ImageView
@@ -65,13 +67,14 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/noteList"
             android:layout_below="@id/toolBar"
-            tools:listitem="@layout/note_item"
-            android:layout_margin="12dp"/>
+            tools:listitem="@layout/note_item"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,14 +83,5 @@
             android:layout_alignParentBottom="true" android:layout_marginBottom="16dp"
             android:layout_alignParentEnd="true" android:layout_marginEnd="16dp"
             android:contentDescription="@string/add_new_note"/>
-
-<!--    <com.google.android.material.button.MaterialButton-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Add Notes"-->
-<!--            android:id="@+id/notefolderadd"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            app:backgroundTint="#009688"/>-->
-
 
 </RelativeLayout>
