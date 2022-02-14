@@ -5,13 +5,21 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import com.noteapplication.cs398.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val addButton: MaterialButton = findViewById(R.id.notefolderadd);
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
+
+
+        val addButton = binding.addNew
 
         addButton.setOnClickListener{
             val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
@@ -21,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
+        val view = binding.root
+        setContentView(view)
     }
 }
