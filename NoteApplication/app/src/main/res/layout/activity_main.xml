@@ -72,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/noteList"
+            android:layout_margin="8dp"
             android:layout_below="@id/toolBar"
             tools:listitem="@layout/note_item"/>
 
