@@ -10,14 +10,19 @@
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/note_item.xml" value="0.25" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.5203125" />
         <entry key="app/src/main/res/drawable/back.xml" value="0.15625" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1421875" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_downward_24.xml" value="0.1421875" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_upward_24.xml" value="0.12685185185185185" />
+        <entry key="app/src/main/res/drawable/ic_baseline_filter_list_24.xml" value="0.1421875" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.5203125" />
         <entry key="app/src/main/res/drawable/round_corner.xml" value="0.4615740740740741" />
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.4615740740740741" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.48713235294117646" />
-        <entry key="app/src/main/res/layout/add_note.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/add_note.xml" value="1.0359716845401508" />
         <entry key="app/src/main/res/layout/addnoteactivity.xml" value="0.3162037037037037" />
+        <entry key="app/src/main/res/layout/note_item.xml" value="0.7000956777042967" />
         <entry key="app/src/main/res/layout/note_write_kevin.xml" value="0.5171875" />
-        <entry key="app/src/main/res/layout/read_note.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/read_note.xml" value="0.3641547238346506" />
       </map>
     </option>
   </component>
