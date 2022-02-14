@@ -9,26 +9,79 @@
         tools:context=".MainActivity">
     <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/notefolder"
+            android:layout_height="56dp"
+            android:id="@+id/title"
             android:text="NOTE"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:gravity="center"
             android:textColor="@color/black"
             android:textStyle="bold"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/toolBar"
+
+            android:layout_margin="8dp"
+            android:paddingHorizontal="4dp"
+            android:layout_below="@id/title">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/status"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:text="status message"/>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/sorter"
+                android:gravity="end"
+
+                android:layout_weight="1">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_filter_list_24"
+                    android:contentDescription="@string/filter"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sd"
+                    android:textSize="16sp"
+                    android:text="filter by"/>
+            <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="@color/black"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_arrow_downward_24"
+                    android:contentDescription="@string/order"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/recyclerview"
-            android:layout_above="@id/notefolderadd"
-            android:layout_below="@id/notefolder"/>
-    <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add Notes"
-            android:id="@+id/notefolderadd"
-            android:layout_alignParentBottom="true"
-            app:backgroundTint="#009688"/>
+            android:id="@+id/noteList"
+            android:layout_below="@id/toolBar"
+            tools:listitem="@layout/note_item"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addNew"
+            android:src="@drawable/ic_baseline_add_24"
+            android:layout_alignParentBottom="true" android:layout_marginBottom="16dp"
+            android:layout_alignParentEnd="true" android:layout_marginEnd="16dp"
+            android:contentDescription="@string/add_new_note"/>
 
 </RelativeLayout>

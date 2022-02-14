@@ -1,26 +1,62 @@
 package com.noteapplication.cs398
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.button.MaterialButton
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.noteapplication.cs398.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: NoteViewModel
+    private lateinit var noteList: RecyclerView
+    private lateinit var addButton: FloatingActionButton
+    private lateinit var adapter: ListAdapter
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val addButton: MaterialButton = findViewById(R.id.notefolderadd);
+
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        )[NoteViewModel::class.java]
+
+        ////// >>>>>>>>>>> testing area
+//        for(i in 1..10){
+//            viewModel.insertNote(Note("title", "content something something text thong hting", "time", "no tag"))
+//        }
+
+        ///// <<<<<<<<<<<<
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
+        addButton = binding.addNew
+        noteList = binding.noteList
+        noteList.layoutManager = LinearLayoutManager(this)
+        adapter = ListAdapter()
+
+        viewModel.allNotes.observe(this) {
+            it?.let {
+                adapter.updateList(it)
+            }
+        }
+//        adapter.setClickListener(this)
+        noteList.adapter = adapter
 
         addButton.setOnClickListener{
-            val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
-            startActivity(intent)
-            this.finish()
+//            val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
+//            startActivity(intent)
+//            this.finish()
         }
 
 
 
-
+        val view = binding.root
+        setContentView(view)
     }
 }
