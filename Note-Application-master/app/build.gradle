@@ -5,12 +5,13 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdkVersion 31
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.noteapplication.cs398"
-        minSdk 24
-        targetSdk 31
+        applicationId "com.gtappdevelopers.noteapplication"
+        minSdkVersion 16
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -27,14 +28,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
 }
 
 dependencies {
@@ -51,7 +51,6 @@ dependencies {
 //    kapt "android.arch.persistence.room:compiler:$rootProject.roomVersion"
 //    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
-    implementation 'androidx.recyclerview:recyclerview:1.2.0'
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
 
 
@@ -70,10 +69,10 @@ dependencies {
     implementation "com.google.android.material:material:$rootProject.materialVersion"
 
     // Testing
-    /*testImplementation "junit:junit:$rootProject.junitVersion"
+    testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
     androidTestImplementation ("androidx.test.espresso:espresso-core:$rootProject.espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"*/
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
 }

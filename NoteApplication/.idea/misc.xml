@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/activity_main.xml" value="0.17760416666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.5203125" />
+        <entry key="app/src/main/res/drawable/back.xml" value="0.15625" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.5203125" />
+        <entry key="app/src/main/res/drawable/round_corner.xml" value="0.4615740740740741" />
+        <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.4615740740740741" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.48713235294117646" />
+        <entry key="app/src/main/res/layout/add_note.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/addnoteactivity.xml" value="0.3162037037037037" />
+        <entry key="app/src/main/res/layout/note_write_kevin.xml" value="0.5171875" />
+        <entry key="app/src/main/res/layout/read_note.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="jbr-11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.5041666666666667" />
+      </ProjectState>
+    </option>
   </component>
 </project>

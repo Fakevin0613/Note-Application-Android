@@ -1,0 +1,21 @@
+things for demo
+
+1. 
+ - meeting minutes
+ - issues list
+ - planning board
+"heres what we are intending to do
+ heres what we have done so far
+ and heres what we are going to do"
+
+2.
+demonstrate feature
+ from intellij and
+ build it up
+ run unit tests
+ demonstrate features!
+
+3. retrospective
+what we've done good
+what havent gone as expected
+  and what needs to be changed about it
