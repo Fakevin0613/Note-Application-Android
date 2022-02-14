@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/Ceramic"
+              tools:context=".AddNoteActivity">
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/addpage"
+              android:text="Add Note"
+              android:textSize="30dp"
+              android:textColor="@color/black"
+              android:layout_margin="10dp"
+              android:textStyle="bold"/>
+
+    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:layout_below="@id/addpage"
+                  android:layout_above="@id/savebutton"
+                  android:background="@drawable/rounded_corner">
+        <com.google.android.material.textfield.TextInputEditText
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/title"
+                  android:hint="Title"
+                  android:padding="10dp"
+                  android:layout_margin="10dp"/>
+        <com.google.android.material.textfield.TextInputEditText
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/Contents"
+                  android:background="@null"
+                  android:padding="10dp"
+                  android:lines="25"
+                  android:layout_margin="10dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/slate"
+            android:id="@+id/savebutton"
+            android:layout_alignParentBottom="true"
+            android:text="Save Note"/>
+
+</RelativeLayout>

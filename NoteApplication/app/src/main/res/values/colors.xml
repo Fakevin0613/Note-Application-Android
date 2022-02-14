@@ -7,4 +7,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="green1">#5BC8AC</color>
+    <color name="green2">#98DBC6</color>
+    <color name="yellow">#E6D72A</color>
+    <color name="pink">#F18D9E</color>
+
+    <color name="slate">#626D71</color>
+    <color name="Ceramic">#CDCDC0</color>
+    <color name="Latte">#DDBC95</color>
+    <color name="Coffee">#B38867</color>
+
+
 </resources>
