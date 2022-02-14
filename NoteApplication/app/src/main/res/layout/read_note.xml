@@ -1,47 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/white"
-              tools:context=".AddNoteActivity">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".AddNoteActivity">
+    <!--button for saving and updating a note-->
+
     <LinearLayout
-            android:id="@+id/LinearLayoutTitle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/addpage"
-              android:background="@drawable/back"
-              android:text="Add Note"
-              android:textSize="18dp"
-              android:textColor="@color/black"
-              android:textStyle="bold" android:layout_marginTop="10dp" android:layout_marginStart="10dp"
-              android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
-    </LinearLayout>
-    <LinearLayout
+            android:id="@+id/LinearLayoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+
             android:orientation="horizontal">
-
         <Button
-                android:id="@+id/button"
-                android:layout_width="0dp"
+                android:id="@+id/Button02"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="false"
-                android:layout_weight="0.5"
-                android:text="Left Button"
-        />
-
+                android:layout_weight="1"
+                android:text=" NoteList"
+                android:textAllCaps="false"
+                android:textColor="@color/blue"
+                android:textSize="10pt"
+                android:textAlignment="textStart"
+                android:layout_alignParentStart="true"
+                android:background="@android:color/transparent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp">
+        </Button>
         <Button
-                android:id="@+id/button2"
-                android:layout_width="0dp"
+                android:id="@+id/Button03"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Right Button"
-        />
+                android:layout_weight="1"
+                android:text="Edit"
+                android:textColor="@color/blue"
+                android:textSize="10pt"
+                android:textAlignment="textEnd"
+                android:background="@android:color/transparent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp">
+        </Button>
     </LinearLayout>
+    <!--edit text for note title-->
+    <EditText
+            android:id="@+id/idEdtNoteName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/LinearLayoutButton"
+            android:background="@drawable/back"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="Title"
+            android:textColor="@color/black"/>
+
+    <!--edit text for note description-->
+    <EditText
+            android:id="@+id/idEdtNoteDesc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/idRmdSwitch"
+            android:layout_below="@id/idEdtNoteName"
+            android:background="@drawable/back"
+            android:gravity="start|top"
+            android:text="Detail"
+            android:inputType="textMultiLine"
+            android:singleLine="false"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp" android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+
+            android:id="@+id/idRmdSwitch"
+            android:text="Reminder"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
+
+
 </RelativeLayout>
