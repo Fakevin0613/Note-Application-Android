@@ -9,9 +9,7 @@ class ReadNoteActivity :Activity(){
 
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
-
         binding = ReadNoteBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
     }
 }

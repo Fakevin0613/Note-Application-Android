@@ -28,7 +28,7 @@
                 android:layout_alignParentTop="true"
                 android:background="@color/green1"
                 android:orientation="horizontal">
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/Button02"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -42,8 +42,8 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="10dp">
-            </Button>
-            <Button
+            </androidx.appcompat.widget.AppCompatButton>
+            <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/Button03"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp">
-            </Button>
+            </androidx.appcompat.widget.AppCompatButton>
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputEditText
