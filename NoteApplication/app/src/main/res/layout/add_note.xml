@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/LinearLayoutButton"
-                android:id="@+id/title"
+                android:id="@+id/title_input"
                 android:hint="Title..."
                 android:background="@drawable/back"
                 android:padding="10dp"
@@ -74,11 +74,11 @@
                 android:layout_marginBottom="10dp"/>
 
     <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/idEdtNoteDesc"
+            android:id="@+id/content_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/idRmdSwitch"
-            android:layout_below="@id/title"
+            android:layout_below="@id/title_input"
             android:background="@drawable/back"
             android:gravity="start|top"
             android:hint="Detail..."

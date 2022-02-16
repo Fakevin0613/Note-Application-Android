@@ -43,11 +43,13 @@ class ReadNoteActivity : AppCompatActivity(){
         binding.editButton.setOnClickListener {
             // make AddNoteActivity catch for the extra and use it as its base Note
             val intent = Intent(this@ReadNoteActivity, AddNoteActivity::class.java)
-            intent.putExtra("noteItem", noteItem.value)
+            intent.putExtra("note", noteItem.value)
 
             // launch activity for result
             editLauncher.launch(intent)
         }
+
+        binding.backButton.setOnClickListener{ this.finish() }
 
         setContentView(binding.root)
     }
