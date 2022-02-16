@@ -19,4 +19,9 @@ interface NoteDataAccess {
         "Select * from `Table` order by id ASC"
     )
     fun getNotes(): LiveData<List<Note>>
+
+    @Query(
+        "Select * from `Table` where id = :id"
+    )
+    fun getNoteById(id:Int): LiveData<List<Note>>
 }

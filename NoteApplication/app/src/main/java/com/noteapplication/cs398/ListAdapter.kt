@@ -13,6 +13,21 @@ import com.noteapplication.cs398.databinding.NoteItemBinding
 class ListAdapter(private val viewModel: NoteViewModel, private val activity: AppCompatActivity) :
     RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
+    private var allNotes: ArrayList<Note> = ArrayList()
+
+    init {
+        // *** need to optimize note updates because
+        // *** copying entire database for a single changed note is
+        // *** unacceptable!
+        // maybe keep reference from viewModel.allNotes as the source
+        // and call notifyItem*(int) for every add/edit/update calls on it
+        viewModel.allNotes.observe(activity){
+            allNotes.clear()
+            allNotes.addAll(it)
+            notifyDataSetChanged()
+        }
+    }
+
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
@@ -31,25 +46,23 @@ class ListAdapter(private val viewModel: NoteViewModel, private val activity: Ap
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewModel.allNotes.value?.let {
-            viewHolder.binding.itemTitle.text = it[position].noteTitle
-            viewHolder.binding.itemContent.text = it[position].noteContent
+            viewHolder.binding.itemTitle.text = allNotes[position].noteTitle
+            viewHolder.binding.itemContent.text = allNotes[position].noteContent
 
             // delete button
             viewHolder.binding.deleteButton.setOnClickListener { _ ->
-                viewModel.deleteNote(it[position])
+                viewModel.deleteNote(allNotes[position])
             }
 
             // read note navigation
             viewHolder.binding.noteItem.setOnClickListener{ _ ->
                 val intent = Intent(activity, ReadNoteActivity::class.java)
-//                intent.putExtra("noteItem", it[position].ser)
+                intent.putExtra("noteItem", allNotes[position])
                 activity.startActivity(intent)
             }
-        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = viewModel.allNotes.value?.size ?: 0
+    override fun getItemCount() = allNotes.size
 
 }

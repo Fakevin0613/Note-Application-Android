@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 //        for(i in 1..10){
 //            viewModel.insertNote(Note("title", "content something something text thong hting", "time", "no tag"))
 //        }
-
         ///// <<<<<<<<<<<<
 
         binding = ActivityMainBinding.inflate(layoutInflater)

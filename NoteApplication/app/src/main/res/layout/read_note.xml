@@ -46,8 +46,8 @@
         </Button>
     </LinearLayout>
     <!--edit text for note title-->
-    <EditText
-            android:id="@+id/idEdtNoteName"
+    <TextView
+            android:id="@+id/noteTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/LinearLayoutButton"
@@ -60,12 +60,12 @@
             android:textColor="@color/light_grey" android:layout_marginTop="10dp" android:layout_marginBottom="10dp"/>
 
     <!--edit text for note description-->
-    <EditText
-            android:id="@+id/idEdtNoteDesc"
+    <TextView
+            android:id="@+id/noteContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/idRmdSwitch"
-            android:layout_below="@id/idEdtNoteName"
+            android:layout_below="@id/noteTitle"
             android:background="@drawable/back"
             android:gravity="start|top"
             android:inputType="textMultiLine"

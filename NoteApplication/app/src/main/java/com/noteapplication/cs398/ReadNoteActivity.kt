@@ -10,6 +10,11 @@ class ReadNoteActivity :Activity(){
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
         binding = ReadNoteBinding.inflate(layoutInflater)
+
+        val noteItem = intent.getSerializableExtra("noteItem") as Note
+        binding.noteTitle.setText(noteItem.noteTitle)
+        binding.noteContent.setText(noteItem.noteContent)
+
         setContentView(binding.root)
     }
 }
