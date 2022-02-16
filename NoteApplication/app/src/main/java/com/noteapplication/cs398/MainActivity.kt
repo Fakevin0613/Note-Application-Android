@@ -1,5 +1,6 @@
 package com.noteapplication.cs398
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -49,9 +50,9 @@ class MainActivity : AppCompatActivity() {
         noteList.adapter = adapter
 
         addButton.setOnClickListener{
-//            val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
-//            startActivity(intent)
-//            this.finish()
+            val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
+            startActivity(intent)
+            this.finish()
         }
 
 

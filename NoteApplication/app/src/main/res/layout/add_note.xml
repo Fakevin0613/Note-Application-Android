@@ -39,6 +39,7 @@
                     android:textAlignment="textStart"
                     android:background="@android:color/transparent"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginBottom="10dp">
             </Button>
             <Button
@@ -70,27 +71,27 @@
                 android:layout_marginBottom="10dp"/>
 
         <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/idEdtNoteDesc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_above="@id/idRmdSwitch"
                 android:layout_below="@id/title"
-                android:id="@+id/Contents"
-                android:hint="Body..."
                 android:background="@drawable/back"
-                android:padding="10dp"
-                android:lines="25"
-                android:layout_marginTop="10dp" android:layout_marginStart="10dp" android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:gravity="start|top"
+                android:hint="Detail"
+                android:inputType="textMultiLine"
+                android:singleLine="false"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp" android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
+
         <androidx.appcompat.widget.SwitchCompat
 
                 android:id="@+id/idRmdSwitch"
-                android:text="Reminder"
-                android:layout_below="@id/Contents"
                 android:layout_alignParentBottom="true"
+                android:text="Reminder"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" android:layout_marginBottom="20dp"/>
+                android:layout_height="wrap_content" android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
     </RelativeLayout>
-
-
 </RelativeLayout>
