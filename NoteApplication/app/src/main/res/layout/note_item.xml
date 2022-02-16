@@ -3,7 +3,7 @@
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/noteItem"
+        android:id="@+id/note_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
@@ -15,30 +15,30 @@
 
         <!--text view for displaying our note text-->
         <TextView
-                android:id="@+id/itemTitle"
+                android:id="@+id/item_title"
                 android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/deleteButton"
+                android:layout_toStartOf="@id/delete_button"
                 android:padding="4dp"
                 android:text="Note"
                 android:textSize="18sp" />
 
         <!--text view for displaying our last updated text-->
         <TextView
-                android:id="@+id/itemContent"
+                android:id="@+id/item_content"
                 android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/itemTitle"
-                android:layout_toStartOf="@id/deleteButton"
+                android:layout_below="@id/item_title"
+                android:layout_toStartOf="@id/delete_button"
                 android:padding="4dp"
                 android:text="content here and some notes sure go whater"
                 android:textSize="13sp" />
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/deleteButton"
+                android:id="@+id/delete_button"
                 android:src="@drawable/trash"
                 android:contentDescription="@string/delete"
                 android:layout_alignParentEnd="true"

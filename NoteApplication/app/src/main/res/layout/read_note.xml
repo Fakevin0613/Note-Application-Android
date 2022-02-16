@@ -9,14 +9,14 @@
     <!--button for saving and updating a note-->
 
     <LinearLayout
-            android:id="@+id/LinearLayoutButton"
+            android:id="@+id/linear_layout_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
 
             android:orientation="horizontal">
         <Button
-                android:id="@+id/backButton"
+                android:id="@+id/back_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -31,7 +31,7 @@
                 android:layout_marginBottom="10dp">
         </Button>
         <Button
-                android:id="@+id/editButton"
+                android:id="@+id/edit_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -47,10 +47,10 @@
     </LinearLayout>
     <!--edit text for note title-->
     <TextView
-            android:id="@+id/noteTitle"
+            android:id="@+id/note_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/LinearLayoutButton"
+            android:layout_below="@id/linear_layout_button"
             android:background="@drawable/back"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -61,11 +61,11 @@
 
     <!--edit text for note description-->
     <TextView
-            android:id="@+id/noteContent"
+            android:id="@+id/note_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/idRmdSwitch"
-            android:layout_below="@id/noteTitle"
+            android:layout_above="@id/id_rmd_switch"
+            android:layout_below="@id/note_title"
             android:background="@drawable/back"
             android:gravity="start|top"
             android:inputType="textMultiLine"
@@ -80,7 +80,7 @@
 
     <androidx.appcompat.widget.SwitchCompat
 
-            android:id="@+id/idRmdSwitch"
+            android:id="@+id/id_rmd_switch"
             android:text="Reminder"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"

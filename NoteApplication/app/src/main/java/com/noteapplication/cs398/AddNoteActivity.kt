@@ -18,44 +18,43 @@ class AddNoteActivity : AppCompatActivity() {
     private lateinit var binding: AddNoteBinding
     private lateinit var cancel: AppCompatButton
     private lateinit var save: AppCompatButton
-    private lateinit var viewM: NoteViewModel
+    private lateinit var viewModel: NoteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding = AddNoteBinding.inflate(layoutInflater)
-        setContentView(R.layout.add_note)
-
-        viewM = ViewModelProvider(
+        viewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        ).get(NoteViewModel::class.java)
+        )[NoteViewModel::class.java]
 
+        cancel = binding.cancelButton
+        save = binding.saveButton
 
-
-        cancel = binding.Button02
-        save = binding.Button03
-
-        setContentView(binding.root)
-
-        save.setOnClickListener(){
+        save.setOnClickListener{
             val time= SimpleDateFormat("MMM dd - yyyy")
             val current : String= time.format(Date())
 
-            viewM.insertNote(Note(
+            val newNote = Note(
                 binding.title.text.toString(),
                 binding.idEdtNoteDesc.text.toString(),
                 current,
-                binding.idRmdSwitch.isChecked))
+                binding.idRmdSwitch.isChecked
+            )
+            viewModel.insertNote(newNote)
+
             Toast.makeText(this, "$title Added", Toast.LENGTH_LONG).show()
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+
+            val data = Intent()
+            data.putExtra("note", newNote)
+            setResult(RESULT_OK, data)
             this.finish()
         }
 
-        cancel.setOnClickListener(){
-            this.finish()
-        }
+        cancel.setOnClickListener{ this.finish() }
+
+        setContentView(binding.root)
     }
 
 
