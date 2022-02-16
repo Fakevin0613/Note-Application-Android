@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.noteapplication.cs398.databinding.NoteItemBinding
 
-class ListAdapter() :
+class ListAdapter(private val viewModel: NoteViewModel) :
     RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     private var itemList: ArrayList<Note> = ArrayList()
@@ -35,6 +35,9 @@ class ListAdapter() :
         // contents of the view with that element
         viewHolder.binding.itemTitle.text = itemList[position].noteTitle
         viewHolder.binding.itemContent.text = itemList[position].noteContent
+        viewHolder.binding.deleteButton.setOnClickListener {
+            viewModel.deleteNote(itemList[position])
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)

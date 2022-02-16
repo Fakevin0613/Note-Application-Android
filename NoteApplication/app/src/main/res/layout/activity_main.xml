@@ -73,6 +73,7 @@
             android:layout_height="match_parent"
             android:id="@+id/noteList"
             android:layout_below="@id/toolBar"
+            android:layout_margin="8dp"
             tools:listitem="@layout/note_item"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
