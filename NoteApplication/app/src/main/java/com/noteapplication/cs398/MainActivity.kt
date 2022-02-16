@@ -1,6 +1,8 @@
 package com.noteapplication.cs398
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,6 +49,14 @@ class MainActivity : AppCompatActivity() {
         }
 //        adapter.setClickListener(this)
         noteList.adapter = adapter
+        noteList.addItemDecoration(object: RecyclerView.ItemDecoration() {
+
+            private val verticalSpaceHeight = 24
+
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                outRect.bottom = verticalSpaceHeight
+            }
+        })
 
         addButton.setOnClickListener{
 //            val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
