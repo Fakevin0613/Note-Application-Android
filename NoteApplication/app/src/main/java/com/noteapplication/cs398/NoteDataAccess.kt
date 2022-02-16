@@ -14,6 +14,7 @@ interface NoteDataAccess {
     @Delete
     suspend fun delete(note: Note)
 
+    // *** this is the point of modification for filter and ordering feature
     @Query(
         "Select * from `Table` order by id ASC"
     )

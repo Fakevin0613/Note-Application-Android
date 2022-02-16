@@ -41,13 +41,8 @@ class MainActivity : AppCompatActivity() {
         addButton = binding.addNew
         noteList = binding.noteList
         noteList.layoutManager = LinearLayoutManager(this)
-        adapter = ListAdapter(viewModel)
+        adapter = ListAdapter(viewModel, this)
 
-        viewModel.allNotes.observe(this) {
-            it?.let {
-                adapter.updateList(it)
-            }
-        }
 //        adapter.setClickListener(this)
         noteList.adapter = adapter
         noteList.addItemDecoration(object: RecyclerView.ItemDecoration() {
@@ -62,7 +57,6 @@ class MainActivity : AppCompatActivity() {
         addButton.setOnClickListener{
             val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
             startActivity(intent)
-            this.finish()
         }
 
 
