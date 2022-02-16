@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         addButton = binding.addNew
         noteList = binding.noteList
         noteList.layoutManager = LinearLayoutManager(this)
-        adapter = ListAdapter()
+        adapter = ListAdapter(viewModel)
 
         viewModel.allNotes.observe(this) {
             it?.let {

@@ -18,6 +18,7 @@
                 android:id="@+id/itemTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/deleteButton"
                 android:padding="4dp"
                 android:text="Note"
                 android:textSize="18sp" />
@@ -28,9 +29,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/itemTitle"
+                android:layout_toStartOf="@id/deleteButton"
                 android:padding="4dp"
                 android:text="content here and some notes sure go whater"
                 android:textSize="13sp" />
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/deleteButton"
+                android:src="@drawable/trash"
+                android:contentDescription="@string/delete"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:layout_centerVertical="true"
+                android:layout_margin="12dp"/>
+
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
