@@ -16,11 +16,11 @@
 
             android:orientation="horizontal">
         <Button
-                android:id="@+id/Button02"
+                android:id="@+id/backButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="NoteList"
+                android:text="Back"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="10pt"
@@ -31,7 +31,7 @@
                 android:layout_marginBottom="10dp">
         </Button>
         <Button
-                android:id="@+id/Button03"
+                android:id="@+id/editButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
