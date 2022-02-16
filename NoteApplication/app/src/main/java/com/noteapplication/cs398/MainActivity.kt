@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         )[NoteViewModel::class.java]
 
         ////// >>>>>>>>>>> testing area
-//        for(i in 1..10){
-//            viewModel.insertNote(Note("title", "content something something text thong hting", "time", "no tag"))
+//        for(i in 1..5){
+//            viewModel.insertNote(Note("title", "content something something text thong hting", "time", true))
 //        }
         ///// <<<<<<<<<<<<
 

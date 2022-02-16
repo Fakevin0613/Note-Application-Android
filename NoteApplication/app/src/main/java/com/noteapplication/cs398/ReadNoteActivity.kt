@@ -3,6 +3,7 @@ package com.noteapplication.cs398
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,13 +15,22 @@ class ReadNoteActivity : AppCompatActivity(){
 
     private lateinit var binding:ReadNoteBinding
 
-    private lateinit var noteItem: LiveData<Note?>
+    private lateinit var noteItem: MutableLiveData<Note?>
+
+    private var editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            data?.let {
+                noteItem.value = it.getSerializableExtra("note") as Note?
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
         binding = ReadNoteBinding.inflate(layoutInflater)
 
-        noteItem = MutableLiveData(intent.getSerializableExtra("noteItem") as Note?)
+        noteItem = MutableLiveData(intent.getSerializableExtra("note") as Note?)
 
         noteItem.observe(this){
             it?.let {
@@ -34,13 +44,11 @@ class ReadNoteActivity : AppCompatActivity(){
             // make AddNoteActivity catch for the extra and use it as its base Note
             val intent = Intent(this@ReadNoteActivity, AddNoteActivity::class.java)
             intent.putExtra("noteItem", noteItem.value)
-            startActivityForResult(intent,REQUEST_EDIT)
+
+            // launch activity for result
+            editLauncher.launch(intent)
         }
 
         setContentView(binding.root)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
     }
 }

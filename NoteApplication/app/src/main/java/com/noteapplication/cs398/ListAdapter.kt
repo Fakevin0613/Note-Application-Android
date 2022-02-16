@@ -57,7 +57,7 @@ class ListAdapter(private val viewModel: NoteViewModel, private val activity: Ap
             // read note navigation
             viewHolder.binding.noteItem.setOnClickListener{ _ ->
                 val intent = Intent(activity, ReadNoteActivity::class.java)
-                intent.putExtra("noteItem", allNotes[position])
+                intent.putExtra("note", allNotes[position])
                 activity.startActivity(intent)
             }
     }
