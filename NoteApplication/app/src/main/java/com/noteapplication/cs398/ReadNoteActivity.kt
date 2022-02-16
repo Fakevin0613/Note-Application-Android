@@ -14,6 +14,7 @@ class ReadNoteActivity :Activity(){
         val noteItem = intent.getSerializableExtra("noteItem") as Note
         binding.noteTitle.setText(noteItem.noteTitle)
         binding.noteContent.setText(noteItem.noteContent)
+        binding.idRmdSwitch.isChecked = noteItem.noteTag
 
         setContentView(binding.root)
     }

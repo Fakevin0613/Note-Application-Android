@@ -20,6 +20,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/green1"
                     android:orientation="vertical"
+                    android:id="@+id/addpage"
                     >
         <LinearLayout
                 android:id="@+id/LinearLayoutButton"
@@ -72,28 +73,29 @@
                 android:layout_marginTop="10dp" android:layout_marginStart="10dp" android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/idEdtNoteDesc"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@id/idRmdSwitch"
-                android:layout_below="@id/title"
-                android:background="@drawable/back"
-                android:gravity="start|top"
-                android:hint="Detail..."
-                android:inputType="textMultiLine"
-                android:singleLine="false"
-                android:textSize="18dp"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp" android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
+    <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/idEdtNoteDesc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/idRmdSwitch"
+            android:layout_below="@id/title"
+            android:background="@drawable/back"
+            android:gravity="start|top"
+            android:hint="Detail..."
+            android:inputType="textMultiLine"
+            android:singleLine="false"
+            android:textSize="18dp"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp" android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
 
         <androidx.appcompat.widget.SwitchCompat
 
                 android:id="@+id/idRmdSwitch"
                 android:layout_alignParentBottom="true"
                 android:text="Reminder"
+                android:checked="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>

@@ -16,6 +16,7 @@
         <!--text view for displaying our note text-->
         <TextView
                 android:id="@+id/itemTitle"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toStartOf="@id/deleteButton"
@@ -26,6 +27,7 @@
         <!--text view for displaying our last updated text-->
         <TextView
                 android:id="@+id/itemContent"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/itemTitle"
