@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/green1"
         tools:context=".AddNoteActivity">
     <!--button for saving and updating a note-->
 
@@ -22,7 +22,7 @@
                 android:layout_weight="1"
                 android:text="NoteList"
                 android:textAllCaps="false"
-                android:textColor="@color/blue"
+                android:textColor="@color/black"
                 android:textSize="10pt"
                 android:textAlignment="textStart"
                 android:layout_alignParentStart="true"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Edit"
-                android:textColor="@color/blue"
+                android:textColor="@color/black"
                 android:textSize="10pt"
                 android:textAlignment="textEnd"
                 android:background="@android:color/transparent"
@@ -52,11 +52,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/LinearLayoutButton"
             android:background="@drawable/back"
-            android:layout_margin="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:text="Title"
-            android:textColor="@color/black"/>
+            android:textSize="25dp"
+            android:padding="10dp"
+            android:textColor="@color/light_grey" android:layout_marginTop="10dp" android:layout_marginBottom="10dp"/>
 
     <!--edit text for note description-->
     <EditText
@@ -70,9 +71,12 @@
             android:text="Detail"
             android:inputType="textMultiLine"
             android:singleLine="false"
-            android:textColor="@color/black"
+            android:textColor="@color/light_grey"
+            android:textSize="18dp"
+            android:padding="10dp"
             android:layout_marginTop="10dp" android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
+            android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"
+            />
 
     <androidx.appcompat.widget.SwitchCompat
 

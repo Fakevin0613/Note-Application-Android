@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/black"
-              tools:context=".AddNoteActivity">
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"-->
+<!--              android:orientation="vertical"-->
+<!--              android:layout_width="match_parent"-->
+<!--              android:layout_height="match_parent"-->
+<!--              android:background="@color/black"-->
+<!--              tools:context=".AddNoteActivity">-->
 
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/addpage"
-              android:text=""
-              android:textSize="1dp"
-              android:textColor="@color/black"
-              android:textStyle="bold" android:layout_marginTop="10dp" android:layout_marginStart="10dp"
-              android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
+<!--    <TextView android:layout_width="match_parent"-->
+<!--              android:layout_height="wrap_content"-->
+<!--              android:id="@+id/addpage"-->
+<!--              android:text=""-->
+<!--              android:textSize="1dp"-->
+<!--              android:textColor="@color/black"-->
+<!--              android:textStyle="bold" android:layout_marginTop="10dp" android:layout_marginStart="10dp"-->
+<!--              android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>-->
 
-    <RelativeLayout android:layout_width="match_parent"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/green1"
                     android:orientation="vertical"
-                    android:layout_below="@id/addpage"
-                    android:background="@drawable/rounded_corner">
+                    >
         <LinearLayout
                 android:id="@+id/LinearLayoutButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-
+                android:background="@color/green1"
                 android:orientation="horizontal">
             <Button
                     android:id="@+id/Button02"
@@ -67,6 +68,7 @@
                 android:hint="Title..."
                 android:background="@drawable/back"
                 android:padding="10dp"
+                android:textSize="25dp"
                 android:layout_marginTop="10dp" android:layout_marginStart="10dp" android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"/>
 
@@ -78,9 +80,11 @@
                 android:layout_below="@id/title"
                 android:background="@drawable/back"
                 android:gravity="start|top"
-                android:hint="Detail"
+                android:hint="Detail..."
                 android:inputType="textMultiLine"
                 android:singleLine="false"
+                android:textSize="18dp"
+                android:padding="10dp"
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp" android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
@@ -94,4 +98,4 @@
                 android:layout_height="wrap_content" android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
     </RelativeLayout>
-</RelativeLayout>
+<!--</RelativeLayout>-->
