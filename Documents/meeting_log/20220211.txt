@@ -1,0 +1,11 @@
+Date Friday Feb 09 Team 114
+
+Present: All
+
+Agenda
+- Fix all problems with git 
+- keep up with fixing issues
+
+To Do
+- write three interfaces
+- create model and controller for the newly setup template
