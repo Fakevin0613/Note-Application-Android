@@ -1,0 +1,40 @@
+Presentation Plan
+
+part 1. documents and planning
+1. Issues list
+ - explain types of label
+   = Feature
+   = Refactor
+   = Bug
+
+2. Planning board
+ - show milestone page
+
+part 2. program demo
+1. list items view
+ - use of recycler view
+
+2. add note view
+ - use of intent and activity to show add note activity
+ - show that notes are added to the list view once saved
+ - show that note contents does not expend summery in list items in list view
+
+3. read note view
+ - use of intent and putExtra to show content
+ - show that the title and contents are the same with list view.
+
+4. edit note view.
+ - show that texts from read note view is reflected in edit note view
+ - mention that it shares the same activity ad add note view
+ - show that if you click on cancel, the changes are not saved
+ - show that if you click save, the changes are reflected to the original note.
+
+5. Note database
+ - indicate the use of Room
+ - and how to impliment filter and sorting using the database vis SQL query
+
+6. NoteViewModel
+ - show the presence of NoteViewModel to access source datas from 
+ - **ask question about viewModel duplication per activity**
+
+part 3. retrospective
