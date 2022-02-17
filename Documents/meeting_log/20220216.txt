@@ -1,0 +1,10 @@
+Date Friday Feb 16 Team 114
+
+Present: All
+
+Agenda
+- Keep up with issues
+
+To Do
+- Setup Unit test
+- Prepare for Demo 
