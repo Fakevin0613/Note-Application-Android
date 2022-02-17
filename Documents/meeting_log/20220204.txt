@@ -1,0 +1,12 @@
+Date Monday Feb 5 Team 114
+
+Present: All
+
+Agenda
+- setup intelliJ project
+- Investigate Kotlin libraries and adde to Gradle project config
+
+
+TO DO
+- Fix issue surounding local project not compiling
+- set up a working template
