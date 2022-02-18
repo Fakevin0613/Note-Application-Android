@@ -3,7 +3,9 @@ Date Wedsday Feb 09 Team 114
 Present: All
 
 Agenda
-- keep up with sprint activities
+- keep up with sprint activities, start tackling read view and write view
+- working on the xml files, at least to set up the foundamental structure and appearance of the note app
+
 
 To Do
 - Start buidling interface 
