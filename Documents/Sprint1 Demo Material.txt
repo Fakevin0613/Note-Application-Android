@@ -10,6 +10,7 @@ part 1. documents and planning
    = Files closed
    = Tasks time assigned
    = the process was according to our intention
+   = Some Unit tests didn't fully run yet
 
 2. Planning board
  - show milestone page
