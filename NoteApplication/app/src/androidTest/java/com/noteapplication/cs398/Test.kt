@@ -2,26 +2,21 @@ package com.noteapplication.cs398
 
 import android.content.Context
 import android.icu.text.SimpleDateFormat
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.core.app.ApplicationProvider
 import androidx.room.Room
-import org.junit.Assert.*
-import org.junit.Before
-import org.junit.runner.RunWith
-import junit.framework.TestCase
-import org.hamcrest.MatcherAssert.assertThat
+import androidx.test.core.app.ApplicationProvider
+import kotlinx.coroutines.runBlocking
 import org.junit.After
+import org.junit.Before
+import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
-import org.junit.Assert.assertThat as junitAssertAssertThat
 
-
-class NoteDatabaseTest : TestCase(){
+class Test {
     private lateinit var fakedatabase :NoteDatabase
     private lateinit var fakedao: NoteDataAccess
 
     @Before
-    override fun setUp() {
+    fun setUp() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         fakedatabase = Room.inMemoryDatabaseBuilder(context, NoteDatabase::class.java).build()
         fakedao = fakedatabase.getNoteDataAccess()
@@ -33,7 +28,7 @@ class NoteDatabaseTest : TestCase(){
     }
 
     @Test
-    suspend fun addempty(){
+    fun addempty() = runBlocking{
         val title = ""
         val content = ""
         val time= SimpleDateFormat("MMM dd - yyyy")
@@ -42,10 +37,7 @@ class NoteDatabaseTest : TestCase(){
         fakedao.insert(note)
 
         val getdao = fakedao.getNotes()
-        assert(getdao.value?.contains(note) == true)
+        assertEquals(getdao.value?.contains(note), true)
     }
 
-
 }
-
-
