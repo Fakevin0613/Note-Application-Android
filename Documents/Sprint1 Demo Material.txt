@@ -48,5 +48,8 @@ part 3. retrospective
 - Covered all issues for sprint 1 such as Interface and NoteViewModel
 - Android development on IntelliJ with GitLab was time consuming to setup
 - Didn't expect so much time to set up IntelliJ
-Imporvement for the future
-- 
+Plans for the future
+- Improve the UI design for sprint 2
+- add functionally for some features we planned such as tag and reminder
+
+
