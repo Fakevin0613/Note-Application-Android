@@ -11,4 +11,5 @@ Decision
 
 To Do
 - find a new template
-- fix all git repository pull and push issues, Intellij is not working properly in Apply silicon
+- fix all git repository pull and push issues
+- Intellij is not working properly in Apply silicon, need to make sure the project can compile for everyone
