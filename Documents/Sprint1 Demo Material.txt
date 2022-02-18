@@ -6,6 +6,9 @@ part 1. documents and planning
    = Feature
    = Refactor
    = Bug
+ - What we Did
+   = Files closed
+   = Tasks time assigned
 
 2. Planning board
  - show milestone page
