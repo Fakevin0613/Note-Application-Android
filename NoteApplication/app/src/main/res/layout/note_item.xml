@@ -2,9 +2,12 @@
 
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/note_item"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="5dp">
+        android:layout_margin="12dp"
+        app:cardCornerRadius="5dp">
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -12,22 +15,42 @@
 
         <!--text view for displaying our note text-->
         <TextView
-                android:id="@+id/idTVNote"
+                android:id="@+id/item_title"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/delete_button"
                 android:padding="4dp"
                 android:text="Note"
                 android:textSize="18sp" />
 
         <!--text view for displaying our last updated text-->
         <TextView
-                android:id="@+id/idTVDate"
+                android:id="@+id/item_content"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/idTVNote"
+                android:layout_below="@id/item_title"
+                android:layout_toStartOf="@id/delete_button"
                 android:padding="4dp"
                 android:text="content here and some notes sure go whater"
                 android:textSize="13sp" />
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/delete_button"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:layout_centerVertical="true"
+                android:padding="12dp">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/trash"
+                    android:contentDescription="@string/delete"/>
+
+        </LinearLayout>
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

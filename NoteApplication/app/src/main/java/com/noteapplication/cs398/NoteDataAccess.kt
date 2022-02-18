@@ -14,8 +14,14 @@ interface NoteDataAccess {
     @Delete
     suspend fun delete(note: Note)
 
+    // *** this is the point of modification for filter and ordering feature
     @Query(
         "Select * from `Table` order by id ASC"
     )
     fun getNotes(): LiveData<List<Note>>
+
+    @Query(
+        "Select * from `Table` where id = :id"
+    )
+    fun getNoteById(id:Int): LiveData<List<Note>>
 }
