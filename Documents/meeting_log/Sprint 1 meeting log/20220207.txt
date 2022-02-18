@@ -8,6 +8,7 @@ Agenda
 
 Decision
 - Find a new template that better suites us 
+- learn from the good interface design in other popular note app
 
 To Do
 - find a new template
