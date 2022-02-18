@@ -4,7 +4,8 @@ Present: All
 
 Agenda
 - Fix all problems with git 
-- keep up with fixing issues
+- keep up with fixing issues in gradle and the dependencies.
+- finish the basic xml design for the application 
 
 To Do
 - write three interfaces
