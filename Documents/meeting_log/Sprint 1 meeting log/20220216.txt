@@ -4,6 +4,8 @@ Present: All
 
 Agenda
 - Keep up with issues
+- complete the sprint 1 applicaiton build
+-fix the bugs in adapter and viewmodel
 
 To Do
 - Setup Unit test
