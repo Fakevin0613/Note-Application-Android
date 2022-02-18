@@ -4,7 +4,8 @@ Present: All
 
 Agenda
 - Merge interfaces
-- Setup interface interaction
+- Setup interface interaction(including make the buttons works and the transitions of activities)
+- build up the repository and the Room database
 
 To Do
 - Merge interfaces
