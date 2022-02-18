@@ -7,7 +7,7 @@ part 1. documents and planning
    = Refactor
    = Bug
  - What we Did
-   = Files closed
+   = issues closed
    = Tasks time assigned
    = the process was according to our intention
    = Some Unit tests didn't fully run yet
