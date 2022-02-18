@@ -3,11 +3,12 @@ Date Monday Feb 07 Team 114
 Present: All
 
 Agenda
-- following sprint one issues
+- following sprint one issues we have set
+- set up the environment for everybody
 
 Decision
 - Find a new template that better suites us 
 
 To Do
 - find a new template
-- fix git repository pull and push issues
+- fix all git repository pull and push issues, Intellij is not working properly in Apply silicon
