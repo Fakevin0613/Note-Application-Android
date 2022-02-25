@@ -16,12 +16,12 @@ interface NoteDataAccess {
 
     // *** this is the point of modification for filter and ordering feature
     @Query(
-        "Select * from `Table` order by id ASC"
+        "Select * from `Note` order by id ASC"
     )
     fun getNotes(): LiveData<List<Note>>
 
     @Query(
-        "Select * from `Table` where id = :id"
+        "Select * from `Note` where id = :id"
     )
     fun getNoteById(id:Int): LiveData<List<Note>>
 }
