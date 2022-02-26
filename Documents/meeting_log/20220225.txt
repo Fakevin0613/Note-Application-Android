@@ -1,0 +1,27 @@
+
+
+Daily Stand up 02/25/2022
+
+Kevin
+
+Did: Created working unit text
+
+To Do: Set up some unit tests with some restriction
+
+Obstacle: NA
+
+Shonn
+
+Did: Set up Course managment UI and redesigned note list
+
+To Do: make a tool bar 
+
+Obstacle：Getting more experiences with android xml
+
+Insung
+
+Did: Planned out what to do the class managment system
+
+To do: Tag system and make it runnable
+
+Obstacle: Working with room.database is different from other system which requires time to get used to 
