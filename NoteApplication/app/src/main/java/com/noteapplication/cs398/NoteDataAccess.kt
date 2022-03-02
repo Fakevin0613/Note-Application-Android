@@ -5,13 +5,13 @@ import androidx.room.*
 
 @Dao
 interface NoteDataAccess {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Note::class)
     suspend fun insert(note:Note)
 
-    @Update
+    @Update(entity = Note::class)
     suspend fun update(note:Note)
 
-    @Delete
+    @Delete(entity = Note::class)
     suspend fun delete(note: Note)
 
     // *** this is the point of modification for filter and ordering feature

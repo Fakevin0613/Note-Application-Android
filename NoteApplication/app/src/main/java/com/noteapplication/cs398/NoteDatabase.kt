@@ -1,13 +1,15 @@
 package com.noteapplication.cs398
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import androidx.room.migration.AutoMigrationSpec
 
-@Database(entities = arrayOf(Note::class), version = 1, exportSchema = false)
+@Database(entities = [Note::class, Tag::class, TagNoteCrossRef::class], version = 4)
 abstract class NoteDatabase : RoomDatabase() {
     abstract fun getNoteDataAccess(): NoteDataAccess
+
+//    @DeleteTable(tableName = "Table")
+//    class MyAutoMigration : AutoMigrationSpec
 
     companion object{
         @Volatile
@@ -19,7 +21,8 @@ abstract class NoteDatabase : RoomDatabase() {
                     context.applicationContext,
                     NoteDatabase::class.java,
                     "note_database"
-                ).build()
+                ).fallbackToDestructiveMigration() // increment version number with losing data. must be removed and replaced with proper migrations
+                 .build()
                 INSTANCE = instance
                 instance
             }
