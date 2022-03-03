@@ -1,10 +1,12 @@
 What have you completed since last meeting?
 Kevin: Set up the unit code using Robolectic; Database unit test is still not complete
 Insung: Added a destructive migressiion for the database - this will be replaced with proper migression.
+Shonn: finishing Course Management XML, toolbar XML, setting up functionalities for the 
 
 What are you going to do?
-Kevin: complete the unit test for database; work on the xml for Folder activity
+Kevin: complete the unit test for database; work on the xml for 
 Insung: implement interface to new databases
+Shonn: implementing the filtering functionalities
 
 What obstacles are in your way?
 Kevin: the unit test for Database has bugs
