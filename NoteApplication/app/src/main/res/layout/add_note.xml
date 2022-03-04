@@ -15,89 +15,158 @@
 <!--              android:textStyle="bold" android:layout_marginTop="10dp" android:layout_marginStart="10dp"-->
 <!--              android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>-->
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/green1"
-                    android:orientation="vertical"
-                    android:id="@+id/addpage"
-                    >
-        <LinearLayout
-                android:id="@+id/LinearLayoutButton"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:id="@+id/addpage"
+>
+    <LinearLayout
+            android:id="@+id/LinearLayoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cancel_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:background="@color/green1"
-                android:orientation="horizontal">
-            <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/cancel_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Cancel"
-                    android:textAllCaps="false"
-                    android:textColor="@color/red"
-                    android:textSize="10pt"
-                    android:textAlignment="textStart"
-                    android:background="@android:color/transparent"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="10dp">
-            </androidx.appcompat.widget.AppCompatButton>
-            <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/save_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Save"
-                    android:textAllCaps="false"
-                    android:textColor="@color/blue"
-                    android:textSize="10pt"
-                    android:textAlignment="textEnd"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp">
-            </androidx.appcompat.widget.AppCompatButton>
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputEditText
+                android:layout_weight="1"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/red"
+                android:textSize="10pt"
+                android:textAlignment="textStart"
+                android:background="@android:color/transparent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp">
+        </androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/save_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/LinearLayoutButton"
-                android:id="@+id/title_input"
-                android:hint="Title..."
-                android:background="@drawable/back"
-                android:padding="10dp"
-                android:textSize="25dp"
-                android:layout_marginTop="10dp" android:layout_marginStart="10dp" android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_weight="1"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/blue"
+                android:textSize="10pt"
+                android:textAlignment="textEnd"
+                android:background="@android:color/transparent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp">
+        </androidx.appcompat.widget.AppCompatButton>
+    </LinearLayout>
 
+    <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/LinearLayoutButton"
+            android:id="@+id/title_input"
+            android:hint="Title..."
+            android:background="@drawable/back"
+            android:padding="10dp"
+            android:textSize="25dp"
+            android:layout_marginTop="10dp" android:layout_marginStart="10dp" android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"/>
+    <LinearLayout
+            android:id="@+id/text_tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_input"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_rounded_corner"
+                android:id="@+id/sd"
+                android:textSize="16sp"
+                android:hint="   Tools:"/>
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bold"
+                android:contentDescription="@string/order"
+                android:background="@drawable/tool_border_frame"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/italic"
+                android:contentDescription="@string/order"
+                android:background="@drawable/tool_border_frame"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/underline"
+                android:background="@drawable/tool_border_frame"
+                android:contentDescription="@string/order"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/highlight"
+                android:contentDescription="@string/order"
+                android:background="@drawable/tool_border_frame"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/image"
+                android:contentDescription="@string/order"
+                android:background="@drawable/tool_border_frame"/>
+
+    </LinearLayout>
     <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/content_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/idRmdSwitch"
-            android:layout_below="@id/title_input"
+            android:layout_below="@id/text_tools"
+            android:layout_above="@id/tag"
             android:background="@drawable/back"
             android:gravity="start|top"
-            android:hint="Detail..."
+            android:hint="  Detail..."
             android:inputType="textMultiLine"
             android:singleLine="false"
             android:textSize="18dp"
-            android:padding="10dp"
             android:textColor="@color/black"
-            android:layout_marginTop="10dp" android:layout_marginStart="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
 
-        <androidx.appcompat.widget.SwitchCompat
-
-                android:id="@+id/idRmdSwitch"
-                android:layout_alignParentBottom="true"
-                android:text="Reminder"
-                android:checked="false"
+    <LinearLayout android:id="@+id/tag"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                    android:layout_above="@id/idRmdSwitch">
+        <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
-    </RelativeLayout>
-<!--</RelativeLayout>-->
+                android:layout_height="50dp"
+                android:id="@+id/tagTitle"
+                android:text="Tag"
+                android:padding="10dp"
+                android:gravity="center_vertical|start"
+                android:textColor="@color/black"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_add_24"
+                android:gravity="center_vertical|end"/>
+
+    </LinearLayout>
+    <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/idRmdSwitch"
+            android:layout_alignParentBottom="true"
+            android:text="Reminder"
+            android:checked="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
+</RelativeLayout>
+        <!--</RelativeLayout>-->
