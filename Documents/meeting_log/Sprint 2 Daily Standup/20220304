@@ -1,6 +1,9 @@
 What have we done?
 Kevin: Didn't do anything because of other courses' midterm
-Shonn: implemented the course management system xml, not tested the functionality yet
-Insung: 
+Shonn: implemented the course management system xml (finishing the structure of add_note and filtering xml), not tested the functionality yet
+Insung: Implemting the interface access functionality
 
 What are we going to do?
+Kevin: implement the alarm system, implement the feature of including images or other attachment in text editing.
+Insung: implement the fininsh the database, figure out how to make the database unit test.
+Shonn: complete the course management system xml and ensure it is working.
