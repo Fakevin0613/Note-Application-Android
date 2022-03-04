@@ -33,7 +33,10 @@ interface NoteDataAccess {
 
     // *** this is the point of modification for filter and ordering feature
     @Query(
-        "Select Tag.name from `Tag`, `TagNoteCrossRef` as `Ref` where :note.id order by name ASC"
+        "Select Tag.id, Tag.name from `Tag`, `TagNoteCrossRef` as `Ref` " +
+                "where Ref.noteId = :noteId " +
+                "and Tag.id = Ref.tagId " +
+                "order by name ASC"
     )
-    fun getTags(note: Note): LiveData<List<Tag>>
+    fun getTags(noteId: Int): LiveData<List<Tag>>
 }
