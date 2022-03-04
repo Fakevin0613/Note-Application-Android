@@ -3,6 +3,7 @@ package com.noteapplication.cs398
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -63,4 +64,11 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        print("override")
+//        val inflater = menuInflater
+//        inflater.inflate(R.menu.tools_for_notes, menu)
+//        return true
+//    }
 }

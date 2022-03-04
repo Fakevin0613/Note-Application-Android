@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+        <item android:id="@+id/android_sort_menu"
+              android:title="sorted by"
+              app:showAsAction="never">
+              <menu>
+                  <item android:id="@+id/sort_by_notes"
+                        android:title="notes"
+                        app:showAsAction="never"/>
+                  <item android:id="@+id/sort_by_capital"
+                        android:title="capital"
+                        app:showAsAction="never"/>
+              </menu>
+        </item>
+</menu>

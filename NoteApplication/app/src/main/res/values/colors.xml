@@ -10,6 +10,9 @@
     <color name="blue">#0000FF</color>
     <color name="red">#FF0000</color>
     <color name="light_grey">#A9A9A9</color>
+    <color name="colorPrimary">#FFFFFFFF</color>
+    <color name="colorPrimaryDark">#A9A9A9</color>
+    <color name="colorAccent">#FFFFFFFF</color>
 
     <color name="green1">#5BC8AC</color>
     <color name="green2">#98DBC6</color>
