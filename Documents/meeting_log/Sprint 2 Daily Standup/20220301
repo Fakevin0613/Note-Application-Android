@@ -1,3 +1,6 @@
+Date 2022/03/01
+first meeting for Sprint 2
+
 What have you completed since last meeting?
 Kevin: Set up the unit code using Robolectic; Database unit test is still not complete
 Insung: Added a destructive migressiion for the database - this will be replaced with proper migression.
@@ -9,4 +12,5 @@ Insung: implement interface to new databases
 Shonn: implementing the filtering functionalities
 
 What obstacles are in your way?
-Kevin: the unit test for Database has bugs
+Kevin: the unit test for Database still has bugs
+Insung: the namings in various classes are changes to accomodate the features of the new file system. Therefore, there are conflicts and bugs
