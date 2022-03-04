@@ -1,8 +1,6 @@
 Date 2022/02/22
 Starting meeting for Sprint 2
 What to do?
-Kevin: Setup the Unit Test
-
-Insung: Study and try to implement the class management system
-
-Shonn: implement the note filtering
+Kevin: Setup the Unit Test dependency and try to fix the database unit text bugs
+Insung: Study and try to implement the class management system, including the modifying the database access in different files
+Shonn: implement the note filtering xmls
