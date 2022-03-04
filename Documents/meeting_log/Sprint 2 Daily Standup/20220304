@@ -1,5 +1,8 @@
+Date 2022/03/04
+Second meeting for Sprint 2
+
 What have we done?
-Kevin: Didn't do anything because of other courses' midterm
+Kevin: Prepared and did midterms for other courses
 Shonn: implemented the course management system xml (finishing the structure of add_note and filtering xml), not tested the functionality yet
 Insung: Implemting the interface access functionality
 
@@ -7,3 +10,6 @@ What are we going to do?
 Kevin: implement the alarm system, implement the feature of including images or other attachment in text editing.
 Insung: implement the fininsh the database, figure out how to make the database unit test.
 Shonn: complete the course management system xml and ensure it is working.
+
+What obstacles we meet?
+Shonn: have difficulties to insert the correct icons into the xml (can find the correct vectors shape)
