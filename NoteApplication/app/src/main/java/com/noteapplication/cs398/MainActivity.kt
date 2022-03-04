@@ -30,12 +30,6 @@ class MainActivity : AppCompatActivity() {
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         )[NoteViewModel::class.java]
 
-        ////// >>>>>>>>>>> testing area
-//        for(i in 1..5){
-//            viewModel.insertNote(Note("title", "content something something text thong hting", "time", true))
-//        }
-        ///// <<<<<<<<<<<<
-
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         addButton = binding.addNew
