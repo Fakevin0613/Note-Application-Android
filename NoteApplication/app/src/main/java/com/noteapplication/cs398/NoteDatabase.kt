@@ -8,9 +8,6 @@ import androidx.room.migration.AutoMigrationSpec
 abstract class NoteDatabase : RoomDatabase() {
     abstract fun getNoteDataAccess(): NoteDataAccess
 
-//    @DeleteTable(tableName = "Table")
-//    class MyAutoMigration : AutoMigrationSpec
-
     companion object{
         @Volatile
         private var INSTANCE: NoteDatabase? = null

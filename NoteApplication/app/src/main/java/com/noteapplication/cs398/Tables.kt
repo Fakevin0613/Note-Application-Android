@@ -21,7 +21,7 @@ data class Tag (
     @PrimaryKey(autoGenerate = true) var id: Int = 0
 )
 
-@Entity(tableName = "TagRelation",
+@Entity(tableName = "TagNoteCrossRef",
     primaryKeys = ["tagId", "noteId"],
     foreignKeys = [
         ForeignKey(

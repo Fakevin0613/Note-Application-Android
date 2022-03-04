@@ -24,4 +24,16 @@ interface NoteDataAccess {
         "Select * from `Note` where id = :id"
     )
     fun getNoteById(id:Int): LiveData<List<Note>>
+
+    // *** this is the point of modification for filter and ordering feature
+    @Query(
+        "Select * from `Tag` where name = :name"
+    )
+    fun getTag(name: String): LiveData<List<Tag>>
+
+    // *** this is the point of modification for filter and ordering feature
+    @Query(
+        "Select Tag.name from `Tag`, `TagNoteCrossRef` as `Ref` where :note.id order by name ASC"
+    )
+    fun getTags(note: Note): LiveData<List<Tag>>
 }
