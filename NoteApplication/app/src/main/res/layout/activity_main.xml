@@ -20,13 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/tool_bar"
+            android:id="@+id/tool_bar_linear"
 
             android:layout_margin="8dp"
             android:paddingHorizontal="4dp"
             android:layout_below="@id/title">
         <include layout="@layout/tool_bar"
-                 android:id="@+id/actual_tool_bar"
+                 android:id="@+id/tool_bar"
         />
     </LinearLayout>
 
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/note_list"
-            android:layout_below="@id/tool_bar"
+            android:layout_below="@id/tool_bar_linear"
             android:layout_margin="8dp"
             tools:listitem="@layout/note_item"/>
 

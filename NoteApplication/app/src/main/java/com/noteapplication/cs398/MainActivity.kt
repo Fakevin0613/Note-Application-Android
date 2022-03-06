@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val toolbar = findViewById<Toolbar>(R.id.tool_bar)
+        setSupportActionBar(toolbar)
+
 
         viewModel = ViewModelProvider(
             this,
@@ -65,10 +70,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        print("override")
-//        val inflater = menuInflater
-//        inflater.inflate(R.menu.tools_for_notes, menu)
-//        return true
-//    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        print("override")
+        val inflater = menuInflater
+        inflater.inflate(R.menu.tools_for_notes, menu)
+        return true
+    }
 }

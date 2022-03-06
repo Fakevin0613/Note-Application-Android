@@ -31,6 +31,11 @@
         />
 
     </LinearLayout>
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            tools:listitem="@layout/tag_item"/>-->
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
