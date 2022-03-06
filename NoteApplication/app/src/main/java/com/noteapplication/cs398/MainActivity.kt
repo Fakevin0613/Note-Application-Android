@@ -26,10 +26,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val toolbar = findViewById<Toolbar>(R.id.tool_bar)
-        setSupportActionBar(toolbar)
-
-
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
@@ -42,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         ///// <<<<<<<<<<<<
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        setSupportActionBar(binding.toolBar.root)
 
         addButton = binding.addNew
         noteList = binding.noteList
