@@ -6,14 +6,36 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity(tableName = "Note")
+@Entity(tableName = "Note",
+    foreignKeys = [ForeignKey(
+        entity = Folder::class,
+        parentColumns = arrayOf("id"),
+        childColumns = arrayOf("folderId"),
+        onDelete = ForeignKey.CASCADE
+    )]
+)
 data class Note (
-    @ColumnInfo(name = "title") val noteTitle:String,
-    @ColumnInfo(name = "content") val noteContent:String,
-    @ColumnInfo(name = "time") val noteTime:String,
-    @ColumnInfo(name = "todo") val noteTag:Boolean,
+    @ColumnInfo(name = "title") val title:String,
+    @ColumnInfo(name = "content") val content:String,
+    @ColumnInfo(name = "createdTime") val createdTime:String,
+    @ColumnInfo(name = "notify") val notify:Boolean,
+    @ColumnInfo(name = "folderId") val folderId:Int?,
     @PrimaryKey(autoGenerate = true) var id: Int = 0
 ): Serializable
+
+@Entity(tableName = "Folder",
+    foreignKeys = [ForeignKey(
+        entity = Folder::class,
+        parentColumns = arrayOf("id"),
+        childColumns = arrayOf("parent"),
+        onDelete = ForeignKey.CASCADE
+    )]
+)
+data class Folder (
+    @ColumnInfo(name = "name") val name:String,
+    @ColumnInfo(name = "parent") val parent:Int,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0
+)
 
 @Entity(tableName = "Tag")
 data class Tag (
@@ -39,6 +61,6 @@ data class Tag (
     ]
 )
 data class TagNoteCrossRef (
-    val tagId:String,
-    val noteId:String
+    val tagId:Int,
+    val noteId:Int
 )

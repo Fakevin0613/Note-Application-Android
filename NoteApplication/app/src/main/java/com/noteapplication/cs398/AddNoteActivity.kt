@@ -43,9 +43,9 @@ class AddNoteActivity : AppCompatActivity() {
 
         (intent.getSerializableExtra("note") as Note?)?.let {
             isEditing = true
-            binding.titleInput.setText(it.noteTitle)
-            binding.contentInput.setText(it.noteContent)
-            binding.idRmdSwitch.isChecked = it.noteTag
+            binding.titleInput.setText(it.title)
+            binding.contentInput.setText(it.content)
+            binding.idRmdSwitch.isChecked = it.notify
             oldId = it.id
         }
 
@@ -64,6 +64,7 @@ class AddNoteActivity : AppCompatActivity() {
                     binding.contentInput.text.toString(),
                     current,
                     binding.idRmdSwitch.isChecked,
+                    null,
                     oldId!!
                 )
                 viewModel.updateNote(newNote)
@@ -73,7 +74,8 @@ class AddNoteActivity : AppCompatActivity() {
                     binding.titleInput.text.toString(),
                     binding.contentInput.text.toString(),
                     current,
-                    binding.idRmdSwitch.isChecked
+                    binding.idRmdSwitch.isChecked,
+                    null // the note does not goes to any folder for now
                 )
                 viewModel.insertNote(newNote)
             }

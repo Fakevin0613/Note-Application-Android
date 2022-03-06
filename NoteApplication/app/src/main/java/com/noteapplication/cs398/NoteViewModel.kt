@@ -22,12 +22,29 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
     fun updateNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {
         dao.update(note)
+
+        // need some way to detect deleted tags
+//        tags?.let {_ ->
+//            tags.forEach {
+//                dao.insert(it)
+//                dao.insert(TagNoteCrossRef(it.id, note.id))
+//            }
+//        }
     }
 
     fun insertNote(note: Note, tags: Array<Tag>? = null) = viewModelScope.launch(Dispatchers.IO) {
         dao.insert(note)
-        tags?.let {
+        tags?.let {_ ->
+            // delete all existing note-tag references
+            dao.getTagRefs(note.id).value?.let{
+                it.forEach { ref -> dao.delete(ref) }
+            }
 
+            // insert given note-tag references
+            tags.forEach {
+               dao.insert(it)
+               dao.insert(TagNoteCrossRef(tagId = it.id, noteId = note.id))
+            }
         }
     }
 }

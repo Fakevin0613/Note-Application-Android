@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.*
 import androidx.room.migration.AutoMigrationSpec
 
-@Database(entities = [Note::class, Tag::class, TagNoteCrossRef::class], version = 4)
+@Database(entities = [Note::class, Folder::class, Tag::class, TagNoteCrossRef::class], version = 7)
 abstract class NoteDatabase : RoomDatabase() {
     abstract fun getNoteDataAccess(): NoteDataAccess
 
