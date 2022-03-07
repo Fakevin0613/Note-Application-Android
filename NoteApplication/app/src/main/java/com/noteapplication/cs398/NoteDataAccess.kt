@@ -6,34 +6,34 @@ import androidx.room.*
 @Dao
 interface NoteDataAccess {
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Note::class)
-    fun insert(note:Note)
+    suspend fun insert(note:Note)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Folder::class)
-    fun insert(folder: Folder)
+    suspend fun insert(folder: Folder)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Tag::class)
-    fun insert(tag: Tag)
+    suspend fun insert(tag: Tag)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = TagNoteCrossRef::class)
-    fun insert(tagNoteCrossRef: TagNoteCrossRef)
+    suspend fun insert(tagNoteCrossRef: TagNoteCrossRef)
 
     @Update(entity = Note::class)
-    fun update(note:Note)
+    suspend fun update(note:Note)
 
     @Update(entity = Folder::class)
-    fun update(folder: Folder)
+    suspend fun update(folder: Folder)
 
     @Delete(entity = Note::class)
-    fun delete(note: Note)
+    suspend fun delete(note: Note)
 
     @Delete(entity = Folder::class)
-    fun delete(folder: Folder)
+    suspend fun delete(folder: Folder)
 
     @Delete(entity = Tag::class)
-    fun delete(tag: Tag)
+    suspend fun delete(tag: Tag)
 
     @Delete(entity = TagNoteCrossRef::class)
-    fun delete(tagNoteCrossRef: TagNoteCrossRef)
+    suspend fun delete(tagNoteCrossRef: TagNoteCrossRef)
 
     // *** this is the point of modification for filter and ordering feature
     @Query(
