@@ -26,7 +26,7 @@ class AddNoteActivity : AppCompatActivity() {
     private var todo: Boolean = false
     private var isEditing: Boolean = false
 
-    private var oldId: Int? = null
+    private var oldId: Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

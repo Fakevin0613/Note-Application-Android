@@ -11,7 +11,7 @@ import java.io.Serializable
         entity = Folder::class,
         parentColumns = arrayOf("id"),
         childColumns = arrayOf("folderId"),
-        onDelete = ForeignKey.CASCADE
+        onDelete = ForeignKey.SET_NULL
     )]
 )
 data class Note (
@@ -19,8 +19,8 @@ data class Note (
     @ColumnInfo(name = "content") val content:String,
     @ColumnInfo(name = "createdTime") val createdTime:String,
     @ColumnInfo(name = "notify") val notify:Boolean,
-    @ColumnInfo(name = "folderId") val folderId:Int?,
-    @PrimaryKey(autoGenerate = true) var id: Int = 0
+    @ColumnInfo(name = "folderId") val folderId:Long?,
+    @PrimaryKey(autoGenerate = true) var id: Long = 0,
 ): Serializable
 
 @Entity(tableName = "Folder",
@@ -33,14 +33,14 @@ data class Note (
 )
 data class Folder (
     @ColumnInfo(name = "name") val name:String,
-    @ColumnInfo(name = "parent") val parent:Int,
-    @PrimaryKey(autoGenerate = true) var id: Int = 0
+    @ColumnInfo(name = "parent") val parent:Long? = null,
+    @PrimaryKey(autoGenerate = true) var id: Long = 0
 )
 
 @Entity(tableName = "Tag")
 data class Tag (
     @ColumnInfo(name = "name") val name:String,
-    @PrimaryKey(autoGenerate = true) var id: Int = 0
+    @PrimaryKey(autoGenerate = true) var id: Long = 0
 )
 
 @Entity(tableName = "TagNoteCrossRef",
@@ -61,6 +61,6 @@ data class Tag (
     ]
 )
 data class TagNoteCrossRef (
-    val tagId:Int,
-    val noteId:Int
+    val tagId:Long,
+    val noteId:Long
 )

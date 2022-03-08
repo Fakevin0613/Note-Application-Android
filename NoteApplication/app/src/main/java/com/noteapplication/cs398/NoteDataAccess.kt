@@ -6,13 +6,13 @@ import androidx.room.*
 @Dao
 interface NoteDataAccess {
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Note::class)
-    suspend fun insert(note:Note)
+    suspend fun insert(note:Note): Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Folder::class)
-    suspend fun insert(folder: Folder)
+    suspend fun insert(folder: Folder): Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Tag::class)
-    suspend fun insert(tag: Tag)
+    suspend fun insert(tag: Tag): Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = TagNoteCrossRef::class)
     suspend fun insert(tagNoteCrossRef: TagNoteCrossRef)
@@ -41,10 +41,25 @@ interface NoteDataAccess {
     )
     fun getNotes(): LiveData<List<Note>>
 
+    // *** this is the point of modification for filter and ordering feature
+    @Query(
+        "Select Note.* from `Note`, `TagNoteCrossRef` as `Ref` " +
+                "where Ref.tagId = :tagId " +
+                "and Ref.noteId = Note.id " +
+                "order by id ASC"
+    )
+    fun getNotesByTagId(tagId: Long): LiveData<List<Note>>
+
+    // *** this is the point of modification for filter and ordering feature
+    @Query(
+        "Select * from `Note` where folderId = :folderId order by id ASC"
+    )
+    fun getNotesByFolderId(folderId: Long): LiveData<List<Note>>
+
     @Query(
         "Select * from `Note` where id = :id"
     )
-    fun getNoteById(id:Int): LiveData<List<Note>>
+    fun getNoteById(id:Long): LiveData<List<Note>>
 
     // *** this is the point of modification for filter and ordering feature
     @Query(
@@ -53,17 +68,23 @@ interface NoteDataAccess {
                 "and Tag.id = Ref.tagId " +
                 "order by name ASC"
     )
-    fun getTags(noteId: Int): LiveData<List<Tag>>
+    fun getTags(noteId: Long): LiveData<List<Tag>>
 
     // *** this is the point of modification for filter and ordering feature
     @Query(
         "Select * from `TagNoteCrossRef` where noteId = :noteId"
     )
-    fun getTagRefs(noteId: Int): LiveData<List<TagNoteCrossRef>>
+    fun getTagRefs(noteId: Long): LiveData<List<TagNoteCrossRef>>
 
     // *** this is the point of modification for filter and ordering feature
     @Query(
         "Select * from `Folder` order by name ASC"
     )
     fun getFolders(): LiveData<List<Folder>>
+
+    // *** this is the point of modification for filter and ordering feature
+    @Query(
+        "Select * from `Folder` where id = :folderId order by name ASC"
+    )
+    fun getFolders(folderId: Long): LiveData<List<Folder>>
 }
