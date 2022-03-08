@@ -1,6 +1,10 @@
 Date 2022/03/01
 first meeting for Sprint 2
 
+What we discuss:
+1. Summarize what we didn't do well in the first sprint and decides on the changes we should do on the second sprint
+2. make plans and distribute issues for each members
+
 What have you completed since last meeting?
 Kevin: Set up the unit code using Robolectic; Database unit test is still not complete
 Insung: Added a destructive migressiion for the database - this will be replaced with proper migression.
