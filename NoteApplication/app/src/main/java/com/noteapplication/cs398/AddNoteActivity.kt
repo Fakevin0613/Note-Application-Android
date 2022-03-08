@@ -91,7 +91,4 @@ class AddNoteActivity : AppCompatActivity() {
 
         setContentView(binding.root)
     }
-
-
-
 }

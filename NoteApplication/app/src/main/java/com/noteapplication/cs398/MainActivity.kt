@@ -60,11 +60,11 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        print("override")
-        val inflater = menuInflater
-        inflater.inflate(R.menu.tools_for_notes, menu)
-        return true
-    }
+//
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        print("override")
+//        val inflater = menuInflater
+//        inflater.inflate(R.menu.tools_for_notes, menu)
+//        return true
+//    }
 }
