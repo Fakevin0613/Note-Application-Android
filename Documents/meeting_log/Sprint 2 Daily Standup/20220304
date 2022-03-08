@@ -1,14 +1,14 @@
 Date 2022/03/04
-Second meeting for Sprint 2
+Third meeting for Sprint 2
 
 What have we done?
-Kevin: Prepared and did midterms for other courses
+Kevin: Studied on the how to grant permission to access the gallery for our app
 Shonn: implemented the course management system xml (finishing the structure of add_note and filtering xml), not tested the functionality yet
-Insung: Implemting the interface access functionality
+Insung: Implemting the interface access functionality, writing Queries for database
 
 What are we going to do?
-Kevin: implement the alarm system, implement the feature of including images or other attachment in text editing.
-Insung: implement the fininsh the database, figure out how to make the database unit test.
+Kevin: drafting 
+Insung: make modification on the database, figure out how to make the database unit test.
 Shonn: complete the course management system xml and ensure it is working.
 
 What obstacles we meet?
