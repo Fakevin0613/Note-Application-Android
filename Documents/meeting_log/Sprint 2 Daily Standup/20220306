@@ -1,1 +1,17 @@
+Date 2022/03/06
+Third meeting (offline) for Sprint 2
 
+What have we done?
+Kevin: Allow permission for image access
+Shonn: implementing the course management system xml
+Insung: upgraded the database so that it support the course management system. 
+
+What are we going to do?
+Kevin: support image adding within the notes
+Insung: figure out how to make the database unit test
+Shonn: complete the course management system xml and ensure it is working.
+
+What obstacles we meet?
+Kevin: The TextEdit does not support image insertion
+Shonn: the xmls are messy and need effects to organise them.
+insung: the unit test environment is complicated to set up.
