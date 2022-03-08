@@ -11,6 +11,7 @@
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/note_item.xml" value="0.22" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/read_note.xml" value="0.2171875" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.5203125" />
+        <entry key="app/src/main/res/drawable/add.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/drawable/back.xml" value="0.15625" />
         <entry key="app/src/main/res/drawable/bold.xml" value="0.134375" />
         <entry key="app/src/main/res/drawable/bold_symbol.xml" value="0.13333333333333333" />
@@ -31,6 +32,7 @@
         <entry key="app/src/main/res/drawable/trash.xml" value="0.28802083333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.34088050314465407" />
         <entry key="app/src/main/res/layout/add_note.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/add_tag.xml" value="0.25" />
         <entry key="app/src/main/res/layout/addnoteactivity.xml" value="0.3162037037037037" />
         <entry key="app/src/main/res/layout/class_managment.xml" value="0.2787878787878788" />
         <entry key="app/src/main/res/layout/course_item.xml" value="0.335" />
