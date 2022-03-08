@@ -46,8 +46,8 @@ class ListAdapter(private val viewModel: NoteViewModel, private val activity: Ap
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-            viewHolder.binding.itemTitle.text = allNotes[position].noteTitle
-            viewHolder.binding.itemContent.text = allNotes[position].noteContent
+            viewHolder.binding.itemTitle.text = allNotes[position].title
+            viewHolder.binding.itemContent.text = allNotes[position].content
 
             // delete button
             viewHolder.binding.deleteButton.setOnClickListener { _ ->

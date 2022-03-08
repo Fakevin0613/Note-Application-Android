@@ -3,7 +3,6 @@ package com.noteapplication.cs398
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
-import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -30,12 +29,6 @@ class MainActivity : AppCompatActivity() {
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         )[NoteViewModel::class.java]
-
-        ////// >>>>>>>>>>> testing area
-//        for(i in 1..5){
-//            viewModel.insertNote(Note("title", "content something something text thong hting", "time", true))
-//        }
-        ///// <<<<<<<<<<<<
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 

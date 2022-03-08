@@ -34,9 +34,9 @@ class ReadNoteActivity : AppCompatActivity(){
 
         noteItem.observe(this){
             it?.let {
-                binding.noteTitle.text = it.noteTitle
-                binding.noteContent.text = it.noteContent
-                binding.idRmdSwitch.isChecked = it.noteTag
+                binding.noteTitle.text = it.title
+                binding.noteContent.text = it.content
+                binding.idRmdSwitch.isChecked = it.notify
             }
         }
 
