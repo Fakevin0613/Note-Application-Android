@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.noteapplication.cs398.databinding.AddCourseBinding
@@ -12,7 +13,7 @@ import com.noteapplication.cs398.databinding.AddCourseBinding
 class AddCourseBottomSheet(private var viewModel: CourseViewModel) : BottomSheetDialogFragment() {
 
     private lateinit var binding: AddCourseBinding
-    private lateinit var saveBtn: Button
+    private lateinit var saveBtn: ImageButton
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

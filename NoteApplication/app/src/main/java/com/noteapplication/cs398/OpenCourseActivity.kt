@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,19 +26,24 @@ class OpenCourseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        )[NoteViewModel::class.java]
-
         binding = OpenCourseBinding.inflate(layoutInflater)
 
         setSupportActionBar(binding.toolBar.root)
-        val folderItem = MutableLiveData(intent.getSerializableExtra("folder") as Folder?)
+        val folderItem = intent.getSerializableExtra("folder") as Folder?
 
-        folderItem.observe(this){
-            binding.title.text = it?.name ?: "Notes"
-        }
+        binding.title.text = folderItem?.name ?: "Notes"
+
+        viewModel = ViewModelProvider(
+            this,
+            NoteViewModel.ViewModelFactory(this.application, folderItem)
+        )[NoteViewModel::class.java]
+//
+//        viewModel = ViewModelProvider(
+//            this,
+//            NoteViewModel.ViewModelFactory.
+////            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+//        )[NoteViewModel::class.java]
+
 
         addButton = binding.addNew
         noteList = binding.noteList

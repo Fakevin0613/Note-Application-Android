@@ -27,17 +27,18 @@
                 android:id="@+id/course_input"
                 android:hint=""
                 android:padding="13dp"/>
-        <Button
+        <ImageButton
                 app:fabCustomSize="6dp"
+                android:backgroundTint="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/add_new_course"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="12dp"
                 android:outlineProvider="none"
-                android:src="@drawable/add"
+                android:src="@drawable/ic_baseline_add_24"
                 android:gravity="center_vertical|end"
                 android:contentDescription="@string/add_new_note">
-        </Button>
+        </ImageButton>
     </RelativeLayout>
 </RelativeLayout>

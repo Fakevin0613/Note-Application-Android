@@ -1,19 +1,19 @@
 package com.noteapplication.cs398
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NoteViewModel(application: Application) : AndroidViewModel(application) {
+
+class NoteViewModel(application: Application, val folder: Folder? = null) : AndroidViewModel(application) {
     val allNotes: LiveData<List<Note>>
     private val dao: NoteDataAccess
 
     init{
         dao = NoteDatabase.getDatabase(application).getNoteDataAccess()
-        allNotes = dao.getNotes()
+        allNotes = if(folder != null) dao.getNotesByFolderId(folderId = folder!!.id)
+                   else dao.getNotes()
     }
 
     fun deleteNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {
@@ -45,6 +45,12 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
                dao.insert(it)
                dao.insert(TagNoteCrossRef(tagId = it.id, noteId = note.id))
             }
+        }
+    }
+
+    class ViewModelFactory(private val mApplication: Application, private val mParam: Folder?) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return NoteViewModel(mApplication, mParam) as T
         }
     }
 }
