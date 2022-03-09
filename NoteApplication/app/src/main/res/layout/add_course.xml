@@ -12,6 +12,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/courseTitle"
                 android:text="Course"
                 android:textSize="16dp"
                 android:gravity="bottom"
@@ -26,7 +27,7 @@
                 android:id="@+id/course_input"
                 android:hint=""
                 android:padding="13dp"/>
-        <Button
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
                 app:fabCustomSize="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,11 +38,6 @@
                 android:src="@drawable/add"
                 android:gravity="center_vertical|end"
                 android:contentDescription="@string/add_new_note">
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/add"
-                    android:contentDescription="plus sign"/>
-        </Button>
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
     </RelativeLayout>
 </RelativeLayout>
