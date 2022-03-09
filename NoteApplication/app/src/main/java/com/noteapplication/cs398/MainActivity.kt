@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolBar.root)
 
-        addButton = binding.addNew
+        addButton = binding.toolBar.addNew
         courseList = binding.courseList
         courseList.layoutManager = LinearLayoutManager(this)
         adapter = CourseListAdapter(viewModel, this)
