@@ -31,19 +31,15 @@ class OpenCourseActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolBar.root)
         val folderItem = intent.getSerializableExtra("folder") as Folder?
 
-        binding.title.text = folderItem?.name ?: "Notes"
 
         viewModel = ViewModelProvider(
             this,
-            NoteViewModel.ViewModelFactory(this.application, folderItem)
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         )[NoteViewModel::class.java]
-//
-//        viewModel = ViewModelProvider(
-//            this,
-//            NoteViewModel.ViewModelFactory.
-////            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-//        )[NoteViewModel::class.java]
+        folderItem?.let { viewModel.setAllNotes(folderItem) }
 
+
+        binding.title.text = folderItem?.name ?: "Notes"
 
         addButton = binding.addNew
         noteList = binding.noteList
@@ -63,9 +59,9 @@ class OpenCourseActivity : AppCompatActivity() {
 
         addButton.setOnClickListener{
             val intent = Intent(this@OpenCourseActivity, AddNoteActivity::class.java)
+            intent.putExtra("folder", viewModel.folder)
             startActivity(intent)
         }
-
 
 
         val view = binding.root

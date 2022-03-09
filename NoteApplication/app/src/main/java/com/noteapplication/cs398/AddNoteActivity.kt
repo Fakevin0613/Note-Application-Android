@@ -27,6 +27,9 @@ class AddNoteActivity : AppCompatActivity() {
     private var isEditing: Boolean = false
 
     private var oldId: Long? = null
+    private var oldFolderId: Long? = null
+
+    private var folder: Folder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +50,9 @@ class AddNoteActivity : AppCompatActivity() {
             binding.contentInput.setText(it.content)
             binding.idRmdSwitch.isChecked = it.notify
             oldId = it.id
+            oldFolderId = it.folderId
         }
+        folder = intent.getSerializableExtra("folder") as Folder?
 
         save.setOnClickListener{
             Toast.makeText(this, "$title Added", Toast.LENGTH_LONG).show()
@@ -64,7 +69,7 @@ class AddNoteActivity : AppCompatActivity() {
                     binding.contentInput.text.toString(),
                     current,
                     binding.idRmdSwitch.isChecked,
-                    null,
+                    oldFolderId,
                     oldId!!
                 )
                 viewModel.updateNote(newNote)
@@ -75,7 +80,7 @@ class AddNoteActivity : AppCompatActivity() {
                     binding.contentInput.text.toString(),
                     current,
                     binding.idRmdSwitch.isChecked,
-                    null // the note does not goes to any folder for now
+                    folderId = folder?.id // the note does not goes to any folder for now
                 )
                 viewModel.insertNote(newNote)
             }

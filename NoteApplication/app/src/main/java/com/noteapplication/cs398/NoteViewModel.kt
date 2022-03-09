@@ -6,14 +6,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class NoteViewModel(application: Application, val folder: Folder? = null) : AndroidViewModel(application) {
-    val allNotes: LiveData<List<Note>>
+class NoteViewModel(application: Application) : AndroidViewModel(application) {
+    var allNotes: LiveData<List<Note>>
     private val dao: NoteDataAccess
+
+    var folder: Folder? = null
 
     init{
         dao = NoteDatabase.getDatabase(application).getNoteDataAccess()
-        allNotes = if(folder != null) dao.getNotesByFolderId(folderId = folder!!.id)
-                   else dao.getNotes()
+        allNotes = dao.getNotes()
+    }
+
+    fun setAllNotes(folder: Folder){
+        this.folder = folder
+        allNotes = dao.getNotesByFolderId(folderId = folder!!.id)
     }
 
     fun deleteNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {
@@ -45,12 +51,6 @@ class NoteViewModel(application: Application, val folder: Folder? = null) : Andr
                dao.insert(it)
                dao.insert(TagNoteCrossRef(tagId = it.id, noteId = note.id))
             }
-        }
-    }
-
-    class ViewModelFactory(private val mApplication: Application, private val mParam: Folder?) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return NoteViewModel(mApplication, mParam) as T
         }
     }
 }
