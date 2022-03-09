@@ -16,11 +16,11 @@ class CourseViewModel(application: Application) : AndroidViewModel(application) 
         allFolders = dao.getFolders()
     }
 
-    fun deleteNote(folder: Folder) = viewModelScope.launch(Dispatchers.IO) {
+    fun deleteCourse(folder: Folder) = viewModelScope.launch(Dispatchers.IO) {
         dao.delete(folder)
     }
 
-    fun updateNote(folder: Folder) = viewModelScope.launch(Dispatchers.IO) {
+    fun updateCourse(folder: Folder) = viewModelScope.launch(Dispatchers.IO) {
         dao.update(folder)
 
         // need some way to detect deleted tags

@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.noteapplication.cs398.databinding.AddNoteBinding
 import com.noteapplication.cs398.databinding.ReadNoteBinding
 import java.text.SimpleDateFormat
@@ -20,6 +21,8 @@ class AddNoteActivity : AppCompatActivity() {
     private lateinit var cancel: AppCompatButton
     private lateinit var save: AppCompatButton
     private lateinit var viewModel: NoteViewModel
+    private lateinit var tagViewModel: TagViewModel
+    private lateinit var addTag: FloatingActionButton
 
     private var title: String = ""
     private var content: String = ""
@@ -39,10 +42,14 @@ class AddNoteActivity : AppCompatActivity() {
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         )[NoteViewModel::class.java]
+        tagViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        )[TagViewModel::class.java]
 
         cancel = binding.cancelButton
         save = binding.saveButton
-
+        addTag = binding.addNewTag
 
         (intent.getSerializableExtra("note") as Note?)?.let {
             isEditing = true
@@ -53,6 +60,11 @@ class AddNoteActivity : AppCompatActivity() {
             oldFolderId = it.folderId
         }
         folder = intent.getSerializableExtra("folder") as Folder?
+
+        addTag.setOnClickListener{
+            var addTag = AddTagBottomSheet(tagViewModel)
+            addTag.show(supportFragmentManager, "addTagBottomSheet")
+        }
 
         save.setOnClickListener{
             Toast.makeText(this, "$title Added", Toast.LENGTH_LONG).show()
