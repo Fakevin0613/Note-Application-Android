@@ -27,7 +27,7 @@
                 android:id="@+id/course_input"
                 android:hint=""
                 android:padding="13dp"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
                 app:fabCustomSize="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,6 +38,6 @@
                 android:src="@drawable/add"
                 android:gravity="center_vertical|end"
                 android:contentDescription="@string/add_new_note">
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        </Button>
     </RelativeLayout>
 </RelativeLayout>
