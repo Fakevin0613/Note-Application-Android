@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         courseList.layoutManager = LinearLayoutManager(this)
         adapter = CourseListAdapter(viewModel, this)
 
-//        adapter.setClickListener(this)
         courseList.adapter = adapter
         courseList.addItemDecoration(object: RecyclerView.ItemDecoration() {
 
