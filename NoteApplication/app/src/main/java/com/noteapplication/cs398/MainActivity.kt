@@ -52,9 +52,10 @@ class MainActivity : AppCompatActivity() {
         })
 
         addButton.setOnClickListener{
-            var addCourse = AddCourseBottomSheet(viewModel)
-            addCourse.show(supportFragmentManager, "addCourseBottomSheet")
-
+            if(!viewModel.isAddingFolder){
+                viewModel.isAddingFolder = true
+                AddCourseBottomSheet(viewModel).show(supportFragmentManager, "addCourseBottomSheet")
+            }
         }
 
 

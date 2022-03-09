@@ -1,5 +1,6 @@
 package com.noteapplication.cs398
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,11 +21,15 @@ class AddCourseBottomSheet(private var viewModel: CourseViewModel) : BottomSheet
         binding = AddCourseBinding.inflate(inflater, container, false)
         saveBtn = binding.addNewCourse
         saveBtn.setOnClickListener() {
-            print("clicked")
             viewModel.insertFolder(Folder(binding.courseInput.text.toString()))
+            dismiss()
         }
         return binding.root
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        viewModel.isAddingFolder = false
+    }
 
 }

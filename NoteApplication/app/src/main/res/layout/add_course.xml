@@ -34,10 +34,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/add_new_course"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="12dp"
                 android:outlineProvider="none"
                 android:src="@drawable/ic_baseline_add_24"
-                android:gravity="center_vertical|end"
+                android:layout_centerVertical="true"
                 android:contentDescription="@string/add_new_note">
         </ImageButton>
     </RelativeLayout>
