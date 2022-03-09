@@ -35,7 +35,7 @@ data class Folder (
     @ColumnInfo(name = "name") val name:String,
     @ColumnInfo(name = "parent") val parent:Long? = null,
     @PrimaryKey(autoGenerate = true) var id: Long = 0
-)
+): Serializable
 
 @Entity(tableName = "Tag")
 data class Tag (

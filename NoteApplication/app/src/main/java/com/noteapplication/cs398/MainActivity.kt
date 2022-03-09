@@ -3,8 +3,10 @@ package com.noteapplication.cs398
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,10 +17,10 @@ import com.noteapplication.cs398.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: NoteViewModel
-    private lateinit var noteList: RecyclerView
+    private lateinit var viewModel: CourseViewModel
+    private lateinit var courseList: RecyclerView
     private lateinit var addButton: FloatingActionButton
-    private lateinit var adapter: ListAdapter
+    private lateinit var adapter: CourseListAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,18 +29,19 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        )[NoteViewModel::class.java]
+        )[CourseViewModel::class.java]
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        addButton = binding.addNew
-        noteList = binding.noteList
-        noteList.layoutManager = LinearLayoutManager(this)
-        adapter = ListAdapter(viewModel, this)
+        setSupportActionBar(binding.toolBar.root)
 
-//        adapter.setClickListener(this)
-        noteList.adapter = adapter
-        noteList.addItemDecoration(object: RecyclerView.ItemDecoration() {
+        addButton = binding.toolBar.addNew
+        courseList = binding.courseList
+        courseList.layoutManager = LinearLayoutManager(this)
+        adapter = CourseListAdapter(viewModel, this)
+
+        courseList.adapter = adapter
+        courseList.addItemDecoration(object: RecyclerView.ItemDecoration() {
 
             private val verticalSpaceHeight = 24
 
@@ -48,8 +51,10 @@ class MainActivity : AppCompatActivity() {
         })
 
         addButton.setOnClickListener{
-            val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
-            startActivity(intent)
+            if(!viewModel.isAddingFolder){
+                viewModel.isAddingFolder = true
+                AddCourseBottomSheet(viewModel).show(supportFragmentManager, "addCourseBottomSheet")
+            }
         }
 
 
@@ -57,11 +62,10 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        print("override")
-//        val inflater = menuInflater
-//        inflater.inflate(R.menu.tools_for_notes, menu)
-//        return true
-//    }
+//
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.tools, menu)
+        return true
+    }
 }

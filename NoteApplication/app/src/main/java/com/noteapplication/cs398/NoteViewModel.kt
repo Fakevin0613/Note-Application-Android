@@ -1,19 +1,25 @@
 package com.noteapplication.cs398
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
 class NoteViewModel(application: Application) : AndroidViewModel(application) {
-    val allNotes: LiveData<List<Note>>
+    var allNotes: LiveData<List<Note>>
     private val dao: NoteDataAccess
+
+    var folder: Folder? = null
 
     init{
         dao = NoteDatabase.getDatabase(application).getNoteDataAccess()
         allNotes = dao.getNotes()
+    }
+
+    fun setAllNotes(folder: Folder){
+        this.folder = folder
+        allNotes = dao.getNotesByFolderId(folderId = folder!!.id)
     }
 
     fun deleteNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {

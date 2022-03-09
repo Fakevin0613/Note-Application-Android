@@ -6,12 +6,18 @@
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.36770833333333336" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/drawable/ic_baseline_arrow_upward_24.xml" value="0.36770833333333336" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/drawable/ic_baseline_filter_list_24.xml" value="0.36205128205128206" />
-        <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/activity_main.xml" value="0.373508353221957" />
+        <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/add_course.xml" value="0.33" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/add_note.xml" value="0.19895833333333332" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/note_item.xml" value="0.22" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/read_note.xml" value="0.2171875" />
+        <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/tool_bar.xml" value="0.2109375" />
+        <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/tool_bar_course.xml" value="0.2109375" />
+        <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/menu/tools.xml" value="0.22552083333333334" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.5203125" />
+        <entry key="app/src/main/res/drawable/add.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/drawable/back.xml" value="0.15625" />
+        <entry key="app/src/main/res/drawable/bold.xml" value="0.134375" />
         <entry key="app/src/main/res/drawable/bold_symbol.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/drawable/border_frame.xml" value="0.30615384615384617" />
         <entry key="app/src/main/res/drawable/edit.xml" value="0.1625" />
@@ -28,17 +34,24 @@
         <entry key="app/src/main/res/drawable/text_rounded_corner.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/drawable/tool_border_frame.xml" value="0.134375" />
         <entry key="app/src/main/res/drawable/trash.xml" value="0.28802083333333334" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.34088050314465407" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/add_course.xml" value="0.25" />
         <entry key="app/src/main/res/layout/add_note.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/add_tag.xml" value="0.25" />
         <entry key="app/src/main/res/layout/addnoteactivity.xml" value="0.3162037037037037" />
-        <entry key="app/src/main/res/layout/class_managment.xml" value="0.2787878787878788" />
+        <entry key="app/src/main/res/layout/class_managment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/course_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/note_item.xml" value="0.7000956777042967" />
         <entry key="app/src/main/res/layout/note_write_kevin.xml" value="0.5171875" />
+        <entry key="app/src/main/res/layout/open_course.xml" value="0.103125" />
+        <entry key="app/src/main/res/layout/open_notes.xml" value="0.1390625" />
         <entry key="app/src/main/res/layout/read_note.xml" value="0.3641547238346506" />
+        <entry key="app/src/main/res/layout/tag_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/tool_bar.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/tool_bar_course.xml" value="0.25" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.1171875" />
         <entry key="app/src/main/res/layout/tools.xml" value="0.1171875" />
+        <entry key="app/src/main/res/menu/toolbar.xml" value="0.13958333333333334" />
         <entry key="app/src/main/res/menu/tools.xml" value="0.335" />
         <entry key="app/src/main/res/menu/tools_for_notes.xml" value="0.1546875" />
       </map>

@@ -6,22 +6,23 @@
         android:id="@+id/note_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        app:cardCornerRadius="5dp">
+        android:layout_margin="5dp"
+        app:cardCornerRadius="10dp">
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:layout_margin="10dp">
         <!--text view for displaying our note text-->
         <TextView
                 android:id="@+id/item_title"
                 android:maxLines="1"
+                android:layout_toStartOf="@id/delete_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/delete_button"
-                android:padding="4dp"
+                android:layout_centerInParent="true"
+                android:padding="1dp"
                 android:text="Course"
-                android:textSize="18sp" />
+                android:textSize="16sp"/>
 
 
         <!--text view for displaying our last updated text-->
@@ -33,7 +34,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="0dp"
                 android:layout_centerVertical="true"
-                android:padding="12dp">
+                android:padding="10dp">
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

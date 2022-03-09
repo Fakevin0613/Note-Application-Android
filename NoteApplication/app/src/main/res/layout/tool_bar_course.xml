@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:background="@color/colorPrimary"
+                                   android:elevation="4dp"
+                                    android:layout_alignParentEnd="true">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="end"
+                  android:id="@+id/tool_linear">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_marginLeft="@android:dimen/app_icon_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_new"
+                android:src="@drawable/ic_baseline_add_24"
+                android:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="@color/white"
+                android:outlineProvider="none"
+                android:layout_alignParentRight="true"
+                android:contentDescription="@string/add_new_note"/>
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_border_frame"
+                android:layout_alignParentRight="true"
+                android:hint="         Search...         "
+                android:textSize="16sp"
+                android:layout_marginTop="10dp" android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+</androidx.appcompat.widget.Toolbar>

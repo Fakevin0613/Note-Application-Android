@@ -18,7 +18,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:background="@color/colorPrimary"
                 android:orientation="vertical"
                 android:id="@+id/addpage"
@@ -141,25 +141,37 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
 
-    <LinearLayout android:id="@+id/tag"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
+    <RelativeLayout android:id="@+id/tag"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_above="@id/idRmdSwitch">
         <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/tagTitle"
-                android:text="Tag"
-                android:padding="10dp"
-                android:gravity="center_vertical|start"
-                android:textColor="@color/black"/>
-        <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_add_24"
-                android:gravity="center_vertical|end"/>
+                android:id="@+id/tagTitle"
+                android:text="Tag"
+                android:gravity="bottom"
+                android:padding="13dp"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/black"/>
 
-    </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                app:fabCustomSize="6dp"
+                android:text="tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_new_tag"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp"
+                android:outlineProvider="none"
+                android:src="@drawable/add"
+                android:gravity="center_vertical|end"
+                android:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="@color/white"
+                android:contentDescription="@string/add_new_note"/>
+
+    </RelativeLayout>
     <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/idRmdSwitch"
             android:layout_alignParentBottom="true"
