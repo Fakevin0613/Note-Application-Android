@@ -6,7 +6,7 @@
         android:id="@+id/note_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         app:cardCornerRadius="10dp">
     <RelativeLayout
             android:layout_width="match_parent"
@@ -16,30 +16,32 @@
         <TextView
                 android:id="@+id/item_title"
                 android:maxLines="1"
+                android:layout_toStartOf="@id/delete_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:padding="1dp"
                 android:text="Course"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
 
         <!--text view for displaying our last updated text-->
 
-<!--        <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/delete_button"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_marginEnd="0dp"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:padding="12dp">-->
-<!--            <ImageView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:src="@drawable/trash"-->
-<!--                    android:contentDescription="@string/delete"/>-->
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/delete_button"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:layout_centerVertical="true"
+                android:padding="10dp">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/trash"
+                    android:contentDescription="@string/delete"/>
 
-<!--        </LinearLayout>-->
+        </LinearLayout>
 
     </RelativeLayout>
 
