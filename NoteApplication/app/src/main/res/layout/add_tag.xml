@@ -50,10 +50,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/tag_list"
             android:layout_below="@id/LinearLayoutButton"
-            android:layout_margin="8dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/course_item"/>
+            tools:listitem="@layout/tag_item" android:layout_marginTop="8dp" android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"/>
     <RelativeLayout android:id="@+id/tag_input_section"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"

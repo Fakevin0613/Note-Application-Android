@@ -30,14 +30,17 @@
         <entry key="app/src/main/res/drawable/text_rounded_corner.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/drawable/tool_border_frame.xml" value="0.134375" />
         <entry key="app/src/main/res/drawable/trash.xml" value="0.28802083333333334" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.34088050314465407" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/add_course.xml" value="0.1" />
         <entry key="app/src/main/res/layout/add_note.xml" value="0.335" />
         <entry key="app/src/main/res/layout/add_tag.xml" value="0.25" />
         <entry key="app/src/main/res/layout/addnoteactivity.xml" value="0.3162037037037037" />
-        <entry key="app/src/main/res/layout/class_managment.xml" value="0.2787878787878788" />
+        <entry key="app/src/main/res/layout/class_managment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/course_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/note_item.xml" value="0.7000956777042967" />
         <entry key="app/src/main/res/layout/note_write_kevin.xml" value="0.5171875" />
+        <entry key="app/src/main/res/layout/open_course.xml" value="0.103125" />
+        <entry key="app/src/main/res/layout/open_notes.xml" value="0.1390625" />
         <entry key="app/src/main/res/layout/read_note.xml" value="0.3641547238346506" />
         <entry key="app/src/main/res/layout/tag_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/tool_bar.xml" value="0.335" />

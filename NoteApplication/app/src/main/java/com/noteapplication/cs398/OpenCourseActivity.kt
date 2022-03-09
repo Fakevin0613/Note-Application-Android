@@ -7,20 +7,21 @@ import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.noteapplication.cs398.databinding.ActivityMainBinding
+import com.noteapplication.cs398.databinding.OpenCourseBinding
 
 
-class MainActivity : AppCompatActivity() {
+class OpenCourseActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: CourseViewModel
-    private lateinit var courseList: RecyclerView
+    private lateinit var binding: OpenCourseBinding
+    private lateinit var viewModel: NoteViewModel
+    private lateinit var noteList: RecyclerView
     private lateinit var addButton: FloatingActionButton
-    private lateinit var adapter: CourseListAdapter
+    private lateinit var adapter: ListAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,20 +30,25 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        )[CourseViewModel::class.java]
+        )[NoteViewModel::class.java]
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = OpenCourseBinding.inflate(layoutInflater)
 
         setSupportActionBar(binding.toolBar.root)
+        val folderItem = MutableLiveData(intent.getSerializableExtra("folder") as Folder?)
+
+        folderItem.observe(this){
+            binding.title.text = it?.name ?: "Notes"
+        }
 
         addButton = binding.addNew
-        courseList = binding.courseList
-        courseList.layoutManager = LinearLayoutManager(this)
-        adapter = CourseListAdapter(viewModel, this)
+        noteList = binding.noteList
+        noteList.layoutManager = LinearLayoutManager(this)
+        adapter = ListAdapter(viewModel, this)
 
 //        adapter.setClickListener(this)
-        courseList.adapter = adapter
-        courseList.addItemDecoration(object: RecyclerView.ItemDecoration() {
+        noteList.adapter = adapter
+        noteList.addItemDecoration(object: RecyclerView.ItemDecoration() {
 
             private val verticalSpaceHeight = 24
 
@@ -52,9 +58,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         addButton.setOnClickListener{
-            var addCourse = AddCourseBottomSheet(viewModel)
-            addCourse.show(supportFragmentManager, "addCourseBottomSheet")
-
+            val intent = Intent(this@OpenCourseActivity, AddNoteActivity::class.java)
+            startActivity(intent)
         }
 
 
@@ -62,10 +67,11 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
     }
-//
+    //
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        print("override")
         val inflater = menuInflater
-        inflater.inflate(R.menu.tools, menu)
+        inflater.inflate(R.menu.tools_for_notes, menu)
         return true
     }
 }
