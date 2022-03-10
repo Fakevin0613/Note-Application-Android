@@ -9,6 +9,8 @@ import kotlinx.coroutines.launch
 
 class CourseViewModel(application: Application) : AndroidViewModel(application) {
     val allFolders: LiveData<List<Folder>>
+
+    var isAddingFolder: Boolean = false
     private val dao: NoteDataAccess
 
     init{
