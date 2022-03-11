@@ -1,0 +1,16 @@
+Date 2022/03/10
+Fifth meeting (online) for Sprint 2
+
+What we discuss:
+1. Summarize what we have been doing in this Sprint
+2. validifying all the features are implemented
+
+What have we done?
+Kevin: finishing the tool bar xmls
+Shonn: finishing filtering activity xmls for filtering
+Insung: interacting the xmls with the kotlin files
+
+What are we going to do?
+Kevin: modifying tag items xmls
+Insung: figure out how to make the database unit test
+Shonn: completing the tag system, and make sure it is working.
