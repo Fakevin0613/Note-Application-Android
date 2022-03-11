@@ -1,0 +1,49 @@
+package com.noteapplication.cs398
+
+import android.content.Context
+import android.content.Intent
+import androidx.test.core.app.ApplicationProvider
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.Robolectric
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
+import org.robolectric.Shadows.shadowOf
+import org.robolectric.annotation.Config
+import java.util.*
+
+
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
+@RunWith(RobolectricTestRunner::class)
+class TestMain {
+    private var activity: MainActivity? = null
+    @Before
+    fun setup() {
+        activity = Robolectric.buildActivity(MainActivity::class.java).get()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    //test if the main activity can be built
+    fun test_a(){
+        assert(activity != null)
+    }
+
+    @Test
+    fun clickingLogin_shouldStartLoginActivity() {
+        activity?.findViewById<FloatingActionButton>(R.id.add_new)
+            ?.performClick()
+        val expectedActivity = AddNoteActivity::class.java
+                assertEquals(expectedActivity, this)
+    }
+
+
+
+}
