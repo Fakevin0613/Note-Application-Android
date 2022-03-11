@@ -6,11 +6,12 @@ What we discuss:
 2. validifying all the features are implemented
 
 What have we done?
-Kevin: finishing the tool bar xmls
-Shonn: finishing filtering activity xmls for filtering
-Insung: interacting the xmls with the kotlin files
+Kevin: make sure the xmls are working
+Shonn: testing the functionality of database after adding new queary and attribute
+Insung: impemented the required features in the application
+all: finish the features in sprint 2
 
-What are we going to do?
-Kevin: modifying tool bare and bar items xmls
-Insung: figure out how to make the database unit test
-Shonn: completing the tag system, and make sure it is working.
+what to do:
+All: prepare for demo 2
+
+
