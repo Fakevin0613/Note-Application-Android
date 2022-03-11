@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">noteApplication</string>
     <string name="add_new_note">Add new note</string>
+    <string name="add_new_tag">Add new tag</string>
     <string name="filter">filter</string>
     <string name="order">order</string>
     <string name="delete">delete</string>
+    <string name="tag">Tag</string>
+    <string name="reminder">Reminder</string>
 </resources>

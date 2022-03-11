@@ -30,22 +30,25 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tag_list"
             android:layout_below="@id/tool_bar_linear"
-            android:layout_margin="8dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/tag_item"/>
+            tools:listitem="@layout/tag_item"
+            android:layout_margin="8dp"
+    />
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/note_list"
             android:layout_below="@id/tag_list"
+            tools:listitem="@layout/note_item"
             android:layout_margin="8dp"
-            tools:listitem="@layout/note_item"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"

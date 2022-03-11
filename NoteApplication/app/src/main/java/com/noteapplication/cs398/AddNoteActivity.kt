@@ -2,27 +2,32 @@ package com.noteapplication.cs398
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.view.isGone
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.noteapplication.cs398.databinding.AddNoteBinding
-import com.noteapplication.cs398.databinding.ReadNoteBinding
+import com.noteapplication.cs398.databinding.ActivityAddNoteBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AddNoteActivity : AppCompatActivity() {
-    private lateinit var binding: AddNoteBinding
+    private lateinit var binding: ActivityAddNoteBinding
     private lateinit var cancel: AppCompatButton
     private lateinit var save: AppCompatButton
-    private lateinit var viewModel: NoteViewModel
+    private lateinit var noteViewModel: NoteViewModel
     private lateinit var tagViewModel: TagViewModel
-    private lateinit var addTag: FloatingActionButton
+    private lateinit var addTag: ImageButton
 
     private var title: String = ""
     private var content: String = ""
@@ -37,8 +42,8 @@ class AddNoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = AddNoteBinding.inflate(layoutInflater)
-        viewModel = ViewModelProvider(
+        // initialize noteViewModels
+        noteViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         )[NoteViewModel::class.java]
@@ -47,9 +52,9 @@ class AddNoteActivity : AppCompatActivity() {
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         )[TagViewModel::class.java]
 
-        cancel = binding.cancelButton
-        save = binding.saveButton
-        addTag = binding.addNewTag
+
+        // set bindings
+        binding = ActivityAddNoteBinding.inflate(layoutInflater)
 
         (intent.getSerializableExtra("note") as Note?)?.let {
             isEditing = true
@@ -58,45 +63,55 @@ class AddNoteActivity : AppCompatActivity() {
             binding.idRmdSwitch.isChecked = it.notify
             oldId = it.id
             oldFolderId = it.folderId
+
+            tagViewModel.setCurrentSelectedTags(it.id)
         }
         folder = intent.getSerializableExtra("folder") as Folder?
 
-        addTag.setOnClickListener{
-            var addTag = AddTagBottomSheet(tagViewModel)
-            addTag.show(supportFragmentManager, "addTagBottomSheet")
+        // tag list configuration
+        val tagList = binding.tagList
+        tagList.adapter = TagListAdapter(tagViewModel, this)
+        tagList.addItemDecoration(object: RecyclerView.ItemDecoration() {
+            private val space = 8
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                outRect.set(space, space, space, space)
+            }
+        })
+
+        // remove tools until it is implemented
+        binding.textTools.isGone = true
+
+        // on '+' button for Tag clicked
+        binding.newTagBtn.setOnClickListener{
+            val name = binding.newTagInput.text.toString()
+            if(name.isNotEmpty()) tagViewModel.insertTag(Tag(name))
         }
 
-        save.setOnClickListener{
+        // on save button clicked
+        binding.saveButton.setOnClickListener{
             Toast.makeText(this, "$title Added", Toast.LENGTH_LONG).show()
-
-            val time= SimpleDateFormat("MMM dd - yyyy")
-            val current : String= time.format(Date())
 
             val newNote: Note
 
-            // ******** refine this horrifying code
             if(isEditing){
                 newNote = Note(
                     binding.titleInput.text.toString(),
                     binding.contentInput.text.toString(),
-                    current,
                     binding.idRmdSwitch.isChecked,
                     oldFolderId,
-                    oldId!!
+                    id = oldId!!
                 )
-                viewModel.updateNote(newNote)
+                noteViewModel.updateNote(newNote, tagViewModel.getSelectedTags())
 
             }else{
                  newNote = Note(
                     binding.titleInput.text.toString(),
                     binding.contentInput.text.toString(),
-                    current,
                     binding.idRmdSwitch.isChecked,
                     folderId = folder?.id // the note does not goes to any folder for now
                 )
-                viewModel.insertNote(newNote)
+                noteViewModel.insertNote(newNote, tagViewModel.getSelectedTags())
             }
-            // ******** refine this horrifying code
 
             val data = Intent()
             data.putExtra("note", newNote)
@@ -104,7 +119,8 @@ class AddNoteActivity : AppCompatActivity() {
             this.finish()
         }
 
-        cancel.setOnClickListener{ this.finish() }
+        // on cancel button clicked
+        binding.cancelButton.setOnClickListener{ this.finish() }
 
         setContentView(binding.root)
     }

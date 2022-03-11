@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CourseViewModel(application: Application) : AndroidViewModel(application) {
+class FolderViewModel(application: Application) : AndroidViewModel(application) {
     val allFolders: LiveData<List<Folder>>
 
     var isAddingFolder: Boolean = false
@@ -18,11 +18,11 @@ class CourseViewModel(application: Application) : AndroidViewModel(application) 
         allFolders = dao.getFolders()
     }
 
-    fun deleteCourse(folder: Folder) = viewModelScope.launch(Dispatchers.IO) {
+    fun deleteFolder(folder: Folder) = viewModelScope.launch(Dispatchers.IO) {
         dao.delete(folder)
     }
 
-    fun updateCourse(folder: Folder) = viewModelScope.launch(Dispatchers.IO) {
+    fun updateFolder(folder: Folder) = viewModelScope.launch(Dispatchers.IO) {
         dao.update(folder)
 
         // need some way to detect deleted tags

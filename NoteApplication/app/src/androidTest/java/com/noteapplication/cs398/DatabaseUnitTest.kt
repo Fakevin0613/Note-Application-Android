@@ -155,10 +155,9 @@ class DatabaseUnitTest {
         fun createNote(
             title: String = "testTitle",
             content: String = "testBody",
-            createdTime: String = "2000-01-01",
             notify: Boolean = false,
             folderId: Long? = null
-        ) = Note( title, content, createdTime, notify, folderId )
+        ) = Note( title, content, notify, folderId )
 
         fun createTag(name: String = "testTag") = Tag(name)
 

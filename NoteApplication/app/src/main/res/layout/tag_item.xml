@@ -7,19 +7,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         app:cardCornerRadius="10dp">
-    <RelativeLayout
-            android:layout_width="match_parent"
+    <TextView
+            android:id="@+id/item_title"
+            android:maxLines="1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
-        <!--text view for displaying our note text-->
-        <TextView
-                android:id="@+id/item_title"
-                android:maxLines="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="Tag"
-                android:textSize="12sp"/>
-    </RelativeLayout>
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:text="@string/tag"
+            android:textSize="12sp"/>
 
 </androidx.cardview.widget.CardView>

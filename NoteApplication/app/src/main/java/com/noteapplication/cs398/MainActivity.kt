@@ -1,26 +1,23 @@
 package com.noteapplication.cs398
 
-import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
-import android.view.Menu
 import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.noteapplication.cs398.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: CourseViewModel
+    private lateinit var viewModel: FolderViewModel
     private lateinit var courseList: RecyclerView
-    private lateinit var addButton: FloatingActionButton
-    private lateinit var adapter: CourseListAdapter
+    private lateinit var addButton: ImageButton
+    private lateinit var adapter: FolderListAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,22 +26,22 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        )[CourseViewModel::class.java]
+        )[FolderViewModel::class.java]
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setSupportActionBar(binding.toolBar.root)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
 
         addButton = binding.toolBar.addNew
+
         courseList = binding.courseList
         courseList.layoutManager = LinearLayoutManager(this)
-        adapter = CourseListAdapter(viewModel, this)
+        adapter = FolderListAdapter(viewModel, this)
 
         courseList.adapter = adapter
         courseList.addItemDecoration(object: RecyclerView.ItemDecoration() {
-
             private val verticalSpaceHeight = 24
-
             override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
                 outRect.bottom = verticalSpaceHeight
             }
@@ -53,19 +50,11 @@ class MainActivity : AppCompatActivity() {
         addButton.setOnClickListener{
             if(!viewModel.isAddingFolder){
                 viewModel.isAddingFolder = true
-                AddCourseBottomSheet(viewModel).show(supportFragmentManager, "addCourseBottomSheet")
+                NewFolderBottomSheet(viewModel).show(supportFragmentManager, "addCourseBottomSheet")
             }
         }
 
-
-
         val view = binding.root
         setContentView(view)
-    }
-//
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.tools, menu)
-        return true
     }
 }

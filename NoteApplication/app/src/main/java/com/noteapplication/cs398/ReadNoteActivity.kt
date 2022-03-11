@@ -7,13 +7,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.noteapplication.cs398.databinding.ReadNoteBinding
+import com.noteapplication.cs398.databinding.ActivityReadNoteBinding
 
 class ReadNoteActivity : AppCompatActivity(){
 
     val REQUEST_EDIT = 1
 
-    private lateinit var binding:ReadNoteBinding
+    private lateinit var binding:ActivityReadNoteBinding
 
     private lateinit var noteItem: MutableLiveData<Note?>
 
@@ -28,7 +28,7 @@ class ReadNoteActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
-        binding = ReadNoteBinding.inflate(layoutInflater)
+        binding = ActivityReadNoteBinding.inflate(layoutInflater)
 
         noteItem = MutableLiveData(intent.getSerializableExtra("note") as Note?)
 
