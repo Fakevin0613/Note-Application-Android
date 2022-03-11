@@ -69,6 +69,7 @@ class ReadNoteActivity : AppCompatActivity(){
             val data: Intent? = result.data
             data?.let {
                 noteItem.value = it.getSerializableExtra("note") as Note?
+                binding.tagList.root.adapter?.notifyDataSetChanged()
             }
         }
     }
