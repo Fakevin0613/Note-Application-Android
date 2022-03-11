@@ -24,7 +24,6 @@
                 android:layout_weight="1"
                 android:text="Cancel"
                 android:textAllCaps="false"
-                android:textColor="@color/red"
                 android:textSize="10pt"
                 android:textAlignment="textStart"
                 android:background="@android:color/transparent">
@@ -134,14 +133,9 @@
             android:padding="4dp"
     >
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+        <include
                 android:id="@+id/tag_list"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/tag_item"
-                android:layout_marginBottom="4dp"
+                layout="@layout/tag_list"
         />
         <LinearLayout
                 android:layout_width="match_parent"

@@ -23,11 +23,8 @@ import java.util.*
 
 class AddNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddNoteBinding
-    private lateinit var cancel: AppCompatButton
-    private lateinit var save: AppCompatButton
     private lateinit var noteViewModel: NoteViewModel
     private lateinit var tagViewModel: TagViewModel
-    private lateinit var addTag: ImageButton
 
     private var title: String = ""
     private var content: String = ""
@@ -69,7 +66,7 @@ class AddNoteActivity : AppCompatActivity() {
         folder = intent.getSerializableExtra("folder") as Folder?
 
         // tag list configuration
-        val tagList = binding.tagList
+        val tagList = binding.tagList.root
         tagList.adapter = TagListAdapter(tagViewModel, this)
         tagList.addItemDecoration(object: RecyclerView.ItemDecoration() {
             private val space = 8

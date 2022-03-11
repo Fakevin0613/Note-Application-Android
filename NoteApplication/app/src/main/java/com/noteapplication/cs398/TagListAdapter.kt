@@ -16,6 +16,7 @@ import com.noteapplication.cs398.databinding.TagItemBinding
 class TagListAdapter(
     private val viewModel: TagViewModel,
     private val activity: AppCompatActivity,
+    private val isDisabled: Boolean = false,
     private val onItemClick: (()->Unit)? = null
 ) : RecyclerView.Adapter<TagListAdapter.ViewHolder>() {
 
@@ -66,15 +67,17 @@ class TagListAdapter(
             viewHolder.binding.root.setCardBackgroundColor(Color.WHITE)
 
         // toggle tag selected
-        viewHolder.binding.noteItem.setOnClickListener{ _ ->
-            println(viewModel.selectedTagIds)
-            if(viewModel.selectedTagIds.contains(tagId)){
-                viewModel.selectedTagIds.remove(tagId)
-            }else{
-                viewModel.selectedTagIds.add(tagId)
+        if(!isDisabled) {
+            viewHolder.binding.noteItem.setOnClickListener { _ ->
+                println(viewModel.selectedTagIds)
+                if (viewModel.selectedTagIds.contains(tagId)) {
+                    viewModel.selectedTagIds.remove(tagId)
+                } else {
+                    viewModel.selectedTagIds.add(tagId)
+                }
+                onItemClick?.invoke()
+                notifyItemChanged(position)
             }
-            onItemClick?.invoke()
-            notifyItemChanged(position)
         }
     }
 

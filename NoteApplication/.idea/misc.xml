@@ -11,7 +11,7 @@
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/activity_folder.xml" value="0.3515625" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/activity_open_course.xml" value="0.1671875" />
-        <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/activity_read_note.xml" value="0.1671875" />
+        <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/activity_read_note.xml" value="0.22" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/add_course.xml" value="0.33" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/add_note.xml" value="0.19895833333333332" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/add_tag.xml" value="0.1671875" />
@@ -21,6 +21,7 @@
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/open_course.xml" value="0.1671875" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/read_note.xml" value="0.2171875" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/tag_item.xml" value="0.33" />
+        <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/tag_list.xml" value="0.27395833333333336" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/tool_bar.xml" value="0.2109375" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/layout/tool_bar_course.xml" value="0.25" />
         <entry key="..\:/UW/3B_2/cs398/cs398-project/NoteApplication/app/src/main/res/menu/tools.xml" value="0.22552083333333334" />

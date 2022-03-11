@@ -29,15 +29,13 @@
         />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tag_list"
             android:layout_below="@id/tool_bar_linear"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/tag_item"
+            android:id="@+id/tag_list"
             android:layout_margin="8dp"
+            layout="@layout/tag_list"
     />
 
     <androidx.recyclerview.widget.RecyclerView

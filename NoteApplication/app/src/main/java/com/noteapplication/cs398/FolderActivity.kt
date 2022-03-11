@@ -51,11 +51,11 @@ class FolderActivity : AppCompatActivity() {
             }
         })
 
-        binding.tagList.adapter = TagListAdapter(tagViewModel, this){
+        binding.tagList.root.adapter = TagListAdapter(tagViewModel, this){
             noteViewModel.tags.value = tagViewModel.getSelectedTags()
         }
 
-        binding.tagList.addItemDecoration(object: RecyclerView.ItemDecoration() {
+        binding.tagList.root.addItemDecoration(object: RecyclerView.ItemDecoration() {
             private val space = 8
             override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
                 outRect.set(space, space, space, space)
