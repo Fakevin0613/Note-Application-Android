@@ -161,6 +161,7 @@ class AddNoteActivity : AppCompatActivity() {
                     val bitmap: Bitmap? = BitmapFactory.decodeStream(inputStream)
                     imageNote.setImageBitmap(bitmap)
                     imageNote.visibility = View.VISIBLE
+                    Toast.makeText(this, "image added", Toast.LENGTH_SHORT).show()
 
                 }catch(exception: Exception ){
                     Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
