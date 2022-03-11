@@ -160,7 +160,7 @@ class AddNoteActivity : AppCompatActivity() {
                     val inputStream: InputStream? = contentResolver.openInputStream(imageUri)
                     val bitmap: Bitmap? = BitmapFactory.decodeStream(inputStream)
                     imageNote.setImageBitmap(bitmap)
-                    imageNote.visibility = View.VISIBLE
+                    //imageNote.visibility = View.VISIBLE
                     Toast.makeText(this, "image added", Toast.LENGTH_SHORT).show()
 
                 }catch(exception: Exception ){
