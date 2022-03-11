@@ -2,12 +2,12 @@ Date 2022/03/08
 Four meeting (offline) for Sprint 2
 
 What we discuss:
-
+1. Some problems in merging gitlab
 
 What have we done?
-Kevin: Allow permission for image access
-Shonn: finishing the xmls for folder views
-Insung: finally figured out how to implement the unit test
+Kevin: finishing the tool bar xmls
+Shonn: finishing filtering activity xmls for filtering
+Insung: interacting the xmls with the kotlin files
 
 What are we going to do?
 Kevin: modifying tool bare and bar items xmls
@@ -16,4 +16,5 @@ Shonn: completing the tag system, and make sure it is working.
 
 
 What obstacles we meet?
-
+1. merging gitlab
+2. there are some minor issue in intellij
