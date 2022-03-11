@@ -41,6 +41,11 @@ interface NoteDataAccess {
     )
     fun getNotes(): LiveData<List<Note>>
 
+    @Query(
+        "Select * from `Tag` order by name ASC"
+    )
+    fun getTags(): LiveData<List<Tag>>
+
     // *** this is the point of modification for filter and ordering feature
     @Query(
         "Select Note.* from `Note`, `TagNoteCrossRef` as `Ref` " +
@@ -57,6 +62,15 @@ interface NoteDataAccess {
     fun getNotesByFolderId(folderId: Long): LiveData<List<Note>>
 
     @Query(
+        "Select distinct Note.* from `Note`, `TagNoteCrossRef` as `Ref` " +
+                "where folderId = :folderId " +
+                "and Ref.noteId = Note.id " +
+                "and Ref.tagId in (:tagIds) " +
+                "order by id ASC"
+    )
+    fun getNotesByFolderIdAndTagIds(folderId: Long, tagIds: List<Long>): LiveData<List<Note>>
+
+    @Query(
         "Select * from `Note` where id = :id"
     )
     fun getNoteById(id:Long): LiveData<List<Note>>
@@ -68,7 +82,7 @@ interface NoteDataAccess {
                 "and Tag.id = Ref.tagId " +
                 "order by name ASC"
     )
-    fun getTags(noteId: Long): LiveData<List<Tag>>
+    suspend fun getTags(noteId: Long): List<Tag>
 
     // *** this is the point of modification for filter and ordering feature
     @Query(
@@ -87,4 +101,9 @@ interface NoteDataAccess {
         "Select * from `Folder` where id = :folderId order by name ASC"
     )
     fun getFolders(folderId: Long): LiveData<List<Folder>>
+
+    @Query(
+        "delete from TagNoteCrossRef where noteId = :noteId"
+    )
+    suspend fun deleteAllTags(noteId: Long)
 }

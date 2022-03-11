@@ -58,7 +58,7 @@ class ListAdapter(private val viewModel: NoteViewModel, private val activity: Ap
             viewHolder.binding.noteItem.setOnClickListener{ _ ->
                 val intent = Intent(activity, ReadNoteActivity::class.java)
                 intent.putExtra("note", allNotes[position])
-                intent.putExtra("folder", viewModel.folder)
+                intent.putExtra("folder", viewModel.folder.value)
                 activity.startActivity(intent)
             }
     }

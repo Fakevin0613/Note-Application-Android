@@ -123,7 +123,8 @@
                 android:src="@drawable/image"
                 android:contentDescription="@string/order"
                 android:background="@drawable/tool_border_frame"
-                android:id="@+id/addImage"/>
+                android:id="@+id/addImage"
+        />
 
     </LinearLayout>
 

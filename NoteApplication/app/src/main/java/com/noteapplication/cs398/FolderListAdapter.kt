@@ -1,18 +1,14 @@
 package com.noteapplication.cs398
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.noteapplication.cs398.databinding.CourseItemBinding
-import com.noteapplication.cs398.databinding.NoteItemBinding
 
-class CourseListAdapter(private val viewModel: CourseViewModel, private val activity: AppCompatActivity) :
-    RecyclerView.Adapter<CourseListAdapter.ViewHolder>() {
+class FolderListAdapter(private val viewModel: FolderViewModel, private val activity: AppCompatActivity) :
+    RecyclerView.Adapter<FolderListAdapter.ViewHolder>() {
 
     private var allFolder: ArrayList<Folder> = ArrayList()
 
@@ -37,7 +33,7 @@ class CourseListAdapter(private val viewModel: CourseViewModel, private val acti
     class ViewHolder(val binding: CourseItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): CourseListAdapter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): FolderListAdapter.ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = CourseItemBinding.inflate(LayoutInflater.from(viewGroup.context))
 
@@ -51,13 +47,13 @@ class CourseListAdapter(private val viewModel: CourseViewModel, private val acti
         viewHolder.binding.itemTitle.text = allFolder[position].name
 
         // delete button
-//        viewHolder.binding.deleteButton.setOnClickListener { _ ->
-//            viewModel.deleteNote(allFolder[position])
-//        }
+        viewHolder.binding.deleteButton.setOnClickListener { _ ->
+            viewModel.deleteFolder(allFolder[position])
+        }
 
         // read note navigation
         viewHolder.binding.noteItem.setOnClickListener{ _ ->
-            val intent = Intent(activity, OpenCourseActivity::class.java)
+            val intent = Intent(activity, FolderActivity::class.java)
             intent.putExtra("folder", allFolder[position])
             activity.startActivity(intent)
         }

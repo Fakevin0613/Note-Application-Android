@@ -2,33 +2,32 @@ package com.noteapplication.cs398
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.noteapplication.cs398.databinding.ReadNoteBinding
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
+import com.noteapplication.cs398.databinding.ActivityReadNoteBinding
 
 class ReadNoteActivity : AppCompatActivity(){
 
-    val REQUEST_EDIT = 1
-
-    private lateinit var binding:ReadNoteBinding
+    private lateinit var binding:ActivityReadNoteBinding
+    private lateinit var tagViewModel: TagViewModel
 
     private lateinit var noteItem: MutableLiveData<Note?>
 
-    private var editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val data: Intent? = result.data
-            data?.let {
-                noteItem.value = it.getSerializableExtra("note") as Note?
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
-        binding = ReadNoteBinding.inflate(layoutInflater)
+        binding = ActivityReadNoteBinding.inflate(layoutInflater)
+
+        tagViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        )[TagViewModel::class.java]
 
         noteItem = MutableLiveData(intent.getSerializableExtra("note") as Note?)
 
@@ -37,6 +36,7 @@ class ReadNoteActivity : AppCompatActivity(){
                 binding.noteTitle.text = it.title
                 binding.noteContent.text = it.content
                 binding.idRmdSwitch.isChecked = it.notify
+                tagViewModel.setCurrentSelectedTags(it.id)
             }
         }
 
@@ -49,8 +49,27 @@ class ReadNoteActivity : AppCompatActivity(){
             editLauncher.launch(intent)
         }
 
+        // tag list configuration
+        val tagList = binding.tagList.root
+        tagList.adapter = TagListAdapter(tagViewModel, this, isDisabled = true)
+        tagList.addItemDecoration(object: RecyclerView.ItemDecoration() {
+            private val space = 8
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                outRect.set(space, space, space, space)
+            }
+        })
+
         binding.backButton.setOnClickListener{ this.finish() }
 
         setContentView(binding.root)
+    }
+
+    private var editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            data?.let {
+                noteItem.value = it.getSerializableExtra("note") as Note?
+            }
+        }
     }
 }

@@ -7,45 +7,56 @@ import kotlinx.coroutines.launch
 
 
 class NoteViewModel(application: Application) : AndroidViewModel(application) {
-    var allNotes: LiveData<List<Note>>
     private val dao: NoteDataAccess
 
-    var folder: Folder? = null
+    val allNotes: LiveData<List<Note>>
+    val folder: MutableLiveData<Folder?> = MutableLiveData(null)
+    val tags: MutableLiveData<List<Tag>> = MutableLiveData(listOf())
 
     init{
         dao = NoteDatabase.getDatabase(application).getNoteDataAccess()
-        allNotes = dao.getNotes()
-    }
+        allNotes = Transformations.switchMap(folder){ folderValue ->
+            if(folderValue != null){
+                Transformations.switchMap(tags){ tagsValue ->
+                    if (tagsValue.isNotEmpty()){
+                        // get notes in the folder that is also of selected tags
+                        dao.getNotesByFolderIdAndTagIds(folderValue.id, tagsValue.map { it.id })
+                    }else{
+                        // get notes in the folder
+                        dao.getNotesByFolderId(folderValue.id)
+                    }
+                }
+            }else{
+                // get all notes
+                dao.getNotes()
+            }
+        }
 
-    fun setAllNotes(folder: Folder){
-        this.folder = folder
-        allNotes = dao.getNotesByFolderId(folderId = folder!!.id)
     }
 
     fun deleteNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {
         dao.delete(note)
     }
 
-    fun updateNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {
+    fun updateNote(note: Note, tags: List<Tag>? = null) = viewModelScope.launch(Dispatchers.IO) {
         dao.update(note)
 
         // need some way to detect deleted tags
-//        tags?.let {_ ->
-//            tags.forEach {
-//                dao.insert(it)
-//                dao.insert(TagNoteCrossRef(it.id, note.id))
-//            }
-//        }
-    }
-
-    fun insertNote(note: Note, tags: Array<Tag>? = null) = viewModelScope.launch(Dispatchers.IO) {
-        dao.insert(note)
         tags?.let {_ ->
             // delete all existing note-tag references
-            dao.getTagRefs(note.id).value?.let{
-                it.forEach { ref -> dao.delete(ref) }
-            }
+            dao.deleteAllTags(note.id)
 
+            // insert given note-tag references
+            tags.forEach {
+                dao.insert(it)
+                dao.insert(TagNoteCrossRef(tagId = it.id, noteId = note.id))
+            }
+        }
+    }
+
+    fun insertNote(note: Note, tags: List<Tag>? = null) = viewModelScope.launch(Dispatchers.IO) {
+        dao.insert(note)
+        tags?.let {_ ->
             // insert given note-tag references
             tags.forEach {
                dao.insert(it)

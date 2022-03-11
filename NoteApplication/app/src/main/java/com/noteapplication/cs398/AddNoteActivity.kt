@@ -1,7 +1,6 @@
 package com.noteapplication.cs398
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -10,31 +9,22 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
+import android.graphics.Rect
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.noteapplication.cs398.databinding.AddNoteBinding
-import com.noteapplication.cs398.databinding.ReadNoteBinding
 import java.io.InputStream
-import java.text.SimpleDateFormat
-import java.util.*
+import androidx.core.view.isGone
+import androidx.recyclerview.widget.RecyclerView
+import com.noteapplication.cs398.databinding.ActivityAddNoteBinding
 
 class AddNoteActivity : AppCompatActivity() {
-    private lateinit var binding: AddNoteBinding
-    private lateinit var cancel: AppCompatButton
-    private lateinit var save: AppCompatButton
-    private lateinit var viewModel: NoteViewModel
-    private lateinit var image: ImageButton
-    private lateinit var imageNote: ImageView
+    private lateinit var binding: ActivityAddNoteBinding
+    private lateinit var noteViewModel: NoteViewModel
+    private lateinit var tagViewModel: TagViewModel
 
     private var title: String = ""
     private var content: String = ""
@@ -52,17 +42,18 @@ class AddNoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = AddNoteBinding.inflate(layoutInflater)
-        viewModel = ViewModelProvider(
+        // initialize noteViewModels
+        noteViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         )[NoteViewModel::class.java]
+        tagViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        )[TagViewModel::class.java]
 
-        cancel = binding.cancelButton
-        save = binding.saveButton
-        image = binding.addImage
-        imageNote = binding.image
-
+        // set bindings
+        binding = ActivityAddNoteBinding.inflate(layoutInflater)
 
         (intent.getSerializableExtra("note") as Note?)?.let {
             isEditing = true
@@ -71,40 +62,55 @@ class AddNoteActivity : AppCompatActivity() {
             binding.idRmdSwitch.isChecked = it.notify
             oldId = it.id
             oldFolderId = it.folderId
+
+            tagViewModel.setCurrentSelectedTags(it.id)
         }
         folder = intent.getSerializableExtra("folder") as Folder?
 
-        save.setOnClickListener{
-            Toast.makeText(this, "$title Added", Toast.LENGTH_LONG).show()
+        // tag list configuration
+        val tagList = binding.tagList.root
+        tagList.adapter = TagListAdapter(tagViewModel, this)
+        tagList.addItemDecoration(object: RecyclerView.ItemDecoration() {
+            private val space = 8
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                outRect.set(space, space, space, space)
+            }
+        })
 
-            val time= SimpleDateFormat("MMM dd - yyyy")
-            val current : String= time.format(Date())
+        // remove tools until it is implemented
+        binding.textTools.isGone = true
+
+        // on '+' button for Tag clicked
+        binding.newTagBtn.setOnClickListener{
+            val name = binding.newTagInput.text.toString()
+            if(name.isNotEmpty()) tagViewModel.insertTag(Tag(name))
+        }
+
+        // on save button clicked
+        binding.saveButton.setOnClickListener{
+            Toast.makeText(this, "$title Added", Toast.LENGTH_LONG).show()
 
             val newNote: Note
 
-            // ******** refine this horrifying code
             if(isEditing){
                 newNote = Note(
                     binding.titleInput.text.toString(),
                     binding.contentInput.text.toString(),
-                    current,
                     binding.idRmdSwitch.isChecked,
                     oldFolderId,
-                    oldId!!
+                    id = oldId!!
                 )
-                viewModel.updateNote(newNote)
+                noteViewModel.updateNote(newNote, tagViewModel.getSelectedTags())
 
             }else{
                  newNote = Note(
                     binding.titleInput.text.toString(),
                     binding.contentInput.text.toString(),
-                    current,
                     binding.idRmdSwitch.isChecked,
                     folderId = folder?.id // the note does not goes to any folder for now
                 )
-                viewModel.insertNote(newNote)
+                noteViewModel.insertNote(newNote, tagViewModel.getSelectedTags())
             }
-            // ******** refine this horrifying code
 
             val data = Intent()
             data.putExtra("note", newNote)
@@ -112,9 +118,10 @@ class AddNoteActivity : AppCompatActivity() {
             this.finish()
         }
 
-        cancel.setOnClickListener{ this.finish() }
+        // on cancel button clicked
+        binding.cancelButton.setOnClickListener{ this.finish() }
 
-        image.setOnClickListener{
+        binding.addImage.setOnClickListener{
             @Override
             if(ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED){
@@ -159,7 +166,7 @@ class AddNoteActivity : AppCompatActivity() {
                 try{
                     val inputStream: InputStream? = contentResolver.openInputStream(imageUri)
                     val bitmap: Bitmap? = BitmapFactory.decodeStream(inputStream)
-                    imageNote.setImageBitmap(bitmap)
+                    binding.image.setImageBitmap(bitmap)
                     //imageNote.visibility = View.VISIBLE
                     Toast.makeText(this, "image added", Toast.LENGTH_SHORT).show()
 
@@ -174,14 +181,10 @@ class AddNoteActivity : AppCompatActivity() {
         else{
             Toast.makeText(this, "error1", Toast.LENGTH_SHORT).show()
         }
-//        }
-//        else{
-//            Toast.makeText(this, "error3", Toast.LENGTH_SHORT).show()
-//        }
     }
 
-    fun selectImage() {
-        var intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+    private fun selectImage() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         try {
             resultLauncher.launch(intent)
         } catch (exception: Exception) {
