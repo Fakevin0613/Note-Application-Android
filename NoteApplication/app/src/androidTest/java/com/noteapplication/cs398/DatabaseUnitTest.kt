@@ -1,28 +1,20 @@
 package com.noteapplication.cs398
 
 import android.content.Context
-import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.withContext
-import org.hamcrest.CoreMatchers.equalTo
 import org.junit.After
-import org.junit.Assert.assertEquals
 import org.junit.Test
 
 import org.junit.Before
 import org.junit.Rule
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 import java.io.IOException
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -93,7 +85,7 @@ class DatabaseUnitTest {
         assertThat(noteArr).isNotEmpty()
 
         // search tag by note
-        var tagArr = noteDao.getTags(noteId).getOrAwaitValue()
+        var tagArr = noteDao.getTags(noteId)
         assertThat(tagArr).isNotEmpty()
 
         // delete note
@@ -107,7 +99,7 @@ class DatabaseUnitTest {
 
         // delete tag
         noteDao.delete(tagArr[0])
-        tagArr = noteDao.getTags(noteId).getOrAwaitValue()
+        tagArr = noteDao.getTags(noteId)
         assertThat(tagArr).isEmpty()
     }
 
