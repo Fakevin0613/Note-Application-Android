@@ -6,4 +6,5 @@ Kevin: Setup the Unit Test dependency and try to fix the database unit text bugs
 Insung: Study on how to implement the class management system, including the modifying the database access in different files
 Shonn: watch tutorial on how to create better xmls
 
-READING WEEK ONGOING, WE SHOULD TAKE REST
+What obstacles do we meet?
+Kevin, Insung, Shonn: the unit test dependency has problems and the unit test are keep crushing
