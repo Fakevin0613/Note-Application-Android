@@ -11,6 +11,6 @@ Shonn: finishing filtering activity xmls for filtering
 Insung: interacting the xmls with the kotlin files
 
 What are we going to do?
-Kevin: modifying tag items xmls
+Kevin: modifying tool bare and bar items xmls
 Insung: figure out how to make the database unit test
 Shonn: completing the tag system, and make sure it is working.
