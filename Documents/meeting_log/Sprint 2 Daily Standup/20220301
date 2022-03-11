@@ -11,10 +11,10 @@ Insung: Added a destructive migressiion for the database - this will be replaced
 Shonn: finishing Course Management XML, toolbar XML, setting up functionalities for the 
 
 What are you going to do?
-Kevin: complete the unit test for database; work on the xml for 
+Kevin: complete the unit test for database; work on the xml for folder system
 Insung: implement interface to new databases
-Shonn: implementing the filtering functionalities
+Shonn: implementing the filtering functionalities, dragting their kotlin files
 
 What obstacles are in your way?
-Kevin: the unit test for Database still has bugs
+Kevin: the unit test for Database still has bugs, multithreading issues
 Insung: the namings in various classes are changes to accomodate the features of the new file system. Therefore, there are conflicts and bugs
