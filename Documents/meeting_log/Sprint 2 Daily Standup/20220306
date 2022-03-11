@@ -1,17 +1,20 @@
 Date 2022/03/06
 Third meeting (offline) for Sprint 2
 
+What did we discuss?
+1. How to make the xmls look cleaner
+2. How to merger the xmls with their corresponding functionality
+
 What have we done?
-Kevin: Allow permission for image access
-Shonn: implementing the course management system xml
-Insung: upgraded the database so that it support the course management system. 
+Kevin: drafting various items xmls
+Shonn: implementing the folder system xml
+Insung: upgraded the database so that it support the folder system. 
 
 What are we going to do?
-Kevin: support image adding within the notes
+Kevin: keep working on various items xmls
 Insung: figure out how to make the database unit test
-Shonn: complete the course management system xml and ensure it is working.
+Shonn: complete the folder xml and ensure the various ids match the variables in the kotlin files.
 
 What obstacles we meet?
-Kevin: The TextEdit does not support image insertion
 Shonn: the xmls are messy and need effects to organise them.
 insung: the unit test environment is complicated to set up.
