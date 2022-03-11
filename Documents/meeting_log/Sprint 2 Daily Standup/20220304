@@ -2,18 +2,19 @@ Date 2022/03/04
 Third meeting for Sprint 2
 
 What we discuss?
-1. How to improve marks for this Sprint
+1. How to do better for this Sprint
 2. How to set up the folder
 
 What have we done?
-Kevin: Studied on the how to grant permission to access the gallery for our app
+Kevin: implement the database unit test
 Shonn: implemented the folder system xml (finishing the structure of add_note and filtering xml), not tested the functionality yet
 Insung: Implemting the interface access functionality, writing Queries for database
 
 What are we going to do?
-Kevin: Draft codes on the Allowing permission
-Insung: make modification on the database, figure out how to make the database unit test.
-Shonn: complete the course management system xml and ensure it is working.
+Kevin: drafting the tag item, tool bar xmls
+Insung: make modification on the database, expanding the values it takes such as tags.
+Shonn: complete the folder system activity xml
 
 What obstacles we meet?
-Shonn: have difficulties to insert the correct icons into the xml (can find the correct vectors shape)
+Shonn: have difficulties to insert the correct icons into the xml (can find the correct vectors shape:)
+
