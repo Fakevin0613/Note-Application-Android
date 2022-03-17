@@ -16,7 +16,7 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
     init{
         dao = NoteDatabase.getDatabase(application).getNoteDataAccess()
         allNotes = Transformations.switchMap(folder){ folderValue ->
-            if(folderValue != null){
+            if(folderValue != null) {
                 Transformations.switchMap(tags){ tagsValue ->
                     if (tagsValue.isNotEmpty()){
                         // get notes in the folder that is also of selected tags
@@ -26,7 +26,7 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
                         dao.getNotesByFolderId(folderValue.id)
                     }
                 }
-            }else{
+            } else {
                 // get all notes
                 dao.getNotes()
             }
