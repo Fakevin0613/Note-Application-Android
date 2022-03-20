@@ -20,6 +20,7 @@ import java.io.InputStream
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import com.noteapplication.cs398.databinding.ActivityAddNoteBinding
+import java.util.*
 
 class AddNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddNoteBinding
@@ -41,7 +42,6 @@ class AddNoteActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         // initialize noteViewModels
         noteViewModel = ViewModelProvider(
             this,
@@ -84,6 +84,7 @@ class AddNoteActivity : AppCompatActivity() {
         binding.newTagBtn.setOnClickListener{
             val name = binding.newTagInput.text.toString()
             if(name.isNotEmpty()) tagViewModel.insertTag(Tag(name))
+            binding.newTagInput.setText("")
         }
 
         // on save button clicked
@@ -136,6 +137,15 @@ class AddNoteActivity : AppCompatActivity() {
             }
         }
 
+//        val currentTime:Date = Calendar.getInstance().getTime()
+//        val date:String = currentTime.year.toString() + "/" + currentTime.month + "/" + currentTime.day
+//        binding.dateInput.text = date
+//        val time:String = currentTime.hours.toString() + "/" + currentTime.minutes + " "  + currentTime.timezoneOffset
+//        binding.timeInput.text = time
+//        binding.dateInput.setOnClickListener {
+//        }
+//        binding.timeInput.setOnClickListener {
+//        }
         setContentView(binding.root)
     }
 
