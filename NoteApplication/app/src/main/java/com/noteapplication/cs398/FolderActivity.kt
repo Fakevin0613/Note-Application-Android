@@ -47,37 +47,37 @@ class FolderActivity : AppCompatActivity() {
         folderItem?.let { noteViewModel.folder.value = folderItem }
 
         binding.title.text = folderItem?.name ?: "Notes"
-        adapter = ListAdapter( noteViewModel, this)
+        adapter = ListAdapter(noteViewModel, this)
         binding.noteList.adapter = adapter
-        binding.noteList.addItemDecoration(object: RecyclerView.ItemDecoration() {
+        binding.noteList.addItemDecoration(object : RecyclerView.ItemDecoration() {
             private val verticalSpaceHeight = 24
             override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
                 outRect.bottom = verticalSpaceHeight
             }
         })
 
-        binding.tagList.root.adapter = TagListAdapter(tagViewModel, this){
+        binding.tagList.root.adapter = TagListAdapter(tagViewModel, this) {
             noteViewModel.tags.value = tagViewModel.getSelectedTags()
         }
 
-        binding.tagList.root.addItemDecoration(object: RecyclerView.ItemDecoration() {
+        binding.tagList.root.addItemDecoration(object : RecyclerView.ItemDecoration() {
             private val space = 8
             override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
                 outRect.set(space, space, space, space)
             }
         })
 
-        binding.addNew.setOnClickListener{
+        binding.addNew.setOnClickListener {
             val intent = Intent(this@FolderActivity, AddNoteActivity::class.java)
             intent.putExtra("folder", noteViewModel.folder.value)
             startActivity(intent)
         }
 
 
-
         val view = binding.root
         setContentView(view)
     }
+
     //
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         print("override")

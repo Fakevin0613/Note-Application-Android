@@ -12,10 +12,10 @@ import com.noteapplication.cs398.databinding.CourseItemBinding
 import java.util.*
 
 class FolderListAdapter(private val viewModel: FolderViewModel, private val activity: AppCompatActivity) :
-    RecyclerView.Adapter<FolderListAdapter.ViewHolder>(){
+    RecyclerView.Adapter<FolderListAdapter.ViewHolder>() {
 
     private var allFolder: ArrayList<Folder> = ArrayList()
-    private lateinit var allFolderFull : ArrayList<Folder>
+    private lateinit var allFolderFull: ArrayList<Folder>
 
     init {
         // *** need to optimize note updates because
@@ -24,7 +24,7 @@ class FolderListAdapter(private val viewModel: FolderViewModel, private val acti
         // maybe keep reference from viewModel.allNotes as the source
         // and call notifyItem*(int) for every add/edit/update calls on it
 
-        viewModel.allFolders.observe(activity){
+        viewModel.allFolders.observe(activity) {
             allFolder.clear()
             allFolder.addAll(it)
             allFolderFull = ArrayList(allFolder)
@@ -57,12 +57,13 @@ class FolderListAdapter(private val viewModel: FolderViewModel, private val acti
         }
 
         // read note navigation
-        viewHolder.binding.noteItem.setOnClickListener{ _ ->
+        viewHolder.binding.noteItem.setOnClickListener { _ ->
             val intent = Intent(activity, FolderActivity::class.java)
             intent.putExtra("folder", allFolder[position])
             activity.startActivity(intent)
         }
     }
+
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = allFolder.size
 
@@ -74,7 +75,7 @@ class FolderListAdapter(private val viewModel: FolderViewModel, private val acti
     }
 
     fun getDescendingSorted() {
-        allFolder.sortByDescending{
+        allFolder.sortByDescending {
             it.name
         }
         notifyDataSetChanged()
@@ -82,7 +83,7 @@ class FolderListAdapter(private val viewModel: FolderViewModel, private val acti
     }
 
     fun getAscendingSorted() {
-        allFolder.sortBy{
+        allFolder.sortBy {
             it.name
         }
         notifyDataSetChanged()
