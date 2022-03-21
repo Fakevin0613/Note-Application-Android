@@ -97,7 +97,7 @@ class AddNoteActivity : AppCompatActivity() {
                     title = binding.titleInput.text.toString(),
                     content = binding.contentInput.text.toString(),
                     notify = binding.idRmdSwitch.isChecked,
-                    updatedTime = Date().time
+                    updatedAt = Date().time
                 )
                 noteViewModel.updateNote(newNote, tagViewModel.getSelectedTags())
             } else {

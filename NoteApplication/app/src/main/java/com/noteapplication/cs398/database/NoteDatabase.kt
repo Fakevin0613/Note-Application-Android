@@ -3,7 +3,7 @@ package com.noteapplication.cs398.database
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = [Note::class, Folder::class, Tag::class, TagNoteCrossRef::class], version = 11)
+@Database(entities = [Note::class, Folder::class, Tag::class, TagNoteCrossRef::class], version = 12)
 abstract class NoteDatabase : RoomDatabase() {
     abstract fun getNoteDataAccess(): NoteDataAccess
 

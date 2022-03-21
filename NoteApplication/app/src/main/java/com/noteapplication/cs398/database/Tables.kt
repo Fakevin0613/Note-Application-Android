@@ -17,9 +17,10 @@ data class Note (
     @ColumnInfo(name = "title") val title:String,
     @ColumnInfo(name = "content") val content:String,
     @ColumnInfo(name = "notify") val notify:Boolean,
+    @ColumnInfo(name = "notifyAt") val notifyAt:Long = Date().time,
     @ColumnInfo(name = "folderId") val folderId:Long?,
-    @ColumnInfo(name = "createdTime") val createdTime:Long = Date().time,
-    @ColumnInfo(name = "updatedTime") val updatedTime:Long = Date().time,
+    @ColumnInfo(name = "createdAt") val createdAt:Long = Date().time,
+    @ColumnInfo(name = "updatedAt") val updatedAt:Long = Date().time,
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
 ): Serializable
 
@@ -35,8 +36,8 @@ data class Folder (
     @ColumnInfo(name = "name") val name:String,
     @ColumnInfo(name = "parent") val parent:Long? = null,
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
-    @ColumnInfo(name = "createdTime") val createdTime:Long = Date().time,
-    @ColumnInfo(name = "updatedTime") val updatedTime:Long = Date().time,
+    @ColumnInfo(name = "createdAt") val createdAt:Long = Date().time,
+    @ColumnInfo(name = "updatedAt") val updatedAt:Long = Date().time,
 ): Serializable
 
 @Entity(tableName = "Tag",
@@ -48,8 +49,8 @@ data class Folder (
 data class Tag (
     @ColumnInfo(name = "name") val name:String,
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
-    @ColumnInfo(name = "createdTime") val createdTime:Long = Date().time,
-    @ColumnInfo(name = "updatedTime") val updatedTime:Long = Date().time,
+    @ColumnInfo(name = "createdAt") val createdAt:Long = Date().time,
+    @ColumnInfo(name = "updatedAt") val updatedAt:Long = Date().time,
 )
 
 @Entity(tableName = "TagNoteCrossRef",
@@ -72,6 +73,6 @@ data class Tag (
 data class TagNoteCrossRef (
     val tagId:Long,
     val noteId:Long,
-    @ColumnInfo(name = "createdTime") val createdTime:Long = Date().time,
-    @ColumnInfo(name = "updatedTime") val updatedTime:Long = Date().time,
+    @ColumnInfo(name = "createdAt") val createdAt:Long = Date().time,
+    @ColumnInfo(name = "updatedAt") val updatedAt:Long = Date().time,
 )
