@@ -14,15 +14,15 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
     val folder: MutableLiveData<Folder?> = MutableLiveData(null)
     val tags: MutableLiveData<List<Tag>> = MutableLiveData(listOf())
 
-    init{
+    init {
         dao = NoteDatabase.getDatabase(application).getNoteDataAccess()
-        allNotes = Transformations.switchMap(folder){ folderValue ->
-            if(folderValue != null) {
-                Transformations.switchMap(tags){ tagsValue ->
-                    if (tagsValue.isNotEmpty()){
+        allNotes = Transformations.switchMap(folder) { folderValue ->
+            if (folderValue != null) {
+                Transformations.switchMap(tags) { tagsValue ->
+                    if (tagsValue.isNotEmpty()) {
                         // get notes in the folder that is also of selected tags
                         dao.getNotesByFolderIdAndTagIds(folderValue.id, tagsValue.map { it.id })
-                    }else{
+                    } else {
                         // get notes in the folder
                         dao.getNotesByFolderId(folderValue.id)
                     }
@@ -43,7 +43,7 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         dao.update(note)
 
         // need some way to detect deleted tags
-        tags?.let {_ ->
+        tags?.let { _ ->
             // delete all existing note-tag references
             dao.deleteAllTags(note.id)
 
@@ -58,16 +58,16 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
     fun insertNote(note: Note, tags: List<Tag>? = null) = viewModelScope.launch(Dispatchers.IO) {
         dao.insert(note)
-        tags?.let {_ ->
+        tags?.let { _ ->
             // insert given note-tag references
             tags.forEach {
-               dao.insert(it)
-               dao.insert(TagNoteCrossRef(tagId = it.id, noteId = note.id))
+                dao.insert(it)
+                dao.insert(TagNoteCrossRef(tagId = it.id, noteId = note.id))
             }
         }
     }
 
-    fun notifyChanged(note:Note)  = viewModelScope.launch(Dispatchers.IO) {
+    fun notifyChanged(note: Note) = viewModelScope.launch(Dispatchers.IO) {
         dao.delete(note)
     }
 }

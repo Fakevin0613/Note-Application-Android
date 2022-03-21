@@ -42,15 +42,15 @@ class MainActivity : AppCompatActivity() {
         adapter = FolderListAdapter(viewModel, this)
 
         courseList.adapter = adapter
-        courseList.addItemDecoration(object: RecyclerView.ItemDecoration() {
+        courseList.addItemDecoration(object : RecyclerView.ItemDecoration() {
             private val verticalSpaceHeight = 24
             override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
                 outRect.bottom = verticalSpaceHeight
             }
         })
 
-        addButton.setOnClickListener{
-            if(!viewModel.isAddingFolder){
+        addButton.setOnClickListener {
+            if (!viewModel.isAddingFolder) {
                 viewModel.isAddingFolder = true
                 NewFolderBottomSheet(viewModel).show(supportFragmentManager, "addCourseBottomSheet")
             }
@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.tools, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.sort_by_recent -> {

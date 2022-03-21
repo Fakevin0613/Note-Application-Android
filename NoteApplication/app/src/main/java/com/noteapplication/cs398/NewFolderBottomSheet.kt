@@ -32,7 +32,7 @@ class NewFolderBottomSheet(private var viewModel: FolderViewModel) : BottomSheet
 
     override fun onDismiss(dialog: DialogInterface) {
         viewModel.isAddingFolder = false
-        binding.folderInput.post{
+        binding.folderInput.post {
             showSoftwareKeyboard(false)
         }
         super.onDismiss(dialog)
@@ -40,17 +40,17 @@ class NewFolderBottomSheet(private var viewModel: FolderViewModel) : BottomSheet
 
     override fun onResume() {
         super.onResume()
-        binding.folderInput.post{
+        binding.folderInput.post {
             showSoftwareKeyboard(true)
         }
     }
 
     private fun showSoftwareKeyboard(showKeyboard: Boolean) {
         val inputManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        if(showKeyboard){
-            println(inputManager.showSoftInput(binding.folderInput,InputMethodManager.SHOW_IMPLICIT))
-        }else{
-            inputManager.hideSoftInputFromWindow( binding.folderInput.windowToken, InputMethodManager.HIDE_IMPLICIT_ONLY )
+        if (showKeyboard) {
+            println(inputManager.showSoftInput(binding.folderInput, InputMethodManager.SHOW_IMPLICIT))
+        } else {
+            inputManager.hideSoftInputFromWindow(binding.folderInput.windowToken, InputMethodManager.HIDE_IMPLICIT_ONLY)
         }
     }
 }

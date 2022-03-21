@@ -5,7 +5,8 @@ import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
-@Entity(tableName = "Note",
+@Entity(
+    tableName = "Note",
     foreignKeys = [ForeignKey(
         entity = Folder::class,
         parentColumns = arrayOf("id"),
@@ -13,18 +14,19 @@ import java.util.*
         onDelete = ForeignKey.SET_NULL
     )]
 )
-data class Note (
-    @ColumnInfo(name = "title") val title:String,
-    @ColumnInfo(name = "content") val content:String,
-    @ColumnInfo(name = "notify") val notify:Boolean,
-    @ColumnInfo(name = "notifyAt") val notifyAt:Long = Date().time,
-    @ColumnInfo(name = "folderId") val folderId:Long?,
-    @ColumnInfo(name = "createdAt") val createdAt:Long = Date().time,
-    @ColumnInfo(name = "updatedAt") val updatedAt:Long = Date().time,
+data class Note(
+    @ColumnInfo(name = "title") val title: String,
+    @ColumnInfo(name = "content") val content: String,
+    @ColumnInfo(name = "notify") val notify: Boolean,
+    @ColumnInfo(name = "notifyAt") val notifyAt: Long = Date().time,
+    @ColumnInfo(name = "folderId") val folderId: Long?,
+    @ColumnInfo(name = "createdAt") val createdAt: Long = Date().time,
+    @ColumnInfo(name = "updatedAt") val updatedAt: Long = Date().time,
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
-): Serializable
+) : Serializable
 
-@Entity(tableName = "Folder",
+@Entity(
+    tableName = "Folder",
     foreignKeys = [ForeignKey(
         entity = Folder::class,
         parentColumns = arrayOf("id"),
@@ -32,28 +34,30 @@ data class Note (
         onDelete = ForeignKey.CASCADE
     )]
 )
-data class Folder (
-    @ColumnInfo(name = "name") val name:String,
-    @ColumnInfo(name = "parent") val parent:Long? = null,
+data class Folder(
+    @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "parent") val parent: Long? = null,
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
-    @ColumnInfo(name = "createdAt") val createdAt:Long = Date().time,
-    @ColumnInfo(name = "updatedAt") val updatedAt:Long = Date().time,
-): Serializable
+    @ColumnInfo(name = "createdAt") val createdAt: Long = Date().time,
+    @ColumnInfo(name = "updatedAt") val updatedAt: Long = Date().time,
+) : Serializable
 
-@Entity(tableName = "Tag",
+@Entity(
+    tableName = "Tag",
     indices = [Index(
         value = ["name"],
         unique = true
     )]
 )
-data class Tag (
-    @ColumnInfo(name = "name") val name:String,
+data class Tag(
+    @ColumnInfo(name = "name") val name: String,
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
-    @ColumnInfo(name = "createdAt") val createdAt:Long = Date().time,
-    @ColumnInfo(name = "updatedAt") val updatedAt:Long = Date().time,
+    @ColumnInfo(name = "createdAt") val createdAt: Long = Date().time,
+    @ColumnInfo(name = "updatedAt") val updatedAt: Long = Date().time,
 )
 
-@Entity(tableName = "TagNoteCrossRef",
+@Entity(
+    tableName = "TagNoteCrossRef",
     primaryKeys = ["tagId", "noteId"],
     foreignKeys = [
         ForeignKey(
@@ -70,9 +74,9 @@ data class Tag (
         ),
     ]
 )
-data class TagNoteCrossRef (
-    val tagId:Long,
-    val noteId:Long,
-    @ColumnInfo(name = "createdAt") val createdAt:Long = Date().time,
-    @ColumnInfo(name = "updatedAt") val updatedAt:Long = Date().time,
+data class TagNoteCrossRef(
+    val tagId: Long,
+    val noteId: Long,
+    @ColumnInfo(name = "createdAt") val createdAt: Long = Date().time,
+    @ColumnInfo(name = "updatedAt") val updatedAt: Long = Date().time,
 )
