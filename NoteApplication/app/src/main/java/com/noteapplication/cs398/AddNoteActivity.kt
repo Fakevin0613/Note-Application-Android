@@ -281,29 +281,6 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                     spannableString.append(Html.fromHtml(builder.toString(), Html.FROM_HTML_MODE_LEGACY, imgGetter, null))
                     binding.contentInput.text = spannableString
 
-//                    val d: Drawable = BitmapDrawable(resources, bitmap)
-//                    d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight())
-//                    var imageSpan = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
-//                    var spannableString = SpannableStringBuilder()
-//                    spannableString.append(binding.contentInput.text)
-//                    spannableString.append(path)
-//                    spannableString.setSpan(imageSpan,
-//                        spannableString.length - path.length,
-//                        spannableString.length,
-//                        Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-//                    spannableString.setSpan(
-//                        object : ClickableSpan() {
-//                            override fun onClick(widget: View) {
-//                                Toast.makeText(getApplicationContext(),"Clicked",Toast.LENGTH_LONG).show();
-//                            }
-//                        },
-//                        spannableString.length - path.length,
-//                        spannableString.length,
-//                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//                    )
-//                    binding.contentInput.text = spannableString
-//                    binding.contentInput.movementMethod = LinkMovementMethod.getInstance();
-
 
                 }catch(exception: Exception ){
                     Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
@@ -324,42 +301,38 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private fun configureRichText(){
 
         binding.boldText.setOnClickListener{
-            val wholeText: String = binding.contentInput.text.toString()
             val start: Int = binding.contentInput.selectionStart
             val end: Int = binding.contentInput.selectionEnd
 
-            val sb = SpannableStringBuilder(wholeText)
+            val sb = SpannableStringBuilder(binding.contentInput.text)
 
             sb.setSpan(StyleSpan(Typeface.BOLD), start, end, 0)
             binding.contentInput.setText(sb)
         }
 
         binding.italicText.setOnClickListener{
-            val wholeText: String = binding.contentInput.text.toString()
             val start: Int = binding.contentInput.selectionStart
             val end: Int = binding.contentInput.selectionEnd
 
-            val sb = SpannableStringBuilder(wholeText)
+            val sb = SpannableStringBuilder(binding.contentInput.text)
             sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, 0)
             binding.contentInput.setText(sb)
         }
 
         binding.underlineText.setOnClickListener{
-            val wholeText: String = binding.contentInput.text.toString()
             val start: Int = binding.contentInput.selectionStart
             val end: Int = binding.contentInput.selectionEnd
 
-            val sb = SpannableStringBuilder(wholeText)
+            val sb = SpannableStringBuilder(binding.contentInput.text)
             sb.setSpan(UnderlineSpan(), start, end, 0)
             binding.contentInput.text = sb
         }
 
         binding.resetText.setOnClickListener {
-            val wholeText: String = binding.contentInput.text.toString()
             val start: Int = binding.contentInput.selectionStart
             val end: Int = binding.contentInput.selectionEnd
 
-            val sb = SpannableStringBuilder(wholeText)
+            val sb = SpannableStringBuilder(binding.contentInput.text)
             sb.setSpan(StyleSpan(Typeface.NORMAL), start, end, 0)
             binding.contentInput.text = sb
         }

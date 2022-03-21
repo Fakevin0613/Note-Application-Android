@@ -139,10 +139,10 @@
             android:background="@drawable/back"
             android:gravity="start|top"
             android:hint="  Detail..."
-            android:inputType="textMultiLine"
             android:singleLine="false"
             android:textSize="18sp"
             android:textColor="@color/black"
+            android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
             android:padding="10dp"
     />
 
