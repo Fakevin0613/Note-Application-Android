@@ -36,49 +36,48 @@ class NoteService(val dao: NoteRepository){
 	}
 }
 
-
 @Table("Note")
 data class Note(
-	val id: Long?,
+	val userId: Long,
+	val id: Long,
 	val title: String,
 	val content: String,
 	val notify: Boolean,
-	val
-
+	val folderId: Long?,
+	val createdTime: Long,
+	val updatedTime: Long
 )
 
-//`title` TEXT NOT NULL,
-//`content` TEXT NOT NULL,
-//`notify` INTEGER NOT NULL,
-//`folderId` INTEGER,
-//`createdTime` DATE NOT NULL,
-//`updatedTime` DATE NOT NULL,
-//`id` INTEGER PRIMARY KEY NOT NULL,
-//FOREIGN KEY(`folderId`) REFERENCES `Folder`(`id`) ON UPDATE NO ACTION ON DELETE SET NULL
+@Table("Folder")
+data class Folder(
+	val userId: Long,
+	val id: Long,
+	val name: String,
+	val parent: Long?,
+	val createdTime: Long,
+	val updatedTime: Long
+)
 
-//`Folder`
-//`name` TEXT NOT NULL,
-//`parent` INTEGER,
-//`id` INTEGER PRIMARY KEY NOT NULL,
-//`createdTime` DATE NOT NULL,
-//`updatedTime` DATE NOT NULL,
-//FOREIGN KEY(`parent`) REFERENCES `Folder`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+@Table("Tag")
+data class Tag(
+	val userId: Long,
+	val id: Long,
+	val name: String,
+	val createdTime: Long,
+	val updatedTime: Long
+)
 
-//tag
-//`name` TEXT NOT NULL,
-//`createdTime` DATE NOT NULL,
-//`updatedTime` DATE NOT NULL,
-//`id` INTEGER PRIMARY KEY NOT NULL
+@Table("TagNoteCrossRef")
+data class TagNoteCrossRef(
+	val userId: Long,
+	val tagId: Long,
+	val noteId: Long,
+	val name: String,
+	val createdTime: Long,
+	val updatedTime: Long
+)
 
-
-//CREATE TABLE IF NOT EXISTS `TagNoteCrossRef`
-//(
-//`tagId` INTEGER NOT NULL,
-//`noteId` INTEGER NOT NULL,
-//`createdTime` DATE NOT NULL,
-//`updatedTime` DATE NOT NULL,
-
-interface NoteRepository: CrudRepository<Note, String>{
-	@Query("select id, title from Note")
+interface NoteRepository: CrudRepository<Note, Long>{
+	@Query("select * from Note")
 	fun findNotes(): List<Note>
 }
