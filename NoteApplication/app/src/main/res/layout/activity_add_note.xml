@@ -78,25 +78,36 @@
             <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/reset"
+                    android:contentDescription="@string/order"
+                    android:id="@+id/resetText"
+                    android:background="@drawable/tool_border_frame"/>
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/bold"
                     android:contentDescription="@string/order"
+                    android:id="@+id/boldText"
                     android:background="@drawable/tool_border_frame"/>
             <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/italic"
                     android:contentDescription="@string/order"
+                    android:id="@+id/italicText"
                     android:background="@drawable/tool_border_frame"/>
             <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/underline"
+                    android:id="@+id/underlineText"
                     android:background="@drawable/tool_border_frame"
                     android:contentDescription="@string/order"/>
             <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/highlight"
+                    android:id="@+id/highlightText"
                     android:contentDescription="@string/order"
                     android:background="@drawable/tool_border_frame"/>
             <ImageButton

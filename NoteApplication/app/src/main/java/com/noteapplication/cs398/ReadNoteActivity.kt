@@ -3,7 +3,9 @@ package com.noteapplication.cs398
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -34,7 +36,8 @@ class ReadNoteActivity : AppCompatActivity() {
         noteItem.observe(this) {
             it?.let {
                 binding.noteTitle.text = it.title
-                binding.noteContent.text = it.content
+                var htmlcontent = Html.fromHtml(it.content.toString(), Html.FROM_HTML_MODE_LEGACY, imgGetter, null)
+                binding.noteContent.text = htmlcontent
                 binding.idRmdSwitch.isChecked = it.notify
                 binding.idRmdSwitch.isClickable = false
                 tagViewModel.setCurrentSelectedTags(it.id)
@@ -73,5 +76,15 @@ class ReadNoteActivity : AppCompatActivity() {
                 binding.tagList.root.adapter?.notifyDataSetChanged()
             }
         }
+    }
+
+    private val imgGetter: Html.ImageGetter = Html.ImageGetter { source ->
+        val drawable: Drawable? = Drawable.createFromPath(source)
+        try {
+            drawable?.setBounds(0, 0, drawable.intrinsicWidth *3, drawable.intrinsicHeight * 3);
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return@ImageGetter drawable
     }
 }

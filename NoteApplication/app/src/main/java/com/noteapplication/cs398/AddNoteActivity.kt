@@ -4,14 +4,23 @@ import android.Manifest
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Rect
+import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Html
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.StyleSpan
+import android.text.style.UnderlineSpan
 import android.view.View
 import android.widget.DatePicker
 import android.widget.TextView
@@ -29,6 +38,9 @@ import com.noteapplication.cs398.database.Folder
 import com.noteapplication.cs398.database.Note
 import com.noteapplication.cs398.database.Tag
 import com.noteapplication.cs398.databinding.ActivityAddNoteBinding
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.util.*
 import java.io.InputStream
 import java.time.LocalDateTime
@@ -88,7 +100,8 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         oldNote = intent.getSerializableExtra("note") as Note?
         oldNote?.let {
             binding.titleInput.setText(it.title)
-            binding.contentInput.setText(it.content)
+            var htmlcontent = Html.fromHtml(it.content, Html.FROM_HTML_MODE_LEGACY, imgGetter, null)
+            binding.contentInput.setText(htmlcontent)
             binding.idRmdSwitch.isChecked = it.notify
 
             tagViewModel.setCurrentSelectedTags(it.id)
@@ -105,9 +118,6 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             }
         })
 
-        // remove tools until it is implemented
-        binding.textTools.isGone = true
-
         // on '+' button for Tag clicked
         binding.newTagBtn.setOnClickListener {
             val name = binding.newTagInput.text.toString()
@@ -120,11 +130,13 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             Toast.makeText(this, "$title Added", Toast.LENGTH_LONG).show()
 
             val newNote: Note
+            val spannedText: Spanned = SpannableString( binding.contentInput.text)
+            var html = Html.toHtml(spannedText, Html.FROM_HTML_MODE_LEGACY)
             calendar.set(recorded_year, recorded_month, recorded_day, recorded_hour, recorded_minute)
             if (oldNote != null) {
                 newNote = oldNote!!.copy(
                     title = binding.titleInput.text.toString(),
-                    content = binding.contentInput.text.toString(),
+                    content = html,
                     notify = binding.idRmdSwitch.isChecked,
                     notifyAt = calendar.time.time,
                     updatedAt = Date().time
@@ -132,9 +144,9 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                 noteViewModel.updateNote(newNote, tagViewModel.getSelectedTags())
             } else {
                 newNote = Note(
-                    binding.titleInput.text.toString(),
-                    binding.contentInput.text.toString(),
-                    binding.idRmdSwitch.isChecked,
+                    title = binding.titleInput.text.toString(),
+                    content = html,
+                    notify = binding.idRmdSwitch.isChecked,
                     notifyAt = calendar.time.time,
                     folderId = folder?.id // the note does not goes to any folder for now
                 )
@@ -146,7 +158,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             setResult(RESULT_OK, data)
             this.finish()
         }
-
+        configureRichText()
         // on cancel button clicked
         binding.cancelButton.setOnClickListener { this.finish() }
 
@@ -225,29 +237,79 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         }
     }
 
+    private fun saveToInternalStorage(bitmapImage: Bitmap): String {
+        val cw = ContextWrapper(applicationContext)
+        val directory = cw.getDir("imageDir", MODE_PRIVATE)
+        // Create imageDir
+        val myPath = File(directory, bitmapImage.toString() + "image.jpg")
+        var fos: FileOutputStream? = null
+        try {
+            fos = FileOutputStream(myPath)
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        } finally {
+            try {
+                fos!!.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+        return myPath.absolutePath
+    }
+
 
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 //        if (result.resultCode == REQUEST_CODE_SELECT_IMAGE && result.resultCode == RESULT_OK) {
         val data: Intent? = result.data
-        if (data != null) {
-            val imageUri: Uri? = data.getData()
-            if (imageUri != null) {
-                try {
-                    val inputStream: InputStream? = contentResolver.openInputStream(imageUri)
-                    val bitmap: Bitmap? = BitmapFactory.decodeStream(inputStream)
-                    binding.image.setImageBitmap(bitmap)
-                    //imageNote.visibility = View.VISIBLE
-                    Toast.makeText(this, "image added", Toast.LENGTH_SHORT).show()
+        if(data != null){
+            val imageUri: Uri? = data.data
+            if(imageUri != null){
+                try{
+                    var inputStream: InputStream? = contentResolver.openInputStream(imageUri)
+                    var bitmap: Bitmap? = BitmapFactory.decodeStream(inputStream)
+                    var path: String = bitmap?.let { saveToInternalStorage(it) }.toString()
 
-                } catch (exception: Exception) {
+                    var previousString : String = Html.toHtml(binding.contentInput.text, Html.FROM_HTML_MODE_LEGACY)
+                    val builder = StringBuilder()
+                    builder.append(previousString)
+                    builder.append("<p>\n" +
+                            "<img src=\"" + path + "\">\n" +
+                            "</p>")
+                    var spannableString = SpannableStringBuilder()
+                    spannableString.append(Html.fromHtml(builder.toString(), Html.FROM_HTML_MODE_LEGACY, imgGetter, null))
+                    binding.contentInput.text = spannableString
+
+//                    val d: Drawable = BitmapDrawable(resources, bitmap)
+//                    d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight())
+//                    var imageSpan = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
+//                    var spannableString = SpannableStringBuilder()
+//                    spannableString.append(binding.contentInput.text)
+//                    spannableString.append(path)
+//                    spannableString.setSpan(imageSpan,
+//                        spannableString.length - path.length,
+//                        spannableString.length,
+//                        Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+//                    spannableString.setSpan(
+//                        object : ClickableSpan() {
+//                            override fun onClick(widget: View) {
+//                                Toast.makeText(getApplicationContext(),"Clicked",Toast.LENGTH_LONG).show();
+//                            }
+//                        },
+//                        spannableString.length - path.length,
+//                        spannableString.length,
+//                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+//                    )
+//                    binding.contentInput.text = spannableString
+//                    binding.contentInput.movementMethod = LinkMovementMethod.getInstance();
+
+
+                }catch(exception: Exception ){
                     Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(this, "error2", Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(this, "error1", Toast.LENGTH_SHORT).show()
-        }
+            } else Toast.makeText(this, "error2", Toast.LENGTH_SHORT).show()
+        } else Toast.makeText(this, "Nothing Added", Toast.LENGTH_SHORT).show()
     }
 
     private fun selectImage() {
@@ -257,5 +319,59 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         } catch (exception: Exception) {
             Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun configureRichText(){
+
+        binding.boldText.setOnClickListener{
+            val wholeText: String = binding.contentInput.text.toString()
+            val start: Int = binding.contentInput.selectionStart
+            val end: Int = binding.contentInput.selectionEnd
+
+            val sb = SpannableStringBuilder(wholeText)
+
+            sb.setSpan(StyleSpan(Typeface.BOLD), start, end, 0)
+            binding.contentInput.setText(sb)
+        }
+
+        binding.italicText.setOnClickListener{
+            val wholeText: String = binding.contentInput.text.toString()
+            val start: Int = binding.contentInput.selectionStart
+            val end: Int = binding.contentInput.selectionEnd
+
+            val sb = SpannableStringBuilder(wholeText)
+            sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, 0)
+            binding.contentInput.setText(sb)
+        }
+
+        binding.underlineText.setOnClickListener{
+            val wholeText: String = binding.contentInput.text.toString()
+            val start: Int = binding.contentInput.selectionStart
+            val end: Int = binding.contentInput.selectionEnd
+
+            val sb = SpannableStringBuilder(wholeText)
+            sb.setSpan(UnderlineSpan(), start, end, 0)
+            binding.contentInput.text = sb
+        }
+
+        binding.resetText.setOnClickListener {
+            val wholeText: String = binding.contentInput.text.toString()
+            val start: Int = binding.contentInput.selectionStart
+            val end: Int = binding.contentInput.selectionEnd
+
+            val sb = SpannableStringBuilder(wholeText)
+            sb.setSpan(StyleSpan(Typeface.NORMAL), start, end, 0)
+            binding.contentInput.text = sb
+        }
+    }
+
+    private val imgGetter: Html.ImageGetter = Html.ImageGetter { source ->
+        val drawable: Drawable? = Drawable.createFromPath(source)
+        try {
+            drawable?.setBounds(0, 0, drawable.intrinsicWidth * 3, drawable.intrinsicHeight * 3);
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return@ImageGetter drawable
     }
 }
