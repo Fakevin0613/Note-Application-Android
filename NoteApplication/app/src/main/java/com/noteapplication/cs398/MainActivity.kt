@@ -2,6 +2,8 @@ package com.noteapplication.cs398
 
 import android.graphics.Rect
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
@@ -56,5 +58,29 @@ class MainActivity : AppCompatActivity() {
 
         val view = binding.root
         setContentView(view)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        print("override")
+        val inflater = menuInflater
+        inflater.inflate(R.menu.tools, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.sort_by_recent -> {
+                adapter.getRecentlySorted()
+                true
+            }
+            R.id.sort_by_capital -> {
+                adapter.getAscendingSorted()
+                true
+            }
+            R.id.sort_by_capital_descending -> {
+                adapter.getDescendingSorted()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

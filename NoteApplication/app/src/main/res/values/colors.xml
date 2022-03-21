@@ -13,6 +13,7 @@
     <color name="colorPrimary">#FFFFFFFF</color>
     <color name="colorPrimaryDark">#A9A9A9</color>
     <color name="colorAccent">#FFFFFFFF</color>
+    <color name="light_light_grey">#E5E5E5</color>
 
     <color name="green1">#5BC8AC</color>
     <color name="green2">#98DBC6</color>

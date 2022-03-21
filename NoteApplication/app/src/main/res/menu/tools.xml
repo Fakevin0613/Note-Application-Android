@@ -7,12 +7,12 @@
               android:title="sorted by"
               app:showAsAction="never">
               <menu>
-                  <item android:id="@+id/sort_by_notes"
-                        android:title="notes"
-                        app:showAsAction="never"/>
+                  <item android:id="@+id/sort_by_recent"
+                        android:title="Recent"/>
                   <item android:id="@+id/sort_by_capital"
-                        android:title="capital"
-                        app:showAsAction="never"/>
+                        android:title="Ascending"/>
+                  <item android:id="@+id/sort_by_capital_descending"
+                        android:title="Descending"/>
               </menu>
         </item>
 </menu>

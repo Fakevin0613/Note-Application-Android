@@ -13,9 +13,7 @@ import kotlinx.coroutines.launch
 class TagViewModel(application: Application) : AndroidViewModel(application) {
     var allTags: LiveData<List<Tag>>
     var selectedTagIds = mutableSetOf<Long>()
-
     private val dao: NoteDataAccess
-
     init{
         dao = NoteDatabase.getDatabase(application).getNoteDataAccess()
         allTags = dao.getTags()

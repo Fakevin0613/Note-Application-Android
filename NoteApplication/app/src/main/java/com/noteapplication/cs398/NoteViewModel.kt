@@ -17,7 +17,7 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
     init{
         dao = NoteDatabase.getDatabase(application).getNoteDataAccess()
         allNotes = Transformations.switchMap(folder){ folderValue ->
-            if(folderValue != null){
+            if(folderValue != null) {
                 Transformations.switchMap(tags){ tagsValue ->
                     if (tagsValue.isNotEmpty()){
                         // get notes in the folder that is also of selected tags
@@ -27,7 +27,7 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
                         dao.getNotesByFolderId(folderValue.id)
                     }
                 }
-            }else{
+            } else {
                 // get all notes
                 dao.getNotes()
             }
@@ -53,6 +53,7 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
                 dao.insert(TagNoteCrossRef(tagId = it.id, noteId = note.id))
             }
         }
+
     }
 
     fun insertNote(note: Note, tags: List<Tag>? = null) = viewModelScope.launch(Dispatchers.IO) {
