@@ -7,10 +7,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.noteapplication.cs398.database.Note
 import com.noteapplication.cs398.databinding.ActivityReadNoteBinding
 
 class ReadNoteActivity : AppCompatActivity(){

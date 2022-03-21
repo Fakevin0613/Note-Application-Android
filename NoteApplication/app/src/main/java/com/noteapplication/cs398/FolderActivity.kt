@@ -8,6 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.noteapplication.cs398.database.Folder
 import com.noteapplication.cs398.databinding.ActivityFolderBinding
 
 

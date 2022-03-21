@@ -1,16 +1,11 @@
 package com.noteapplication.cs398
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.noteapplication.cs398.databinding.CourseItemBinding
-import com.noteapplication.cs398.databinding.NoteItemBinding
+import com.noteapplication.cs398.database.Tag
 import com.noteapplication.cs398.databinding.TagItemBinding
 
 class TagListAdapter(

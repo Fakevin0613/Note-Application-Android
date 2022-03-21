@@ -1,10 +1,9 @@
-package com.noteapplication.cs398
+package com.noteapplication.cs398.database
 
 import android.content.Context
 import androidx.room.*
-import androidx.room.migration.AutoMigrationSpec
 
-@Database(entities = [Note::class, Folder::class, Tag::class, TagNoteCrossRef::class], version = 10)
+@Database(entities = [Note::class, Folder::class, Tag::class, TagNoteCrossRef::class], version = 11)
 abstract class NoteDatabase : RoomDatabase() {
     abstract fun getNoteDataAccess(): NoteDataAccess
 
@@ -12,7 +11,7 @@ abstract class NoteDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: NoteDatabase? = null
 
-        fun getDatabase(context: Context): NoteDatabase{
+        fun getDatabase(context: Context): NoteDatabase {
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,

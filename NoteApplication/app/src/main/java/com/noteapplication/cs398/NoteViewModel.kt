@@ -2,6 +2,7 @@ package com.noteapplication.cs398
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.noteapplication.cs398.database.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

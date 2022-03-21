@@ -1,13 +1,11 @@
 package com.noteapplication.cs398
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.noteapplication.cs398.database.Note
 import com.noteapplication.cs398.databinding.NoteItemBinding
 
 class ListAdapter(private val viewModel: NoteViewModel, private val activity: AppCompatActivity) :

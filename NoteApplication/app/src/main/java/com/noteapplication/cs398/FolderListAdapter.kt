@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.noteapplication.cs398.database.Folder
 import com.noteapplication.cs398.databinding.CourseItemBinding
 
 class FolderListAdapter(private val viewModel: FolderViewModel, private val activity: AppCompatActivity) :

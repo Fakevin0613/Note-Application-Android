@@ -1,12 +1,14 @@
-package com.noteapplication.cs398
+package com.noteapplication.cs398.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Dao
 interface NoteDataAccess {
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Note::class)
-    suspend fun insert(note:Note): Long
+    suspend fun insert(note: Note): Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Folder::class)
     suspend fun insert(folder: Folder): Long
@@ -18,7 +20,7 @@ interface NoteDataAccess {
     suspend fun insert(tagNoteCrossRef: TagNoteCrossRef)
 
     @Update(entity = Note::class)
-    suspend fun update(note:Note)
+    suspend fun update(note: Note)
 
     @Update(entity = Folder::class)
     suspend fun update(folder: Folder)
@@ -106,4 +108,8 @@ interface NoteDataAccess {
         "delete from TagNoteCrossRef where noteId = :noteId"
     )
     suspend fun deleteAllTags(noteId: Long)
+}
+
+fun Long.toDateString(): String{
+    return SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.CANADA).format(Date(this))
 }

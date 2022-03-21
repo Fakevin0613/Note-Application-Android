@@ -19,7 +19,11 @@ import androidx.lifecycle.ViewModelProvider
 import java.io.InputStream
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
+import com.noteapplication.cs398.database.Folder
+import com.noteapplication.cs398.database.Note
+import com.noteapplication.cs398.database.Tag
 import com.noteapplication.cs398.databinding.ActivityAddNoteBinding
+import java.util.*
 
 class AddNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddNoteBinding
@@ -29,10 +33,8 @@ class AddNoteActivity : AppCompatActivity() {
     private var title: String = ""
     private var content: String = ""
     private var todo: Boolean = false
-    private var isEditing: Boolean = false
 
-    private var oldId: Long? = null
-    private var oldFolderId: Long? = null
+    private var oldNote: Note? = null
 
     private var folder: Folder? = null
 
@@ -55,13 +57,11 @@ class AddNoteActivity : AppCompatActivity() {
         // set bindings
         binding = ActivityAddNoteBinding.inflate(layoutInflater)
 
-        (intent.getSerializableExtra("note") as Note?)?.let {
-            isEditing = true
+        oldNote = intent.getSerializableExtra("note") as Note?
+        oldNote?.let {
             binding.titleInput.setText(it.title)
             binding.contentInput.setText(it.content)
             binding.idRmdSwitch.isChecked = it.notify
-            oldId = it.id
-            oldFolderId = it.folderId
 
             tagViewModel.setCurrentSelectedTags(it.id)
         }
@@ -92,18 +92,16 @@ class AddNoteActivity : AppCompatActivity() {
 
             val newNote: Note
 
-            if(isEditing){
-                newNote = Note(
-                    binding.titleInput.text.toString(),
-                    binding.contentInput.text.toString(),
-                    binding.idRmdSwitch.isChecked,
-                    oldFolderId,
-                    id = oldId!!
+            if (oldNote != null) {
+                newNote = oldNote!!.copy(
+                    title = binding.titleInput.text.toString(),
+                    content = binding.contentInput.text.toString(),
+                    notify = binding.idRmdSwitch.isChecked,
+                    updatedTime = Date().time
                 )
                 noteViewModel.updateNote(newNote, tagViewModel.getSelectedTags())
-
-            }else{
-                 newNote = Note(
+            } else {
+                newNote = Note(
                     binding.titleInput.text.toString(),
                     binding.contentInput.text.toString(),
                     binding.idRmdSwitch.isChecked,

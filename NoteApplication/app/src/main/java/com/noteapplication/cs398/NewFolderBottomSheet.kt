@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.noteapplication.cs398.database.Folder
 import com.noteapplication.cs398.databinding.BottomSheetNewFolderBinding
 
 class NewFolderBottomSheet(private var viewModel: FolderViewModel) : BottomSheetDialogFragment() {

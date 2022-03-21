@@ -1,4 +1,4 @@
-package com.noteapplication.cs398
+package com.noteapplication.cs398.database
 
 import androidx.room.*
 import java.io.Serializable
@@ -18,8 +18,8 @@ data class Note (
     @ColumnInfo(name = "content") val content:String,
     @ColumnInfo(name = "notify") val notify:Boolean,
     @ColumnInfo(name = "folderId") val folderId:Long?,
-    @ColumnInfo(name = "createdTime") val createdTime:String =
-        SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.CANADA).format(Date()),
+    @ColumnInfo(name = "createdTime") val createdTime:Long = Date().time,
+    @ColumnInfo(name = "updatedTime") val updatedTime:Long = Date().time,
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
 ): Serializable
 
@@ -34,7 +34,9 @@ data class Note (
 data class Folder (
     @ColumnInfo(name = "name") val name:String,
     @ColumnInfo(name = "parent") val parent:Long? = null,
-    @PrimaryKey(autoGenerate = true) var id: Long = 0
+    @PrimaryKey(autoGenerate = true) var id: Long = 0,
+    @ColumnInfo(name = "createdTime") val createdTime:Long = Date().time,
+    @ColumnInfo(name = "updatedTime") val updatedTime:Long = Date().time,
 ): Serializable
 
 @Entity(tableName = "Tag",
@@ -45,7 +47,9 @@ data class Folder (
 )
 data class Tag (
     @ColumnInfo(name = "name") val name:String,
-    @PrimaryKey(autoGenerate = true) var id: Long = 0
+    @PrimaryKey(autoGenerate = true) var id: Long = 0,
+    @ColumnInfo(name = "createdTime") val createdTime:Long = Date().time,
+    @ColumnInfo(name = "updatedTime") val updatedTime:Long = Date().time,
 )
 
 @Entity(tableName = "TagNoteCrossRef",
@@ -67,5 +71,7 @@ data class Tag (
 )
 data class TagNoteCrossRef (
     val tagId:Long,
-    val noteId:Long
+    val noteId:Long,
+    @ColumnInfo(name = "createdTime") val createdTime:Long = Date().time,
+    @ColumnInfo(name = "updatedTime") val updatedTime:Long = Date().time,
 )

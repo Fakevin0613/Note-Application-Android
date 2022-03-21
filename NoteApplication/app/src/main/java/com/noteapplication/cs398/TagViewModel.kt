@@ -4,6 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.noteapplication.cs398.database.NoteDataAccess
+import com.noteapplication.cs398.database.NoteDatabase
+import com.noteapplication.cs398.database.Tag
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
