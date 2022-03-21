@@ -52,6 +52,7 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
                 dao.insert(TagNoteCrossRef(tagId = it.id, noteId = note.id))
             }
         }
+
     }
 
     fun insertNote(note: Note, tags: List<Tag>? = null) = viewModelScope.launch(Dispatchers.IO) {
