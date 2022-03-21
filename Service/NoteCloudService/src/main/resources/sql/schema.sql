@@ -1,41 +1,40 @@
 CREATE TABLE IF NOT EXISTS `Folder`
 (
-    `userId` INTEGER NOT NULL,
+    `user_id` INTEGER NOT NULL,
+    `local_id` INTEGER NOT NULL,
     `name` TEXT NOT NULL,
     `parent` INTEGER,
-    `id` INTEGER PRIMARY KEY NOT NULL,
-    `createdTime` DATE NOT NULL,
-    `updatedTime` DATE NOT NULL,
-    FOREIGN KEY(`parent`) REFERENCES `Folder`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+    `created_at` INTEGER NOT NULL,
+    `updated_at` INTEGER NOT NULL,
+    PRIMARY KEY(`user_id`, `local_id`)
 );
 CREATE TABLE IF NOT EXISTS `Note`
 (
-    `userId` INTEGER NOT NULL,
+    `user_id` INTEGER NOT NULL,
+    `local_id` INTEGER NOT NULL,
     `title` TEXT NOT NULL,
     `content` TEXT NOT NULL,
-    `notify` INTEGER NOT NULL,
-    `folderId` INTEGER,
-    `createdTime` DATE NOT NULL,
-    `updatedTime` DATE NOT NULL,
-    `id` INTEGER PRIMARY KEY NOT NULL,
-    FOREIGN KEY(`folderId`) REFERENCES `Folder`(`id`) ON UPDATE NO ACTION ON DELETE SET NULL
+    `notify` BIT NOT NULL,
+    `notify_at` INTEGER,
+    `folder_id` INTEGER,
+    `created_at` INTEGER NOT NULL,
+    `updated_at` INTEGER NOT NULL,
+    PRIMARY KEY (`user_id`, `local_id`)
 );
 CREATE TABLE IF NOT EXISTS `Tag`
 (
-    `userId` INTEGER NOT NULL,
+    `user_id` INTEGER NOT NULL,
+    `local_id` INTEGER NOT NULL,
     `name` TEXT NOT NULL,
-    `createdTime` DATE NOT NULL,
-    `updatedTime` DATE NOT NULL,
-    `id` INTEGER PRIMARY KEY NOT NULL
+    `created_at` INTEGER NOT NULL,
+    `updated_at` INTEGER NOT NULL,
+    PRIMARY KEY(`user_id`, `local_id`)
 );
 CREATE TABLE IF NOT EXISTS `TagNoteCrossRef`
 (
-    `userId` INTEGER NOT NULL,
-    `tagId` INTEGER NOT NULL,
-    `noteId` INTEGER NOT NULL,
-    `createdTime` DATE NOT NULL,
-    `updatedTime` DATE NOT NULL,
-    PRIMARY KEY(`tagId`, `noteId`),
-    FOREIGN KEY(`tagId`) REFERENCES `Tag`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
-    FOREIGN KEY(`noteId`) REFERENCES `Note`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+    `user_id` INTEGER NOT NULL,
+    `tag_id` INTEGER NOT NULL,
+    `note_id` INTEGER NOT NULL,
+    `created_at` INTEGER NOT NULL,
+    `updated_at` INTEGER NOT NULL
 );

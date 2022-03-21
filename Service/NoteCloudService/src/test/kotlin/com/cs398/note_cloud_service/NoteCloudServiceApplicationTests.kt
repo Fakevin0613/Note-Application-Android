@@ -1,4 +1,4 @@
-package com.cs398.NoteCloudService
+package com.cs398.note_cloud_service
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
