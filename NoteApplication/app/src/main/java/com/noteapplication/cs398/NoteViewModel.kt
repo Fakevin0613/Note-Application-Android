@@ -66,4 +66,8 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    fun notifyChanged(note:Note)  = viewModelScope.launch(Dispatchers.IO) {
+        dao.delete(note)
+    }
 }

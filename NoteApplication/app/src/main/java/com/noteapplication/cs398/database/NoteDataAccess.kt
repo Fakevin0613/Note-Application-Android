@@ -37,6 +37,8 @@ interface NoteDataAccess {
     @Delete(entity = TagNoteCrossRef::class)
     suspend fun delete(tagNoteCrossRef: TagNoteCrossRef)
 
+
+
     // *** this is the point of modification for filter and ordering feature
     @Query(
         "Select * from `Note` order by id ASC"
