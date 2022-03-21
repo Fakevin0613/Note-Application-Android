@@ -43,8 +43,10 @@
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.4615740740740741" />
         <entry key="app/src/main/res/drawable/text_border_frame.xml" value="0.30615384615384617" />
         <entry key="app/src/main/res/drawable/text_rounded_corner.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/drawable/time_background.xml" value="0.17864583333333334" />
         <entry key="app/src/main/res/drawable/tool_border_frame.xml" value="0.134375" />
         <entry key="app/src/main/res/drawable/trash.xml" value="0.28802083333333334" />
+        <entry key="app/src/main/res/layout/activity_add_note.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_folder.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_read_note.xml" value="0.14947916666666666" />

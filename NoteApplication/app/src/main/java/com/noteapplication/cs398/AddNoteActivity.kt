@@ -1,27 +1,53 @@
 package com.noteapplication.cs398
 
 import android.Manifest
+import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.graphics.Rect
+import android.widget.DatePicker
+import android.widget.TextView
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
-import java.io.InputStream
 import androidx.core.view.isGone
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.noteapplication.cs398.databinding.ActivityAddNoteBinding
+import java.io.InputStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
-class AddNoteActivity : AppCompatActivity() {
+//class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener {
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_main)
+//        val button: Button = findViewById<View>(R.id.button) as Button
+//        button.setOnClickListener(View.OnClickListener {
+//            val timePicker: DialogFragment = TimePickerFragment()
+//            timePicker.show(supportFragmentManager, "time picker")
+//        })
+//    }
+//
+//    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+//        val textView: TextView = findViewById<View>(R.id.textView) as TextView
+//        textView.setText("Hour: $hourOfDay Minute: $minute")
+//    }
+//}
+class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private lateinit var binding: ActivityAddNoteBinding
     private lateinit var noteViewModel: NoteViewModel
     private lateinit var tagViewModel: TagViewModel
@@ -38,10 +64,8 @@ class AddNoteActivity : AppCompatActivity() {
 
     private var REQUEST_CODE_STORAGE_PERMISSION = 1
     private var REQUEST_CODE_SELECT_IMAGE = 2
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         // initialize noteViewModels
         noteViewModel = ViewModelProvider(
             this,
@@ -84,6 +108,7 @@ class AddNoteActivity : AppCompatActivity() {
         binding.newTagBtn.setOnClickListener{
             val name = binding.newTagInput.text.toString()
             if(name.isNotEmpty()) tagViewModel.insertTag(Tag(name))
+            binding.newTagInput.setText("")
         }
 
         // on save button clicked
@@ -136,7 +161,40 @@ class AddNoteActivity : AppCompatActivity() {
             }
         }
 
+        val current = LocalDateTime.now()
+        var formatted = current.format(DateTimeFormatter.BASIC_ISO_DATE)
+        val date:String = formatted.substring(0, 4) + "/" + formatted.substring(4, 6) + "/" + formatted.substring(6, 8)
+        binding.dateInput.text = date
+        formatted = current.format(DateTimeFormatter.ISO_LOCAL_TIME)
+        val time:String = (formatted.substring(0, 2).toInt()/12).toString() + ":00 "  + if (formatted.substring(0, 2).toInt()/12 > 0) "PM" else "AM"
+        binding.timeInput.text = time
+        var calendar:Calendar = Calendar.getInstance()
+        var year = calendar.get(Calendar.YEAR)
+        var month = calendar.get(Calendar.MONTH)
+        var day = calendar.get(Calendar.DAY_OF_MONTH)
+        var hour = calendar.get(Calendar.HOUR_OF_DAY)
+        var minute = calendar.get(Calendar.MINUTE)
+        println("year: $year, month: $month, day: $day, hour:$hour, minute:$minute")
+        binding.dateInput.setOnClickListener() {
+            var datePicker = DatePickerDialog(this,AlertDialog.THEME_HOLO_LIGHT, this, year, month, day).show()
+        }
+        binding.timeInput.setOnClickListener {
+            TimePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT,this, hour, minute, false).show()
+        }
+
+
         setContentView(binding.root)
+    }
+
+    override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+
+        var month = month + 1
+        binding.dateInput.text = "" + year + "/" + (if (month < 10) "0" else "") + month + "/" + (if (dayOfMonth < 10) "0" else "") + dayOfMonth
+
+    }
+    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+        var hourOfDay = hourOfDay
+        binding.timeInput.text = "" + (if (hourOfDay % 12 < 10) "0" else "") + hourOfDay%12 + ":"  + (if (minute < 10) "0" else "") + minute + " " + if (hourOfDay/12 > 0) "PM" else "AM"
     }
 
     @Override
