@@ -1,62 +1,48 @@
 package com.noteapplication.cs398
 
 import android.Manifest
-import android.app.AlertDialog
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
+import android.annotation.TargetApi
+import android.app.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Rect
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.DatePicker
-import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
-import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.noteapplication.cs398.database.Folder
 import com.noteapplication.cs398.database.Note
 import com.noteapplication.cs398.database.Tag
 import com.noteapplication.cs398.databinding.ActivityAddNoteBinding
-import java.util.*
 import java.io.InputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
-//class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-//        val button: Button = findViewById<View>(R.id.button) as Button
-//        button.setOnClickListener(View.OnClickListener {
-//            val timePicker: DialogFragment = TimePickerFragment()
-//            timePicker.show(supportFragmentManager, "time picker")
-//        })
-//    }
-//
-//    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-//        val textView: TextView = findViewById<View>(R.id.textView) as TextView
-//        textView.setText("Hour: $hourOfDay Minute: $minute")
-//    }
-//}
 class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private lateinit var binding: ActivityAddNoteBinding
     private lateinit var noteViewModel: NoteViewModel
     private lateinit var tagViewModel: TagViewModel
 
-    private var title: String = ""
-    private var content: String = ""
+    var title: String = ""
+    var content: String = ""
     private var todo: Boolean = false
 
     private var oldNote: Note? = null
@@ -121,6 +107,8 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 
             val newNote: Note
             calendar.set(recorded_year, recorded_month, recorded_day, recorded_hour, recorded_minute)
+            title = binding.titleInput.text.toString()
+            content = binding.contentInput.text.toString()
             if (oldNote != null) {
                 newNote = oldNote!!.copy(
                     title = binding.titleInput.text.toString(),
@@ -129,6 +117,11 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                     notifyAt = calendar.time.time,
                     updatedAt = Date().time
                 )
+                if (!(oldNote!!.notify) && binding.idRmdSwitch.isChecked) {
+                    startAlarm(calendar)
+                } else if (oldNote!!.notify && !binding.idRmdSwitch.isChecked){
+                    cancelAlarm()
+                }
                 noteViewModel.updateNote(newNote, tagViewModel.getSelectedTags())
             } else {
                 newNote = Note(
@@ -138,6 +131,9 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                     notifyAt = calendar.time.time,
                     folderId = folder?.id // the note does not goes to any folder for now
                 )
+                if (binding.idRmdSwitch.isChecked) {
+                    startAlarm(calendar)
+                }
                 noteViewModel.insertNote(newNote, tagViewModel.getSelectedTags())
             }
 
@@ -258,4 +254,26 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun startAlarm(c: Calendar) {
+        val alarmManager: AlarmManager = getSystemService<Any>(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlertReceiver::class.java)
+        intent.putExtra("title", title)
+        intent.putExtra("content", content)
+        val pendingIntent: PendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0)
+        if (c.before(Calendar.getInstance())) {
+            c.add(Calendar.DATE, 1)
+        }
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
+    }
+
+    private fun cancelAlarm() {
+        val alarmManager: AlarmManager = getSystemService<Any>(Context.ALARM_SERVICE) as AlarmManager
+
+        val intent = Intent(this, AlertReceiver::class.java)
+        val pendingIntent: PendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0)
+        alarmManager.cancel(pendingIntent)
+//        mTextView.setText("Alarm canceled")
+    }
 }
+
