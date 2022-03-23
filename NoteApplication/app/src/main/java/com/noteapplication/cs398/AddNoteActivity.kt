@@ -7,11 +7,9 @@ import android.app.TimePickerDialog
 import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Rect
-import android.graphics.Typeface
+import android.graphics.*
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.ScaleDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -19,19 +17,21 @@ import android.text.Html
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ImageSpan
 import android.text.style.StyleSpan
+import android.text.style.URLSpan
 import android.text.style.UnderlineSpan
+import android.view.Display
 import android.view.View
 import android.widget.DatePicker
-import android.widget.TextView
+import android.widget.EditText
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.isGone
-import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.noteapplication.cs398.database.Folder
@@ -41,10 +41,12 @@ import com.noteapplication.cs398.databinding.ActivityAddNoteBinding
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util.*
 import java.io.InputStream
+import java.net.URI
+import java.net.URL
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 //class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener {
 //    override fun onCreate(savedInstanceState: Bundle?) {
@@ -241,7 +243,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         val cw = ContextWrapper(applicationContext)
         val directory = cw.getDir("imageDir", MODE_PRIVATE)
         // Create imageDir
-        val myPath = File(directory, bitmapImage.toString() + "image.jpg")
+        val myPath = File(directory, bitmapImage.toString() + "image.jpeg")
         var fos: FileOutputStream? = null
         try {
             fos = FileOutputStream(myPath)
@@ -275,12 +277,11 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                     val builder = StringBuilder()
                     builder.append(previousString)
                     builder.append("<p>\n" +
-                            "<img src=\"" + path + "\">\n" +
+                            "<a href=\"" + path + "\" ><img src=\"" + path + "\"></a>\n" +
                             "</p>")
                     var spannableString = SpannableStringBuilder()
                     spannableString.append(Html.fromHtml(builder.toString(), Html.FROM_HTML_MODE_LEGACY, imgGetter, null))
                     binding.contentInput.text = spannableString
-
 
                 }catch(exception: Exception ){
                     Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
@@ -307,7 +308,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             val sb = SpannableStringBuilder(binding.contentInput.text)
 
             sb.setSpan(StyleSpan(Typeface.BOLD), start, end, 0)
-            binding.contentInput.setText(sb)
+            binding.contentInput.text = sb
         }
 
         binding.italicText.setOnClickListener{
@@ -316,7 +317,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 
             val sb = SpannableStringBuilder(binding.contentInput.text)
             sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, 0)
-            binding.contentInput.setText(sb)
+            binding.contentInput.text = sb
         }
 
         binding.underlineText.setOnClickListener{
@@ -341,7 +342,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private val imgGetter: Html.ImageGetter = Html.ImageGetter { source ->
         val drawable: Drawable? = Drawable.createFromPath(source)
         try {
-            drawable?.setBounds(0, 0, drawable.intrinsicWidth * 3, drawable.intrinsicHeight * 3);
+            drawable?.setBounds(0, 0, drawable.intrinsicWidth * 4, drawable.intrinsicHeight * 4)
         } catch (e: Exception) {
             e.printStackTrace()
         }
