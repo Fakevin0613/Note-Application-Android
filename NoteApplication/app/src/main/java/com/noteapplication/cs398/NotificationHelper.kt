@@ -20,6 +20,7 @@ class NotificationHelper(base: Context?, val title:String, val content:String) :
         manager!!.createNotificationChannel(channel)
     }
 
+
     val manager: NotificationManager?
         get() {
             if (mManager == null) {
@@ -27,6 +28,8 @@ class NotificationHelper(base: Context?, val title:String, val content:String) :
             }
             return mManager
         }
+
+
     val channelNotification: NotificationCompat.Builder
         get() = NotificationCompat.Builder(applicationContext, channelID)
             .setContentTitle(title)

@@ -109,6 +109,8 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             calendar.set(recorded_year, recorded_month, recorded_day, recorded_hour, recorded_minute)
             title = binding.titleInput.text.toString()
             content = binding.contentInput.text.toString()
+            println("title: $title")
+            println("content: $content")
             if (oldNote != null) {
                 newNote = oldNote!!.copy(
                     title = binding.titleInput.text.toString(),
@@ -117,7 +119,9 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                     notifyAt = calendar.time.time,
                     updatedAt = Date().time
                 )
-                if (!(oldNote!!.notify) && binding.idRmdSwitch.isChecked) {
+                if (((calendar.time != Date(oldNote!!.notifyAt)) && binding.idRmdSwitch.isChecked)||
+                    (oldNote!!.title != title) || (oldNote!!.content != content)) {
+                    cancelAlarm()
                     startAlarm(calendar)
                 } else if (oldNote!!.notify && !binding.idRmdSwitch.isChecked){
                     cancelAlarm()
@@ -129,6 +133,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                     binding.contentInput.text.toString(),
                     binding.idRmdSwitch.isChecked,
                     notifyAt = calendar.time.time,
+                    createdAt = calendar.time.time,
                     folderId = folder?.id // the note does not goes to any folder for now
                 )
                 if (binding.idRmdSwitch.isChecked) {
@@ -169,6 +174,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             recorded_hour = calendar.get(Calendar.HOUR_OF_DAY)
             recorded_minute = calendar.get(Calendar.MINUTE)
         }
+        calendar.set(Calendar.SECOND, 0)
         // time setter
         val current = LocalDateTime.now()
         var formatted = current.format(DateTimeFormatter.BASIC_ISO_DATE)
@@ -179,10 +185,12 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             "" + (if (recorded_hour % 12 < 10) "0" else "") + recorded_hour % 12 + ":" + (if (recorded_minute < 10) "0" else "") + recorded_minute + " " + if (recorded_hour / 12 > 0) "PM" else "AM"
         binding.timeInput.text = time
         println("year: $recorded_year, month: $recorded_month, day: $recorded_day, hour:$recorded_hour, minute:$recorded_minute")
+
         binding.dateInput.setOnClickListener() {
             println("year: $recorded_year, month: $recorded_month, day: $recorded_day, hour:$recorded_hour, minute:$recorded_minute")
             DatePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT, this, recorded_year, recorded_month, recorded_day).show()
         }
+
         binding.timeInput.setOnClickListener {
             println("year: $recorded_year, month: $recorded_month, day: $recorded_day, hour:$recorded_hour, minute:$recorded_minute")
             TimePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT, this, recorded_hour, recorded_minute, false).show()
@@ -212,7 +220,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_STORAGE_PERMISSION && grantResults.isNotEmpty()) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                selectImage();
+                selectImage()
             } else {
                 Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
             }
@@ -256,22 +264,29 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     }
 
     private fun startAlarm(c: Calendar) {
-        val alarmManager: AlarmManager = getSystemService<Any>(Context.ALARM_SERVICE) as AlarmManager
+        val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(this, AlertReceiver::class.java)
         intent.putExtra("title", title)
         intent.putExtra("content", content)
-        val pendingIntent: PendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0)
+        Toast.makeText(this, "title: $title, content:$content", Toast.LENGTH_SHORT).show()
+        var id:Int = calendar.time.time.toInt()
+        if (oldNote != null) {
+            id = oldNote!!.createdAt.toInt()
+        }
+        val pendingIntent =
+            PendingIntent.getBroadcast(this, id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
         if (c.before(Calendar.getInstance())) {
-            c.add(Calendar.DATE, 1)
+            return
         }
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
     }
 
     private fun cancelAlarm() {
-        val alarmManager: AlarmManager = getSystemService<Any>(Context.ALARM_SERVICE) as AlarmManager
-
+        val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        Toast.makeText(this, "delted: $title", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, AlertReceiver::class.java)
-        val pendingIntent: PendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0)
+        val pendingIntent: PendingIntent = PendingIntent.getBroadcast(this, oldNote!!.createdAt.toInt(), intent, PendingIntent.FLAG_MUTABLE)
         alarmManager.cancel(pendingIntent)
 //        mTextView.setText("Alarm canceled")
     }

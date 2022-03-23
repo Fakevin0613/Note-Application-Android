@@ -73,8 +73,8 @@
             android:textSize="18dp"
             android:hint="Detail..."
             android:padding="10dp"
-            android:layout_margin="10dp"
-    />
+            android:layout_marginTop="10dp" android:layout_marginStart="10dp" android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"/>
 
     <include
             android:layout_width="match_parent"
@@ -84,7 +84,6 @@
             android:layout_marginHorizontal="10dp"
             layout="@layout/tag_list"
     />
-
     <androidx.appcompat.widget.SwitchCompat
 
             android:id="@+id/id_rmd_switch"
@@ -93,6 +92,4 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp" android:layout_marginBottom="10dp"/>
-
-
 </RelativeLayout>
