@@ -1,1 +1,14 @@
+Date 2022/03/14
+Starting and first meeting for Sprint 3
+
+Work distribution:
+Kevin: Rich text and its related features
+Shonn: Set upt the filtering system and alarm system
+Insung: support cloud service
+
+What we plan to do?
+Kevin: figure out how to setup the "allow permission" so that user can insert image from gallery
+Shonn: setup the note filtering features
+Insung: figure out how to setup the cloud service, planning to have a Spring Framework
+
 
