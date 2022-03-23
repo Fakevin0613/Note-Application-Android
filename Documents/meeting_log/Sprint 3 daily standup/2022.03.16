@@ -1,1 +1,20 @@
+Date 2022/03/16
+Second meeting (offline) for Sprint 3
 
+What we discuss:
+1. Summarize what we didn't do well in the second sprints
+2. discuss what we need to priorities on, cloud service is the most important thing
+
+What have you completed since last meeting?
+Kevin: setup the "allow permission", so user can access the gallery through the app
+Insung: working on constructing spring service
+Shonn: setup the note filtering
+
+What are you going to do?
+Kevin: configure the xmls and find a place to load the imported images
+Insung: continue on constructing spring service
+Shonn: implement a dateselector to prepare for the reminder feature.
+
+What obstacles are in your way?
+Shonn: have problem with text search 
+Kevin: have problem storing image in edittext
