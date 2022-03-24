@@ -48,6 +48,10 @@ import java.net.URL
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import android.R.attr.editable
+
+
+
 
 //class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener {
 //    override fun onCreate(savedInstanceState: Bundle?) {
@@ -318,7 +322,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             val end: Int = binding.contentInput.selectionEnd
 
             val sb = SpannableStringBuilder(binding.contentInput.text)
-            sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, 0)
+            sb.setSpan(StyleSpan(Typeface.NORMAL), start, end, 0)
             binding.contentInput.text = sb
         }
 
@@ -336,7 +340,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             val end: Int = binding.contentInput.selectionEnd
 
             val sb = SpannableStringBuilder(binding.contentInput.text)
-            sb.setSpan(StyleSpan(Typeface.NORMAL), start, end, 0)
+            sb.setSpan(StyleSpan(Typeface.NORMAL), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             binding.contentInput.text = sb
         }
     }
