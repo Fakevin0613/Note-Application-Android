@@ -264,15 +264,16 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     }
 
     private fun startAlarm(c: Calendar) {
-        val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(this, AlertReceiver::class.java)
-        intent.putExtra("title", title)
-        intent.putExtra("content", content)
-        Toast.makeText(this, "title: $title, content:$content", Toast.LENGTH_SHORT).show()
         var id:Int = calendar.time.time.toInt()
         if (oldNote != null) {
             id = oldNote!!.createdAt.toInt()
         }
+        val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlertReceiver::class.java)
+        intent.putExtra("title", title)
+        intent.putExtra("content", content)
+        intent.putExtra("id", id)
+        Toast.makeText(this, "title: $title, content:$content", Toast.LENGTH_SHORT).show()
         val pendingIntent =
             PendingIntent.getBroadcast(this, id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 

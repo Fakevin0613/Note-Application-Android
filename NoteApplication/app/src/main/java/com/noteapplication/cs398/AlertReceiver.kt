@@ -10,8 +10,9 @@ class AlertReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val title = intent.getSerializableExtra("title") as String
         val content = intent.getSerializableExtra("content") as String
+        val id = intent.getSerializableExtra("id") as Int
         val notificationHelper = NotificationHelper(context, title, content)
         val nb: NotificationCompat.Builder = notificationHelper.channelNotification
-        notificationHelper.manager!!.notify(1, nb.build())
+        notificationHelper.manager!!.notify(id, nb.build())
     }
 }
