@@ -1,45 +1,34 @@
 package com.noteapplication.cs398
 
 import android.Manifest
-import android.app.AlertDialog
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
-import android.annotation.TargetApi
 import android.app.*
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Rect
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.ScaleDrawable
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Html
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.Spanned
-import android.text.method.LinkMovementMethod
-import android.text.style.ImageSpan
 import android.text.style.StyleSpan
-import android.text.style.URLSpan
 import android.text.style.UnderlineSpan
-import android.view.Display
 import android.view.View
 import android.view.WindowManager
 import android.widget.DatePicker
-import android.widget.EditText
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.isGone
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.noteapplication.cs398.database.Folder
@@ -50,14 +39,9 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
-import java.net.URI
-import java.net.URL
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import android.R.attr.editable
-
-
 
 
 class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
@@ -315,40 +299,44 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     }
     private fun configureRichText(){
 
-        binding.boldText.setOnClickListener{
-            val start: Int = binding.contentInput.selectionStart
-            val end: Int = binding.contentInput.selectionEnd
 
-            val sb = SpannableStringBuilder(binding.contentInput.text)
+        binding.boldText.setOnClickListener{
+            var start: Int = binding.contentInput.selectionStart
+            var end: Int = binding.contentInput.selectionEnd
+
+            var sb = SpannableStringBuilder(binding.contentInput.text)
 
             sb.setSpan(StyleSpan(Typeface.BOLD), start, end, 0)
             binding.contentInput.text = sb
         }
 
         binding.italicText.setOnClickListener{
-            val start: Int = binding.contentInput.selectionStart
-            val end: Int = binding.contentInput.selectionEnd
+            var start: Int = binding.contentInput.selectionStart
+            var end: Int = binding.contentInput.selectionEnd
 
-            val sb = SpannableStringBuilder(binding.contentInput.text)
-            sb.setSpan(StyleSpan(Typeface.NORMAL), start, end, 0)
+            var sb = SpannableStringBuilder(binding.contentInput.text)
+            sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, 0)
             binding.contentInput.text = sb
         }
 
         binding.underlineText.setOnClickListener{
-            val start: Int = binding.contentInput.selectionStart
-            val end: Int = binding.contentInput.selectionEnd
+            var start: Int = binding.contentInput.selectionStart
+            var end: Int = binding.contentInput.selectionEnd
 
-            val sb = SpannableStringBuilder(binding.contentInput.text)
+            var sb = SpannableStringBuilder(binding.contentInput.text)
             sb.setSpan(UnderlineSpan(), start, end, 0)
             binding.contentInput.text = sb
         }
 
         binding.resetText.setOnClickListener {
-            val start: Int = binding.contentInput.selectionStart
-            val end: Int = binding.contentInput.selectionEnd
-
-            val sb = SpannableStringBuilder(binding.contentInput.text)
-            sb.setSpan(StyleSpan(Typeface.NORMAL), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            var start: Int = binding.contentInput.selectionStart
+            var end: Int = binding.contentInput.selectionEnd
+            var sb = SpannableStringBuilder(binding.contentInput.text)
+            sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, 0)
+            var spans = sb.getSpans(start, end, StyleSpan::class.java)
+            for (styleSpan in spans) sb.removeSpan(styleSpan)
+            var spansunderline = sb.getSpans(start, end, UnderlineSpan::class.java)
+            for (underLineSpan in spansunderline) sb.removeSpan(underLineSpan)
             binding.contentInput.text = sb
         }
     }
@@ -368,7 +356,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         if (oldNote != null) {
             id = oldNote!!.createdAt.toInt()
         }
-        val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val alarmManager: AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         val intent = Intent(this, AlertReceiver::class.java)
         intent.putExtra("title", title)
         intent.putExtra("content", content)
@@ -384,7 +372,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     }
 
     private fun cancelAlarm() {
-        val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val alarmManager: AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
 //        Toast.makeText(this, "delted: $title", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, AlertReceiver::class.java)
         val pendingIntent: PendingIntent = PendingIntent.getBroadcast(this, oldNote!!.createdAt.toInt(), intent, PendingIntent.FLAG_MUTABLE)
