@@ -363,7 +363,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         intent.putExtra("id", id)
 //        Toast.makeText(this, "title: $title, content:$content", Toast.LENGTH_SHORT).show()
         val pendingIntent =
-            PendingIntent.getBroadcast(this, id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(this, id, intent, PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
 
         if (c.before(Calendar.getInstance())) {
             return
