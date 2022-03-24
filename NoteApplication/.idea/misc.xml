@@ -54,6 +54,7 @@
         <entry key="app/src/main/res/layout/add_note.xml" value="0.335" />
         <entry key="app/src/main/res/layout/add_tag.xml" value="0.25" />
         <entry key="app/src/main/res/layout/addnoteactivity.xml" value="0.3162037037037037" />
+        <entry key="app/src/main/res/layout/bottom_sheet_new_folder.xml" value="0.14947916666666666" />
         <entry key="app/src/main/res/layout/class_managment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/course_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/note_item.xml" value="0.3428981348637016" />
@@ -62,6 +63,7 @@
         <entry key="app/src/main/res/layout/open_notes.xml" value="0.1390625" />
         <entry key="app/src/main/res/layout/read_note.xml" value="0.3641547238346506" />
         <entry key="app/src/main/res/layout/tag_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/tag_list.xml" value="0.14947916666666666" />
         <entry key="app/src/main/res/layout/tool_bar.xml" value="0.335" />
         <entry key="app/src/main/res/layout/tool_bar_course.xml" value="0.25" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.1171875" />
