@@ -24,6 +24,7 @@ import android.text.style.URLSpan
 import android.text.style.UnderlineSpan
 import android.view.Display
 import android.view.View
+import android.view.WindowManager
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TimePicker
@@ -86,6 +87,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private var REQUEST_CODE_SELECT_IMAGE = 2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         // initialize noteViewModels
         noteViewModel = ViewModelProvider(
             this,

@@ -42,23 +42,11 @@
         </androidx.appcompat.widget.AppCompatButton>
     </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/LinearLayoutButton"
-            android:id="@+id/title_input"
-            android:hint="Title..."
-            android:background="@drawable/back"
-            android:padding="10dp"
-            android:textSize="25sp"
-            android:layout_marginBottom="4dp"
-
-    />
     <LinearLayout
             android:id="@+id/text_tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title_input"
+            android:layout_below="@id/LinearLayoutButton"
             android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp">
         <TextView
@@ -70,7 +58,6 @@
                 android:layout_weight="1"
                 android:hint="Tools:"/>
 
-        <!--        THIS SHOULD BE REPLACED WITH INLINE CONSTRUCTION       -->
         <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,67 +108,38 @@
 
     </LinearLayout>
 
+    <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_tools"
+            android:id="@+id/title_input"
+            android:hint="Title..."
+            android:background="@drawable/back"
+            android:padding="10dp"
+            android:textSize="25sp"
+            android:layout_marginBottom="4dp"
+
+    />
+
 
     <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/content_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/text_tools"
+            android:layout_below="@id/title_input"
             android:layout_above="@id/reminder_layout"
             android:background="@drawable/back"
             android:gravity="start|top"
-            android:hint="  Detail..."
+            android:hint="Detail..."
             android:singleLine="false"
             android:textSize="18sp"
             android:textColor="@color/black"
             android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
             android:padding="10dp"
             android:layout_marginTop="-4dp" android:layout_marginBottom="8dp"/>
-    <RelativeLayout
-            android:id="@+id/tag_container"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:padding="4dp"
-    >
-
-        <include
-                android:id="@+id/tag_list"
-                layout="@layout/tag_list"
-        />
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tag_list"
-                android:gravity="center_vertical"
-        >
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tag"
-                    android:textColor="@color/black"
-            />
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="8dp"
-                    android:id="@+id/new_tag_input"
-            />
-
-            <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/new_tag_btn"
-                    android:outlineProvider="none"
-                    android:src="@drawable/ic_baseline_add_24"
-                    app:backgroundTint="@color/white"
-                    android:contentDescription="@string/add_new_tag"/>
-        </LinearLayout>
 
 
-    </RelativeLayout>
+
     <RelativeLayout
             android:layout_above="@id/tag_container"
             android:id="@+id/reminder_layout"
@@ -238,9 +196,55 @@
                     android:layout_marginHorizontal="0dp"
                     android:id="@+id/time_input"
             />
-        />
+            />
 
         </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/tag_container"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="4dp"
+    >
+
+        <include
+                android:id="@+id/tag_list"
+                layout="@layout/tag_list"
+        />
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tag_list"
+                android:gravity="center_vertical"
+        >
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tag"
+                    android:textColor="@color/black"
+            />
+            <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="8dp"
+                    android:id="@+id/new_tag_input"
+            />
+
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/new_tag_btn"
+                    android:outlineProvider="none"
+                    android:src="@drawable/ic_baseline_add_24"
+                    app:backgroundTint="@color/white"
+                    android:contentDescription="@string/add_new_tag"/>
+        </LinearLayout>
+
 
     </RelativeLayout>
 </RelativeLayout>
