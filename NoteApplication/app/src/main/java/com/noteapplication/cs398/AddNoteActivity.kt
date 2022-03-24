@@ -17,15 +17,10 @@ import android.text.Html
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.Spanned
-import android.text.method.LinkMovementMethod
-import android.text.style.ImageSpan
 import android.text.style.StyleSpan
-import android.text.style.URLSpan
 import android.text.style.UnderlineSpan
-import android.view.Display
 import android.view.View
 import android.widget.DatePicker
-import android.widget.EditText
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -42,28 +37,10 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
-import java.net.URI
-import java.net.URL
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-//class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-//        val button: Button = findViewById<View>(R.id.button) as Button
-//        button.setOnClickListener(View.OnClickListener {
-//            val timePicker: DialogFragment = TimePickerFragment()
-//            timePicker.show(supportFragmentManager, "time picker")
-//        })
-//    }
-//
-//    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-//        val textView: TextView = findViewById<View>(R.id.textView) as TextView
-//        textView.setText("Hour: $hourOfDay Minute: $minute")
-//    }
-//}
 class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private lateinit var binding: ActivityAddNoteBinding
     private lateinit var noteViewModel: NoteViewModel

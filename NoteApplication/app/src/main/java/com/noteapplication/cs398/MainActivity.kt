@@ -81,6 +81,10 @@ class MainActivity : AppCompatActivity() {
                 adapter.getDescendingSorted()
                 true
             }
+            R.id.sync_data -> {
+                println("ITS CLICKED")
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
