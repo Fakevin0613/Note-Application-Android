@@ -1,0 +1,16 @@
+Date 2022/03/18
+Third meeting (offline) for Sprint 3
+
+
+What have you completed since last meeting?
+Kevin: convert text in edittext to html format, so as to support image insertion in text
+Insung: working on constructing spring service
+Shonn: setup the date selector
+
+What are you going to do?
+Kevin: adjust the size of insert image for better display
+Insung: continue on constructing spring service
+Shonn: implement the reminder feature
+
+What obstacles are in your way?
+Kevin: image from html is not loaded

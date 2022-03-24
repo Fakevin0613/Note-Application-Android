@@ -37,6 +37,7 @@ interface NoteDataAccess {
     @Delete(entity = TagNoteCrossRef::class)
     suspend fun delete(tagNoteCrossRef: TagNoteCrossRef)
 
+
     // *** this is the point of modification for filter and ordering feature
     @Query(
         "Select * from `Note` order by id ASC"
@@ -75,7 +76,7 @@ interface NoteDataAccess {
     @Query(
         "Select * from `Note` where id = :id"
     )
-    fun getNoteById(id:Long): LiveData<List<Note>>
+    fun getNoteById(id: Long): LiveData<List<Note>>
 
     // *** this is the point of modification for filter and ordering feature
     @Query(
@@ -108,8 +109,4 @@ interface NoteDataAccess {
         "delete from TagNoteCrossRef where noteId = :noteId"
     )
     suspend fun deleteAllTags(noteId: Long)
-}
-
-fun Long.toDateString(): String{
-    return SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.CANADA).format(Date(this))
 }

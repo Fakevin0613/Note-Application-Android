@@ -3,13 +3,23 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
     <item android:id="@+id/android_sort_menu"
           android:title="sorted by"
           app:showAsAction="never">
         <menu>
-            <item android:id="@+id/sort_by_tag"
-                  android:title="notes"
-                  app:showAsAction="never"/>
+            <item android:id="@+id/sort_by_recent"
+                  android:title="Recent"/>
+            <item android:id="@+id/sort_by_capital"
+                  android:title="Ascending"/>
+            <item android:id="@+id/sort_by_capital_descending"
+                  android:title="Descending"/>
         </menu>
     </item>
 </menu>

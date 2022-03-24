@@ -13,15 +13,14 @@ import kotlinx.coroutines.launch
 class TagViewModel(application: Application) : AndroidViewModel(application) {
     var allTags: LiveData<List<Tag>>
     var selectedTagIds = mutableSetOf<Long>()
-
     private val dao: NoteDataAccess
 
-    init{
+    init {
         dao = NoteDatabase.getDatabase(application).getNoteDataAccess()
         allTags = dao.getTags()
     }
 
-    fun getSelectedTags(): List<Tag>{
+    fun getSelectedTags(): List<Tag> {
         return selectedTagIds.map { id ->
             val item = allTags.value?.find { it.id == id }
             assert(item != null) // Null tag selected
@@ -29,12 +28,12 @@ class TagViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun setCurrentSelectedTags(noteId: Long){
+    fun setCurrentSelectedTags(noteId: Long) {
         viewModelScope.launch(Dispatchers.IO) {
             dao.getTags(noteId)
-                .map {it.id}
+                .map { it.id }
                 .toSet()
-                .let {selectedTagIds.addAll(it)}
+                .let { selectedTagIds.addAll(it) }
         }
     }
 

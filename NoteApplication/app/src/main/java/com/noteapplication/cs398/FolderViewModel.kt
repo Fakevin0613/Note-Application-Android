@@ -16,7 +16,7 @@ class FolderViewModel(application: Application) : AndroidViewModel(application) 
     var isAddingFolder: Boolean = false
     private val dao: NoteDataAccess
 
-    init{
+    init {
         dao = NoteDatabase.getDatabase(application).getNoteDataAccess()
         allFolders = dao.getFolders()
     }

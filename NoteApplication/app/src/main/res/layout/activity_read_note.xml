@@ -74,7 +74,8 @@
             android:hint="Detail..."
             android:padding="10dp"
             android:layout_margin="10dp"
-    />
+            android:clickable="true"
+            android:focusable="true"/>
 
     <include
             android:layout_width="match_parent"

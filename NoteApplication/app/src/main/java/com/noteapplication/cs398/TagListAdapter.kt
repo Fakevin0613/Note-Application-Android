@@ -12,7 +12,7 @@ class TagListAdapter(
     private val viewModel: TagViewModel,
     private val activity: AppCompatActivity,
     private val isDisabled: Boolean = false,
-    private val onItemClick: (()->Unit)? = null
+    private val onItemClick: (() -> Unit)? = null
 ) : RecyclerView.Adapter<TagListAdapter.ViewHolder>() {
 
     private var allTag: ArrayList<Tag> = ArrayList()
@@ -24,7 +24,7 @@ class TagListAdapter(
         // maybe keep reference from viewModel.allNotes as the source
         // and call notifyItem*(int) for every add/edit/update calls on it
 
-        viewModel.allTags.observe(activity){
+        viewModel.allTags.observe(activity) {
             allTag.clear()
             allTag.addAll(it)
             notifyDataSetChanged()
@@ -35,7 +35,7 @@ class TagListAdapter(
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
-    class ViewHolder(val binding: TagItemBinding) : RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(val binding: TagItemBinding) : RecyclerView.ViewHolder(binding.root) {
         var isSelected = false
     }
 
@@ -56,13 +56,13 @@ class TagListAdapter(
         // contents of the view with that element
         viewHolder.binding.itemTitle.text = tagName
 
-        if(viewModel.selectedTagIds.contains(tagId))
+        if (viewModel.selectedTagIds.contains(tagId))
             viewHolder.binding.root.setCardBackgroundColor(Color.CYAN)
         else
             viewHolder.binding.root.setCardBackgroundColor(Color.WHITE)
 
         // toggle tag selected
-        if(!isDisabled) {
+        if (!isDisabled) {
             viewHolder.binding.noteItem.setOnClickListener { _ ->
                 println(viewModel.selectedTagIds)
                 if (viewModel.selectedTagIds.contains(tagId)) {
