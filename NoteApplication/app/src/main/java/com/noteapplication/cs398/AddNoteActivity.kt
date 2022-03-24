@@ -369,7 +369,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         intent.putExtra("title", title)
         intent.putExtra("content", content)
         intent.putExtra("id", id)
-        Toast.makeText(this, "title: $title, content:$content", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "title: $title, content:$content", Toast.LENGTH_SHORT).show()
         val pendingIntent =
             PendingIntent.getBroadcast(this, id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
@@ -381,7 +381,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 
     private fun cancelAlarm() {
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        Toast.makeText(this, "delted: $title", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "delted: $title", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, AlertReceiver::class.java)
         val pendingIntent: PendingIntent = PendingIntent.getBroadcast(this, oldNote!!.createdAt.toInt(), intent, PendingIntent.FLAG_MUTABLE)
         alarmManager.cancel(pendingIntent)
