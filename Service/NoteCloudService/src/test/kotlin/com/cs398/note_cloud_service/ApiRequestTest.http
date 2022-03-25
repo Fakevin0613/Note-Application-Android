@@ -1,0 +1,293 @@
+### Clear Database
+DELETE http://localhost:8080/fresh_start
+
+<> 2022-03-25T071027.404.json
+
+### Insert Initial Test Sets
+POST http://localhost:8080/sync
+Accept: application/json
+Content-Type: application/json
+
+{
+  "user_id":1,
+  "last_sync":1,
+  "notes":[
+    {
+      "content":"<p dir=\"ltr\">Body 1<\/p>\n",
+      "created_at":1648205700559,
+      "folder_id":1,
+      "id":1,
+      "notify":false,
+      "notify_at":1648205820111,
+      "title":"Note 1",
+      "updated_at":1648205841424
+    },
+    {
+      "content":"<p dir=\"ltr\">Body 2<\/p>\n",
+      "created_at":1648205760590,
+      "folder_id":1,
+      "id":2,
+      "notify":false,
+      "notify_at":1648205820409,
+      "title":"Note 2",
+      "updated_at":1648205834080
+    },
+    {
+      "content":"<p dir=\"ltr\">Body 3<\/p>\n",
+      "created_at":1648205760819,
+      "folder_id":1,
+      "id":3,
+      "notify":false,
+      "notify_at":1648205820773,
+      "title":"Note 3",
+      "updated_at":1648205827205
+    },
+    {
+      "content":"<p dir=\"ltr\">Body 4<\/p>\n",
+      "created_at":1648205760329,
+      "folder_id":2,
+      "id":4,
+      "notify":false,
+      "notify_at":1648205760578,
+      "title":"Note 4",
+      "updated_at":1648205817129
+    },
+    {
+      "content":"<p dir=\"ltr\">Body 5<\/p>\n",
+      "created_at":1648205760053,
+      "folder_id":2,
+      "id":5,
+      "notify":false,
+      "notify_at":1648205760314,
+      "title":"Note 5",
+      "updated_at":1648205809942
+    }
+  ],
+  "folders":[
+    {
+      "created_at":1648205741925,
+      "id":1,
+      "name":"Folder 1",
+      "updated_at":1648205741925
+    },
+    {
+      "created_at":1648205747903,
+      "id":2,
+      "name":"Folder 2",
+      "updated_at":1648205747903
+    }
+  ],
+  "tags":[
+    {
+      "created_at":1648205798584,
+      "id":1,
+      "name":"1",
+      "updated_at":1648205798584
+    },
+    {
+      "created_at":1648205799508,
+      "id":2,
+      "name":"2",
+      "updated_at":1648205799508
+    },
+    {
+      "created_at":1648205799914,
+      "id":3,
+      "name":"3",
+      "updated_at":1648205799914
+    },
+    {
+      "created_at":1648205800300,
+      "id":4,
+      "name":"4",
+      "updated_at":1648205800300
+    },
+    {
+      "created_at":1648205801774,
+      "id":5,
+      "name":"5",
+      "updated_at":1648205801774
+    }
+  ],
+  "refs":[
+    {
+      "created_at":1648205809981,
+      "note_id":5,
+      "tag_id":5,
+      "updated_at":1648205809982
+    },
+    {
+      "created_at":1648205817162,
+      "note_id":4,
+      "tag_id":4,
+      "updated_at":1648205817163
+    },
+    {
+      "created_at":1648205817342,
+      "note_id":4,
+      "tag_id":5,
+      "updated_at":1648205817342
+    },
+    {
+      "created_at":1648205827231,
+      "note_id":3,
+      "tag_id":3,
+      "updated_at":1648205827231
+    },
+    {
+      "created_at":1648205827258,
+      "note_id":3,
+      "tag_id":5,
+      "updated_at":1648205827258
+    },
+    {
+      "created_at":1648205834118,
+      "note_id":2,
+      "tag_id":2,
+      "updated_at":1648205834118
+    },
+    {
+      "created_at":1648205834144,
+      "note_id":2,
+      "tag_id":5,
+      "updated_at":1648205834144
+    },
+    {
+      "created_at":1648205841456,
+      "note_id":1,
+      "tag_id":1,
+      "updated_at":1648205841456
+    },
+    {
+      "created_at":1648205841487,
+      "note_id":1,
+      "tag_id":5,
+      "updated_at":1648205841487
+    }
+  ],
+  "deletes":[ ]
+}
+
+<> 2022-03-25T072154.200.json
+<> 2022-03-25T071847.200.json
+<> 2022-03-25T071139.200.json
+
+### Confirm Initial Test Set Put
+GET http://localhost:8080/
+
+<> 2022-03-25T071849.200.json
+<> 2022-03-25T071148.200.json
+<> 2022-03-25T071116.200.json
+
+### Update Test Set
+POST http://localhost:8080/sync
+Accept: application/json
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "last_sync": 1,
+  "notes": [
+    {
+      "content":"<p dir=\"ltr\">Body 5<\/p>\n",
+      "created_at":1648205760053,
+      "folder_id":2,
+      "id":5,
+      "notify":false,
+      "notify_at":1648205760314,
+      "title":"Note 5 [MODIFIED]",
+      "updated_at":1648205809943
+    }
+  ]
+}
+
+<> 2022-03-25T072206.200.json
+<> 2022-03-25T071855.200.json
+<> 2022-03-25T071206.200.json
+
+### Confirm Test Set Update
+GET http://localhost:8080/
+
+<> 2022-03-25T072211.200.json
+<> 2022-03-25T071901.200.json
+<> 2022-03-25T071214.200.json
+
+### Delete Test Set
+POST http://localhost:8080/sync
+Accept: application/json
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "last_sync": 1,
+  "deletes": [
+    {
+      "table_name": "Note",
+      "id_primary": 5,
+      "deleted_at": 1648205809944
+    }
+  ]
+}
+
+<> 2022-03-25T072217.200.json
+<> 2022-03-25T071908.500.json
+<> 2022-03-25T071623.400.json
+<> 2022-03-25T071618.200.json
+<> 2022-03-25T071349.200.json
+<> 2022-03-25T071331.200.json
+<> 2022-03-25T071233.200.json
+
+### Confirm Test Set Deleted
+GET http://localhost:8080/
+
+<> 2022-03-25T072522.200.json
+<> 2022-03-25T072223.200.json
+<> 2022-03-25T071440.200.json
+<> 2022-03-25T071356.200.json
+<> 2022-03-25T071313.200.json
+
+### Test Merge Conflict
+POST http://localhost:8080/sync
+Accept: application/json
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "last_sync": 1,
+  "notes": [
+    {
+      "content":"<p dir=\"ltr\">Update with different created_at timestamp means they are different notes<\/p>\n",
+      "created_at":1648205700560,
+      "folder_id":1,
+      "id":1,
+      "notify":false,
+      "notify_at":1648205820111,
+      "title":"THIS SHOULD SHOW WITH [Note 1]",
+      "updated_at":1648205841424
+    },
+    {
+      "content":"<p dir=\"ltr\">UPDATE WITH SMALLER TIMESTAMP<\/p>\n",
+      "created_at":1648205760590,
+      "folder_id":1,
+      "id":2,
+      "notify":false,
+      "notify_at":1648205820409,
+      "title":"THIS SHOULD NOT SHOW",
+      "updated_at":1648205834079
+    }
+  ]
+}
+
+<> 2022-03-25T072547.200.json
+<> 2022-03-25T072458.200.json
+<> 2022-03-25T072435.200.json
+<> 2022-03-25T072424.200.json
+<> 2022-03-25T072413.200.json
+<> 2022-03-25T072356.200.json
+<> 2022-03-25T072228.200.json
+
+### Confirm Merge Conflicts Handled
+GET http://localhost:8080/
+
+<> 2022-03-25T072553.200.json
+<> 2022-03-25T072258.200.json

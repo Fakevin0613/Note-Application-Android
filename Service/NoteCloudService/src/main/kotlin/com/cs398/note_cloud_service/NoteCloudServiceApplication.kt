@@ -32,10 +32,17 @@ class NoteResource(val noteService: NoteService){
 		return noteService.syncAppData(syncData)
 	}
 
+	/**
+	 * wipes out entire database.
+	 */
+	@RequestMapping(value = ["/fresh_start"], method = [RequestMethod.DELETE])
+	fun clear(){
+		return noteService.clearAll()
+	}
+
 	@GetMapping
 	fun index(): List <Note>{
 		return noteService.findNotes()
-//		return noteService.findSince()
 	}
 
 	@PostMapping
@@ -63,7 +70,13 @@ class NoteService(
 	}
 	fun delete(notes: List<Note>){ noteDao.deleteAll(notes) }
 
-	fun findSince(): MutableList<Note> = noteDao.findSince(1, 0)
+	fun clearAll(){
+		noteDao.deleteAll()
+		folderDao.deleteAll()
+		tagDao.deleteAll()
+		refDao.deleteAll()
+		delDao.deleteAll()
+	}
 
 	val tables = arrayOf("Note", "Folder", "Tag", "TagNoteCrossRef")
 	fun syncAppData(syncData: AppDataBundle): AppDataBundle{
@@ -77,7 +90,7 @@ class NoteService(
 				if(needNew(oldFolder as Optional<BaseTable>, it)) {
 					// this is a new data. create a new instance and update
 					// notes and tag-not refs accordingly
-					val newId = folderDao.getTopId(syncData.user_id) + 1
+					val newId = (folderDao.getTopId(syncData.user_id)?:0) + 1
 					syncData.notes?.forEachIndexed { index, note ->
 						if (note.folder_id == it.id) syncData.notes[index].folder_id = newId
 					}
@@ -87,7 +100,7 @@ class NoteService(
 					it.id = newId
 				}
 
-				it.updated_at = Date().time
+				// it.updated_at = Date().time
 				folderDao.save(it)
 			}
 		}
@@ -101,7 +114,7 @@ class NoteService(
 				if(needNew(oldTag as Optional<BaseTable>, it)) {
 					// this is a new data. create a new instance and update
 					// notes and tag-not refs accordingly
-					val newId = tagDao.getTopId(syncData.user_id) + 1
+					val newId = (tagDao.getTopId(syncData.user_id)?:0) + 1
 					syncData.refs?.forEachIndexed { index, ref ->
 						if (ref.tag_id == it.id) syncData.refs[index].tag_id = newId
 					}
@@ -111,7 +124,7 @@ class NoteService(
 					it.id = newId
 				}
 
-				it.updated_at = Date().time
+				// it.updated_at = Date().time
 				tagDao.save(it)
 			}
 		}
@@ -125,7 +138,7 @@ class NoteService(
 				if(needNew(oldNote as Optional<BaseTable>, it)) {
 					// this is a new data. create a new instance and update
 					// notes and tag-not refs accordingly
-					val newId = noteDao.getTopId(syncData.user_id) + 1
+					val newId = (noteDao.getTopId(syncData.user_id)?:0) + 1
 					syncData.refs?.forEachIndexed { index, ref ->
 						if (ref.note_id == it.id) syncData.refs[index].note_id = newId
 					}
@@ -135,14 +148,14 @@ class NoteService(
 					it.id = newId
 				}
 
-				it.updated_at = Date().time
+				// it.updated_at = Date().time
 				noteDao.save(it)
 			}
 		}
 		syncData.refs?.let{  refs ->
 			refs.forEach{
 				it.user_id = syncData.user_id
-				it.updated_at = Date().time
+				// it.updated_at = Date().time
 			}
 			refDao.saveAll(refs)
 		}
@@ -150,13 +163,14 @@ class NoteService(
 		// delete stuff
 		syncData.deletes?.forEach{
 			it.user_id = syncData.user_id
+			it.id = (delDao.getTopId(syncData.user_id)?:0) + 1
 			when(it.table_name){
 				tables[0] -> {
 					val oldItem = noteDao.findById(UserSpecificPK(syncData.user_id, it.id_primary))
 					if(oldItem.isPresent && oldItem.get().updated_at < it.deleted_at){
 						// it's updated before deleted. so delete anyway
 						noteDao.delete(oldItem.get())
-						it.deleted_at = Date().time
+						// it.deleted_at = Date().time
 						delDao.save(it)
 					}
 				}
@@ -165,7 +179,7 @@ class NoteService(
 					if(oldItem.isPresent && oldItem.get().updated_at < it.deleted_at){
 						// it's updated before deleted. so delete anyway
 						folderDao.delete(oldItem.get())
-						it.deleted_at = Date().time
+						// it.deleted_at = Date().time
 						delDao.save(it)
 					}
 				}
@@ -174,7 +188,7 @@ class NoteService(
 					if(oldItem.isPresent && oldItem.get().updated_at < it.deleted_at){
 						// it's updated before deleted. so delete anyway
 						tagDao.delete(oldItem.get())
-						it.deleted_at = Date().time
+						// it.deleted_at = Date().time
 						delDao.save(it)
 					}
 				}
@@ -205,6 +219,9 @@ interface RefRepository: AppRepository<TagNoteCrossRef, UserSpecificCrossRefPK>
 interface DLRepository: JpaRepository<DeleteLog, UserSpecificCrossRefPK>{
 	@Query("select t from #{#entityName} t where t.user_id = ?1 and t.deleted_at > ?2")
 	fun findSince(user_id: Long, timestamp: Long): MutableList<DeleteLog>
+
+	@Query("select t.id from #{#entityName} t where t.user_id = ?1 order by id desc limit 1", nativeQuery = true)
+	fun getTopId(user_id: Long): Long?
 }
 
 @NoRepositoryBean
@@ -213,7 +230,7 @@ interface AppRepository<T: BaseTable,ID>: JpaRepository<T,ID> {
 	fun findSince(user_id: Long, timestamp: Long): MutableList<T>
 
 	@Query("select t.id from #{#entityName} t where t.user_id = ?1 order by id desc limit 1", nativeQuery = true)
-	fun getTopId(user_id: Long): Long
+	fun getTopId(user_id: Long): Long?
 }
 
 data class AppDataBundle(
