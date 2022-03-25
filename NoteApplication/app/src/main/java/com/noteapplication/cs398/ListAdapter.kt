@@ -137,6 +137,30 @@ class ListAdapter(private val viewModel: NoteViewModel, private val activity: Ap
         return
     }
 
+    fun getTimeSorted() {
+        allNotes.sortBy {
+            it.notifyAt
+        }
+        notifyDataSetChanged()
+        return
+    }
+
+    fun getReminded(reminded: Boolean) {
+        if (reminded) {
+            val filteredList: MutableList<Note> = ArrayList()
+            for (item in allNotesFull) {
+                if (item.notify) {
+                    filteredList.add(item)
+                }
+            }
+            allNotes.clear()
+            allNotes.addAll(filteredList as List<Note>)
+        } else {
+            allNotes.clear()
+            allNotes.addAll(allNotesFull)
+        }
+        notifyDataSetChanged()
+    }
     private val exampleFilter: Filter = object : Filter() {
         override fun performFiltering(constraint: CharSequence): FilterResults {
             println("came to filter")
