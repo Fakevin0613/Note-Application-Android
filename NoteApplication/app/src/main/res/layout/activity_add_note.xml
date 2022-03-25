@@ -8,7 +8,7 @@
                 android:background="@color/colorPrimary"
                 android:orientation="vertical"
                 android:id="@+id/addpage"
-                android:padding="12dp"
+
 >
     <LinearLayout
             android:id="@+id/LinearLayoutButton"
@@ -17,28 +17,32 @@
             android:layout_alignParentTop="true"
             android:background="@color/colorPrimary"
             android:orientation="horizontal">
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
                 android:id="@+id/cancel_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Cancel"
                 android:textAllCaps="false"
-                android:textSize="10pt"
+                android:textColor="@color/black"
+                android:textSize="8pt"
                 android:textAlignment="textStart"
+                android:layout_marginEnd="10dp"
                 android:background="@android:color/transparent">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </Button>
+        <Button
                 android:id="@+id/save_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Save"
                 android:textAllCaps="false"
-                android:textSize="10pt"
+                android:textColor="@color/black"
+                android:textSize="8pt"
                 android:textAlignment="textEnd"
+                android:layout_marginStart="10dp"
                 android:background="@android:color/transparent">
-        </androidx.appcompat.widget.AppCompatButton>
+        </Button>
     </LinearLayout>
 
     <RelativeLayout
@@ -87,13 +91,6 @@
                     android:layout_marginStart="7dp"
             />
 
-
-
-
-        </LinearLayout>
-
-        <RelativeLayout android:layout_width="wrap_content" android:layout_height="match_parent"
-                        android:layout_alignParentEnd="true">
             <Spinner
                     android:layout_width="25dp"
                     android:layout_height="25dp"
@@ -104,6 +101,14 @@
                     android:layout_marginStart="10dp"
             />
 
+
+
+        </LinearLayout>
+
+        <RelativeLayout android:layout_width="wrap_content" android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true">
+
+
             <ImageButton
                     android:layout_width="25dp"
                     android:layout_height="25dp"
@@ -111,7 +116,7 @@
                     android:contentDescription="@string/order"
                     android:id="@+id/addImage"
                     android:layout_marginStart="10dp"
-                    android:layout_toRightOf="@id/highlightText"/>
+                    />
         </RelativeLayout>
 
 
@@ -126,8 +131,9 @@
             android:background="@drawable/back"
             android:padding="10dp"
             android:textSize="25sp"
-            android:layout_marginBottom="4dp"
-
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
     />
 
 
@@ -147,7 +153,9 @@
             android:textColor="@color/black"
             android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
             android:padding="10dp"
-            android:layout_marginTop="-4dp" android:layout_marginBottom="8dp"/>
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="8dp"/>
 
 
 

@@ -89,7 +89,7 @@ class ReadNoteActivity : AppCompatActivity() {
     private val imgGetter: Html.ImageGetter = Html.ImageGetter { source ->
         val drawable: Drawable? = Drawable.createFromPath(source)
         try {
-            drawable?.setBounds(0, 0, drawable.intrinsicWidth * 4, drawable.intrinsicHeight * 4)
+            drawable?.setBounds(0, 0, drawable.intrinsicWidth * 3, drawable.intrinsicHeight * 3)
         } catch (e: Exception) {
             e.printStackTrace()
         }
