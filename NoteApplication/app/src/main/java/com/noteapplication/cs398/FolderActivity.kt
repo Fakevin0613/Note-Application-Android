@@ -1,6 +1,8 @@
 package com.noteapplication.cs398
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.Menu
@@ -21,6 +23,7 @@ class FolderActivity : AppCompatActivity() {
     private lateinit var noteViewModel: NoteViewModel
     private lateinit var tagViewModel: TagViewModel
     private lateinit var adapter: ListAdapter
+    private var remindedFilter: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +76,9 @@ class FolderActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        binding.exit.setOnClickListener {
+            this.finish()
+        }
         val view = binding.root
         setContentView(view)
     }
@@ -113,6 +118,20 @@ class FolderActivity : AppCompatActivity() {
             }
             R.id.sort_by_capital_descending -> {
                 adapter.getDescendingSorted()
+                true
+            }
+            R.id.sort_by_time -> {
+                adapter.getTimeSorted()
+                true
+            }
+            R.id.reminder -> {
+                remindedFilter = !remindedFilter
+                if (remindedFilter) {
+                    item.setBackground
+                } else {
+                    item.getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+                }
+                adapter.getReminded(remindedFilter)
                 true
             }
             else -> super.onOptionsItemSelected(item)
