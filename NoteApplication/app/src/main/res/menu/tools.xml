@@ -15,4 +15,8 @@
                         android:title="Descending"/>
               </menu>
         </item>
+
+    <item android:id="@+id/sync_data"
+          android:title="sync data"
+          app:showAsAction="never" />
 </menu>

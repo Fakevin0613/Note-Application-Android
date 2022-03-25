@@ -1,37 +1,50 @@
-CREATE TABLE IF NOT EXISTS `Note`
-(
-    `title` TEXT NOT NULL,
-    `content` TEXT NOT NULL,
-    `notify` INTEGER NOT NULL,
-    `folderId` INTEGER,
-    `createdTime` DATE NOT NULL,
-    `updatedTime` DATE NOT NULL,
-    `id` INTEGER PRIMARY KEY NOT NULL,
-    FOREIGN KEY(`folderId`) REFERENCES `Folder`(`id`) ON UPDATE NO ACTION ON DELETE SET NULL
-);
 CREATE TABLE IF NOT EXISTS `Folder`
 (
+    `user_id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL,
     `name` TEXT NOT NULL,
     `parent` INTEGER,
-    `id` INTEGER PRIMARY KEY NOT NULL,
-    `createdTime` DATE NOT NULL,
-    `updatedTime` DATE NOT NULL,
-    FOREIGN KEY(`parent`) REFERENCES `Folder`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+    `created_at` BIGINT NOT NULL,
+    `updated_at` BIGINT NOT NULL,
+    PRIMARY KEY(`user_id`, `id`)
+);
+CREATE TABLE IF NOT EXISTS `Note`
+(
+    `user_id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL,
+    `title` TEXT NOT NULL,
+    `content` TEXT NOT NULL,
+    `notify` BIT NOT NULL,
+    `notify_at` BIGINT,
+    `folder_id` INTEGER,
+    `created_at` BIGINT NOT NULL,
+    `updated_at` BIGINT NOT NULL,
+    PRIMARY KEY (`user_id`, `id`)
 );
 CREATE TABLE IF NOT EXISTS `Tag`
 (
+    `user_id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL,
     `name` TEXT NOT NULL,
-    `createdTime` DATE NOT NULL,
-    `updatedTime` DATE NOT NULL,
-    `id` INTEGER PRIMARY KEY NOT NULL
+    `created_at` BIGINT NOT NULL,
+    `updated_at` BIGINT NOT NULL,
+    PRIMARY KEY(`user_id`, `id`)
 );
 CREATE TABLE IF NOT EXISTS `TagNoteCrossRef`
 (
-    `tagId` INTEGER NOT NULL,
-    `noteId` INTEGER NOT NULL,
-    `createdTime` DATE NOT NULL,
-    `updatedTime` DATE NOT NULL,
-    PRIMARY KEY(`tagId`, `noteId`),
-    FOREIGN KEY(`tagId`) REFERENCES `Tag`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
-    FOREIGN KEY(`noteId`) REFERENCES `Note`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+    `user_id` INTEGER NOT NULL,
+    `tag_id` INTEGER NOT NULL,
+    `note_id` INTEGER NOT NULL,
+    `created_at` BIGINT NOT NULL,
+    `updated_at` BIGINT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS `DeleteLog`
+(
+    `user_id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL,
+    `table_name` TEXT NOT NULL,
+    `id_primary` INTEGER NOT NULL,
+    `id_secondary` INTEGER,
+    `deleted_at` BIGINT NOT NULL,
+    PRIMARY KEY(`user_id`, `id`)
+)

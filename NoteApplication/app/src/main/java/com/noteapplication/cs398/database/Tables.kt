@@ -1,18 +1,19 @@
 package com.noteapplication.cs398.database
 
 import androidx.room.*
+import kotlinx.serialization.json.JsonNames
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
 @Entity(
     tableName = "Note",
-    foreignKeys = [ForeignKey(
-        entity = Folder::class,
-        parentColumns = arrayOf("id"),
-        childColumns = arrayOf("folderId"),
-        onDelete = ForeignKey.SET_NULL
-    )]
+//    foreignKeys = [ForeignKey(
+//        entity = Folder::class,
+//        parentColumns = arrayOf("id"),
+//        childColumns = arrayOf("folderId"),
+//        onDelete = ForeignKey.CASCADE
+//    )]
 )
 data class Note(
     @ColumnInfo(name = "title") val title: String,
@@ -27,12 +28,12 @@ data class Note(
 
 @Entity(
     tableName = "Folder",
-    foreignKeys = [ForeignKey(
-        entity = Folder::class,
-        parentColumns = arrayOf("id"),
-        childColumns = arrayOf("parent"),
-        onDelete = ForeignKey.CASCADE
-    )]
+//    foreignKeys = [ForeignKey(
+//        entity = Folder::class,
+//        parentColumns = arrayOf("id"),
+//        childColumns = arrayOf("parent"),
+//        onDelete = ForeignKey.CASCADE
+//    )]
 )
 data class Folder(
     @ColumnInfo(name = "name") val name: String,
@@ -59,24 +60,33 @@ data class Tag(
 @Entity(
     tableName = "TagNoteCrossRef",
     primaryKeys = ["tagId", "noteId"],
-    foreignKeys = [
-        ForeignKey(
-            entity = Tag::class,
-            parentColumns = arrayOf("id"),
-            childColumns = arrayOf("tagId"),
-            onDelete = ForeignKey.CASCADE
-        ),
-        ForeignKey(
-            entity = Note::class,
-            parentColumns = arrayOf("id"),
-            childColumns = arrayOf("noteId"),
-            onDelete = ForeignKey.CASCADE
-        ),
-    ]
+//    foreignKeys = [
+//        ForeignKey(
+//            entity = Tag::class,
+//            parentColumns = arrayOf("id"),
+//            childColumns = arrayOf("tagId"),
+//            onDelete = ForeignKey.CASCADE
+//        ),
+//        ForeignKey(
+//            entity = Note::class,
+//            parentColumns = arrayOf("id"),
+//            childColumns = arrayOf("noteId"),
+//            onDelete = ForeignKey.CASCADE
+//        ),
+//    ]
 )
 data class TagNoteCrossRef(
     val tagId: Long,
     val noteId: Long,
     @ColumnInfo(name = "createdAt") val createdAt: Long = Date().time,
     @ColumnInfo(name = "updatedAt") val updatedAt: Long = Date().time,
+)
+
+@Entity(tableName = "DeleteLog")
+data class DeleteLog(
+    @PrimaryKey(autoGenerate = true) var id: Long = 0,
+    @ColumnInfo(name = "tableName") val tableName: String,
+    @ColumnInfo(name = "idPrimary") val idPrimary: Long,
+    @ColumnInfo(name = "idSecondary") val idSecondary: Long? = null,
+    @ColumnInfo(name = "deletedAt") val deletedAt: Long = Date().time,
 )

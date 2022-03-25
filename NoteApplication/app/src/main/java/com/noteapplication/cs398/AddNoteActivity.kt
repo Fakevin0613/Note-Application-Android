@@ -38,7 +38,6 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-
 class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private lateinit var binding: ActivityAddNoteBinding
     private lateinit var noteViewModel: NoteViewModel

@@ -4389,3 +4389,39 @@ INSERT INTO "note" ("ID", "TITLE") VALUES (?, ?) [42102-200]
 
 2022-03-20 19:49:02.706  INFO 6612 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2022-03-20 19:49:02.737  INFO 6612 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-03-25 05:17:23.314  INFO 22040 --- [main] c.c.n.NoteCloudServiceApplicationKt      : Starting NoteCloudServiceApplicationKt using Java 17.0.2 on DESKTOP-EIEMDHC with PID 22040 (D:\UW\3B_2\cs398\cs398-project\Service\NoteCloudService\build\classes\kotlin\main started by wjddl in D:\UW\3B_2\cs398\cs398-project\Service\NoteCloudService)
+2022-03-25 05:17:23.343  INFO 22040 --- [main] c.c.n.NoteCloudServiceApplicationKt      : No active profile set, falling back to 1 default profile: "default"
+2022-03-25 05:17:24.063  INFO 22040 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-25 05:17:24.139  INFO 22040 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 5 JPA repository interfaces.
+2022-03-25 05:17:24.593  INFO 22040 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-03-25 05:17:24.600  INFO 22040 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-25 05:17:24.633  INFO 22040 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-25 05:17:24.707  INFO 22040 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-25 05:17:24.707  INFO 22040 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1285 ms
+2022-03-25 05:17:24.777  INFO 22040 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-25 05:17:24.907  INFO 22040 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-25 05:17:24.989  INFO 22040 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-25 05:17:25.030  INFO 22040 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-03-25 05:17:25.149  INFO 22040 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-03-25 05:17:25.233  INFO 22040 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-03-25 05:17:25.423  WARN 22040 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.cs398.note_cloud_service.UserSpecificPK
+2022-03-25 05:17:25.423  WARN 22040 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.cs398.note_cloud_service.UserSpecificPK
+2022-03-25 05:17:25.424  WARN 22040 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.cs398.note_cloud_service.UserSpecificPK
+2022-03-25 05:17:25.424  WARN 22040 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.cs398.note_cloud_service.UserSpecificPK
+2022-03-25 05:17:25.424  WARN 22040 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.cs398.note_cloud_service.UserSpecificCrossRefPK
+2022-03-25 05:17:25.424  WARN 22040 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.cs398.note_cloud_service.UserSpecificCrossRefPK
+2022-03-25 05:17:25.424  WARN 22040 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.cs398.note_cloud_service.UserSpecificPK
+2022-03-25 05:17:25.424  WARN 22040 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.cs398.note_cloud_service.UserSpecificPK
+2022-03-25 05:17:25.424  WARN 22040 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.cs398.note_cloud_service.UserSpecificPK
+2022-03-25 05:17:25.424  WARN 22040 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.cs398.note_cloud_service.UserSpecificPK
+2022-03-25 05:17:25.641  INFO 22040 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-03-25 05:17:25.651  INFO 22040 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-03-25 05:17:26.317  WARN 22040 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-03-25 05:17:26.628  INFO 22040 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-03-25 05:17:26.635  INFO 22040 --- [main] c.c.n.NoteCloudServiceApplicationKt      : Started NoteCloudServiceApplicationKt in 3.722 seconds (JVM running for 4.621)
+2022-03-25 05:17:30.078  INFO 22040 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-25 05:17:30.078  INFO 22040 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-25 05:17:30.079  INFO 22040 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-03-25 05:19:22.442  INFO 22040 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-03-25 05:19:22.622  INFO 22040 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-25 05:19:22.651  INFO 22040 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
