@@ -73,6 +73,10 @@ class FolderActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.returnToMain.setOnClickListener{
+            this.finish()
+        }
+
 
         val view = binding.root
         setContentView(view)
