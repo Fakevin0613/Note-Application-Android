@@ -62,8 +62,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private var REQUEST_CODE_SELECT_IMAGE = 2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         // initialize noteViewModels
         noteViewModel = ViewModelProvider(
             this,
