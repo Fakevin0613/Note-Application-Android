@@ -13,4 +13,6 @@ Insung: continue on constructing spring service
 Shonn: implement the reminder feature
 
 What obstacles are in your way?
-Kevin: image from html is not loaded
+Kevin: image from html is not loaded, because we need an imagegetter
+Insung: had trouble connecting to localhost of PC from physical android device because eduroam WIFI does not allow local network communication
+
