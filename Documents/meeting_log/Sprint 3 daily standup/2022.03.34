@@ -1,9 +1,8 @@
 Date 2022/03/24
 Seventh meeting (offline) for Sprint 3
 
-
 What have you completed since last meeting?
 Kevin: Rich Text features implemented, Image insertion feature implemented
-Insung: have a working service
+Insung: synchronizing deleted data. currently deleted data are not tracked in sync. this will be handled by implementing a deletion-tracking-table. It is still in progress
 Shonn: solvign bugs in tags and other bugs in generals, UI test to check if app is working
 
