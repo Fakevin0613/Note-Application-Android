@@ -56,8 +56,20 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-    fun insertNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {
-        dao.insert(note)
+    fun insertNote(note: Note, tags: List<Tag>? = null) = viewModelScope.launch(Dispatchers.IO) {
+        val id = dao.insert(note)
+
+        // need some way to detect deleted tags
+        tags?.let { _ ->
+            // delete all existing note-tag references
+            dao.deleteAllTags(id)
+
+            // insert given note-tag references
+            tags.forEach {
+                dao.insert(it)
+                dao.insert(TagNoteCrossRef(tagId = it.id, noteId = id))
+            }
+        }
     }
 
     fun notifyChanged(note: Note) = viewModelScope.launch(Dispatchers.IO) {
