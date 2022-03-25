@@ -7,14 +7,15 @@ What we discuss:
 
 What have you completed since last meeting?
 Kevin: setup the "allow permission", so user can access the gallery through the app
-Insung: working on constructing spring service
+Insung: working on constructing spring service on School Linux
 Shonn: setup the note filtering
 
 What are you going to do?
 Kevin: configure the xmls and find a place to load the imported images
-Insung: continue on constructing spring service
+Insung: continue on constructing spring service but in local
 Shonn: implement a dateselector to prepare for the reminder feature.
 
 What obstacles are in your way?
 Shonn: have problem with text search 
 Kevin: have problem storing image in edittext
+Insung: tried to set service in student linux server but did not work due to lack of permission
