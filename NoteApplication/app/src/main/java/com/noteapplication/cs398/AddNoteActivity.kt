@@ -2,26 +2,21 @@ package com.noteapplication.cs398
 
 import android.Manifest
 import android.app.*
-import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Rect
-import android.graphics.Typeface
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Html
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.Spanned
+import android.text.*
+import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import android.view.View
 import android.view.WindowManager
+import android.widget.AdapterView
 import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
@@ -48,6 +43,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private lateinit var binding: ActivityAddNoteBinding
     private lateinit var noteViewModel: NoteViewModel
     private lateinit var tagViewModel: TagViewModel
+    lateinit var selectedColor: ColorObject
 
     var title: String = ""
     var content: String = ""
@@ -66,6 +62,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private var REQUEST_CODE_SELECT_IMAGE = 2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         // initialize noteViewModels
         noteViewModel = ViewModelProvider(
@@ -156,6 +153,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             this.finish()
         }
         configureRichText()
+        loadColorSpinner()
         // on cancel button clicked
         binding.cancelButton.setOnClickListener { this.finish() }
 
@@ -173,6 +171,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                 selectImage()
             }
         }
+
         if ((oldNote != null) && (oldNote!!.notify)) {
             val date:Date = Date(oldNote!!.notifyAt)
             calendar.time = date
@@ -204,6 +203,31 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             TimePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT, this, recorded_hour, recorded_minute, false).show()
         }
         setContentView(binding.root)
+
+    }
+
+    private fun loadColorSpinner()
+    {
+        selectedColor = ColorList().defaultColor
+        binding.highlightText.apply {
+            adapter = ColorAdapter(applicationContext, ColorList().Color())
+            setSelection(ColorList().Position(selectedColor), false)
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener
+            {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long)
+                {
+                    selectedColor = ColorList().Color()[position]
+                    var start: Int = binding.contentInput.selectionStart
+                    var end: Int = binding.contentInput.selectionEnd
+                    var sb = SpannableStringBuilder(binding.contentInput.text)
+//                    var spansback = sb.getSpans(start, end, ForegroundColorSpan::class.java)
+//                    for (foregroundColorSpan in spansback) sb.removeSpan(foregroundColorSpan)
+                    sb.setSpan(ForegroundColorSpan(Color.parseColor(selectedColor.colorHash)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    binding.contentInput.text = sb
+                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
+            }
+        }
     }
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
@@ -222,7 +246,8 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         binding.timeInput.text =
             "" + (if (hourOfDay % 12 < 10) "0" else "") + hourOfDay % 12 + ":" + (if (minute < 10) "0" else "") + minute + " " + if (hourOfDay / 12 > 0) "PM" else "AM"
     }
-
+/////////////////////////////////////////////////////////////////////////////
+    //request permission to access gallery, and get image from gallery
     @Override
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -288,6 +313,27 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         } else Toast.makeText(this, "Nothing Added", Toast.LENGTH_SHORT).show()
     }
 
+
+    // Rich Text span
+    private fun configureRichText(){
+        binding.boldText.setOnClickListener{
+            Span.BoldText(binding);
+        }
+
+        binding.italicText.setOnClickListener{
+            Span.ItalicText(binding)
+        }
+
+        binding.underlineText.setOnClickListener{
+            Span.UnderlingText(binding)
+        }
+
+        binding.resetText.setOnClickListener {
+            Span.ResetText(binding)
+        }
+    }
+
+    //Select image from gallery
     private fun selectImage() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         try {
@@ -296,50 +342,8 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
         }
     }
-    private fun configureRichText(){
 
-
-        binding.boldText.setOnClickListener{
-            var start: Int = binding.contentInput.selectionStart
-            var end: Int = binding.contentInput.selectionEnd
-
-            var sb = SpannableStringBuilder(binding.contentInput.text)
-
-            sb.setSpan(StyleSpan(Typeface.BOLD), start, end, 0)
-            binding.contentInput.text = sb
-        }
-
-        binding.italicText.setOnClickListener{
-            var start: Int = binding.contentInput.selectionStart
-            var end: Int = binding.contentInput.selectionEnd
-
-            var sb = SpannableStringBuilder(binding.contentInput.text)
-            sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, 0)
-            binding.contentInput.text = sb
-        }
-
-        binding.underlineText.setOnClickListener{
-            var start: Int = binding.contentInput.selectionStart
-            var end: Int = binding.contentInput.selectionEnd
-
-            var sb = SpannableStringBuilder(binding.contentInput.text)
-            sb.setSpan(UnderlineSpan(), start, end, 0)
-            binding.contentInput.text = sb
-        }
-
-        binding.resetText.setOnClickListener {
-            var start: Int = binding.contentInput.selectionStart
-            var end: Int = binding.contentInput.selectionEnd
-            var sb = SpannableStringBuilder(binding.contentInput.text)
-            sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, 0)
-            var spans = sb.getSpans(start, end, StyleSpan::class.java)
-            for (styleSpan in spans) sb.removeSpan(styleSpan)
-            var spansunderline = sb.getSpans(start, end, UnderlineSpan::class.java)
-            for (underLineSpan in spansunderline) sb.removeSpan(underLineSpan)
-            binding.contentInput.text = sb
-        }
-    }
-
+    //be able to load image form html format
     private val imgGetter: Html.ImageGetter = Html.ImageGetter { source ->
         val drawable: Drawable? = Drawable.createFromPath(source)
         try {

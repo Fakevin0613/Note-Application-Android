@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/note_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="10dp">
+
+    <View android:layout_width="30dp" android:layout_height="30dp"
+          android:backgroundTint="@color/Coffee"
+          android:background="@drawable/color_item"
+          android:id="@+id/abc"
+          android:padding="4dp"/>
+
+
+</androidx.cardview.widget.CardView>
