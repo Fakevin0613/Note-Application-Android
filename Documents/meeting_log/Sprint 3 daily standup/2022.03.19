@@ -1,1 +1,16 @@
+Date 2022/03/19
+Fourth meeting (offline) for Sprint 3
 
+
+What have you completed since last meeting?
+Kevin: implement feature that image can be inserted correctly
+Insung: working on constructing spring service
+Shonn: reminder feature is implemented but not tested
+
+What are you going to do?
+Kevin: working on rich text features
+Insung: continue on constructing spring service
+Shonn: solvign bugs
+
+What obstacles are in your way?
+Kevin: tohtml and fromhtml has bugs
