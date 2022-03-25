@@ -6,22 +6,20 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Rect
-import android.graphics.Typeface
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Html
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.Spanned
+import android.text.*
+import android.text.Selection.setSelection
+import android.text.style.BackgroundColorSpan
+import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import android.view.View
 import android.view.WindowManager
+import android.widget.AdapterView
 import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
@@ -48,6 +46,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private lateinit var binding: ActivityAddNoteBinding
     private lateinit var noteViewModel: NoteViewModel
     private lateinit var tagViewModel: TagViewModel
+    lateinit var selectedColor: ColorObject
 
     var title: String = ""
     var content: String = ""
@@ -66,6 +65,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private var REQUEST_CODE_SELECT_IMAGE = 2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         // initialize noteViewModels
         noteViewModel = ViewModelProvider(
@@ -205,6 +205,35 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             TimePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT, this, recorded_hour, recorded_minute, false).show()
         }
         setContentView(binding.root)
+
+        loadColorSpinner()
+
+
+    }
+
+    private fun loadColorSpinner()
+    {
+        selectedColor = ColorList().defaultColor
+        binding.highlightText.apply {
+            adapter = ColorAdapter(applicationContext, ColorList().Color())
+            setSelection(ColorList().Position(selectedColor), false)
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener
+            {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long)
+                {
+                    selectedColor = ColorList().Color()[position]
+                    var start: Int = binding.contentInput.selectionStart
+                    var end: Int = binding.contentInput.selectionEnd
+                    var sb = SpannableStringBuilder(binding.contentInput.text)
+
+                    var spansback = sb.getSpans(start, end, ForegroundColorSpan::class.java)
+                    for (foregroundColorSpan in spansback) sb.removeSpan(foregroundColorSpan)
+                    sb.setSpan(ForegroundColorSpan(Color.parseColor(selectedColor.colorHash)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    binding.contentInput.text = sb
+                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
+            }
+        }
     }
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
@@ -306,7 +335,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 
             var sb = SpannableStringBuilder(binding.contentInput.text)
 
-            sb.setSpan(StyleSpan(Typeface.BOLD), start, end, 0)
+            sb.setSpan(StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             binding.contentInput.text = sb
         }
 
@@ -315,7 +344,7 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             var end: Int = binding.contentInput.selectionEnd
 
             var sb = SpannableStringBuilder(binding.contentInput.text)
-            sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, 0)
+            sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             binding.contentInput.text = sb
         }
 
@@ -324,19 +353,24 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             var end: Int = binding.contentInput.selectionEnd
 
             var sb = SpannableStringBuilder(binding.contentInput.text)
-            sb.setSpan(UnderlineSpan(), start, end, 0)
+            sb.setSpan(UnderlineSpan(), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             binding.contentInput.text = sb
         }
+
 
         binding.resetText.setOnClickListener {
             var start: Int = binding.contentInput.selectionStart
             var end: Int = binding.contentInput.selectionEnd
             var sb = SpannableStringBuilder(binding.contentInput.text)
-            sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, 0)
+            sb.setSpan(StyleSpan(Typeface.ITALIC), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             var spans = sb.getSpans(start, end, StyleSpan::class.java)
             for (styleSpan in spans) sb.removeSpan(styleSpan)
+
             var spansunderline = sb.getSpans(start, end, UnderlineSpan::class.java)
             for (underLineSpan in spansunderline) sb.removeSpan(underLineSpan)
+
+            var spansback = sb.getSpans(start, end, ForegroundColorSpan::class.java)
+            for (foregroundColorSpan in spansback) sb.removeSpan(foregroundColorSpan)
             binding.contentInput.text = sb
         }
     }
