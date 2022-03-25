@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.sync_data -> {
-                println("ITS CLICKED")
+                viewModel.syncData()
                 true
             }
             else -> super.onOptionsItemSelected(item)
