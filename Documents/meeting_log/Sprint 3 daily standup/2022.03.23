@@ -1,1 +1,15 @@
+Date 2022/03/21
+Sixth meeting (offline) for Sprint 3
 
+
+What have you completed since last meeting?
+Kevin: Rich Text features implemented
+Insung: extend database in android application to suit DB in the service
+Shonn: solvign bugs in tags 
+
+What are you going to do?
+Kevin: Finding general bugs in applicaiton, Logistics
+Insung, SHonn: implement HTTP request function  in android application to utilize service api
+sync deleted data. currently deleted data are not tracked in sync. this will be handled by implementing a deletion-tracking-table.
+
+ALL: try to clear all issues in Sprint Three, Prepare for Presentation
