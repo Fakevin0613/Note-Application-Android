@@ -15,7 +15,7 @@
           app:showAsAction="never">
         <menu>
             <item android:id="@+id/sort_by_recent"
-                  android:title="Recent"/>
+                  android:title="Recent Added"/>
             <item android:id="@+id/sort_by_capital"
                   android:title="Ascending"/>
             <item android:id="@+id/sort_by_capital_descending"

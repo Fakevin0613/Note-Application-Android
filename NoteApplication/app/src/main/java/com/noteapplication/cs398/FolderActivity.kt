@@ -127,9 +127,9 @@ class FolderActivity : AppCompatActivity() {
             R.id.reminder -> {
                 remindedFilter = !remindedFilter
                 if (remindedFilter) {
-                    item.setBackground
+                    item.setIcon(R.drawable.ic_baseline_check_24)
                 } else {
-                    item.getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+                    item.setIcon(0)
                 }
                 adapter.getReminded(remindedFilter)
                 true

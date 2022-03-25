@@ -148,9 +148,8 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                 if (binding.idRmdSwitch.isChecked) {
                     startAlarm(calendar)
                 }
-                noteViewModel.insertNote(newNote, tagViewModel.getSelectedTags())
+                noteViewModel.insertNote(newNote)
             }
-
             val data = Intent()
             data.putExtra("note", newNote)
             setResult(RESULT_OK, data)
