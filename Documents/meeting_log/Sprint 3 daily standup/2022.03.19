@@ -9,8 +9,10 @@ Shonn: reminder feature is implemented but not tested
 
 What are you going to do?
 Kevin: working on rich text features
-Insung: continue on constructing spring service
-Shonn: solvign bugs
+Insung: Continue on Spring Service
+Shonn: solvign bugs in tags 
 
 What obstacles are in your way?
 Kevin: tohtml and fromhtml has bugs
+Insung: had trouble making generic DAO for all tables for data synchronization.
+- partially done. because of type restrictions, some portion of codes were better duplicated.
