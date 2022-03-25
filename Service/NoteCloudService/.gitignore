@@ -1,5 +1,6 @@
 HELP.md
-myapp.log*
+myapp.log
+myapp.log.*
 .gradle
 build/
 data/
