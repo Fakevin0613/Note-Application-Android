@@ -16,15 +16,16 @@ class ColorList {
 
     fun Color() : List<ColorObject> {
         return listOf(
+            ColorObject("black", "#080400"),
+            ColorObject("blue", "#1B0DEE"),
+            ColorObject("red", "#EE0D17"),
             ColorObject("green", "#5CADAD"),
             ColorObject("blue", "#1096AD"),
             ColorObject("purple", "#AD508D"),
             ColorObject("brown", "#EC812E"),
             ColorObject("pink", "#EC2EA4"),
             ColorObject("yellow", "#DEEC2E"),
-            ColorObject("black", "#080400"),
-            ColorObject("blue", "#1B0DEE"),
-            ColorObject("red", "#EE0D17"),
+
         )
     }
 }

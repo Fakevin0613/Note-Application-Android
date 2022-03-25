@@ -107,8 +107,6 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 
         // on save button clicked
         binding.saveButton.setOnClickListener {
-            Toast.makeText(this, "$title Added", Toast.LENGTH_LONG).show()
-
             val newNote: Note
             val spannedText: Spanned = SpannableString( binding.contentInput.text)
             var html = Html.toHtml(spannedText, Html.FROM_HTML_MODE_LEGACY)
@@ -117,41 +115,47 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             content = binding.contentInput.text.toString()
             println("title: $title")
             println("content: $content")
-            if (oldNote != null) {
-                newNote = oldNote!!.copy(
-                    title = binding.titleInput.text.toString(),
-                    content = html,
-                    notify = binding.idRmdSwitch.isChecked,
-                    notifyAt = calendar.time.time,
-                    updatedAt = Date().time
-                )
-                if (((calendar.time != Date(oldNote!!.notifyAt)) && binding.idRmdSwitch.isChecked)||
-                    (oldNote!!.title != title) || (oldNote!!.content != content)) {
-                    cancelAlarm()
-                    startAlarm(calendar)
-                } else if (oldNote!!.notify && !binding.idRmdSwitch.isChecked){
-                    cancelAlarm()
-                }
-                noteViewModel.updateNote(newNote, tagViewModel.getSelectedTags())
-            } else {
-                newNote = Note(
-                    title = binding.titleInput.text.toString(),
-                    content = html,
-                    notify = binding.idRmdSwitch.isChecked,
-                    notifyAt = calendar.time.time,
-                    createdAt = calendar.time.time,
-                    folderId = folder?.id // the note does not goes to any folder for now
-                )
-                if (binding.idRmdSwitch.isChecked) {
-                    startAlarm(calendar)
-                }
-                noteViewModel.insertNote(newNote, tagViewModel.getSelectedTags())
+            if(title == ""){
+                Toast.makeText(this, "Title should not be empty!", Toast.LENGTH_SHORT).show()
             }
+            else{
+                if (oldNote != null) {
+                    newNote = oldNote!!.copy(
+                        title = binding.titleInput.text.toString(),
+                        content = html,
+                        notify = binding.idRmdSwitch.isChecked,
+                        notifyAt = calendar.time.time,
+                        updatedAt = Date().time
+                    )
+                    if (((calendar.time != Date(oldNote!!.notifyAt)) && binding.idRmdSwitch.isChecked)||
+                        (oldNote!!.title != title) || (oldNote!!.content != content)) {
+                        cancelAlarm()
+                        startAlarm(calendar)
+                    } else if (oldNote!!.notify && !binding.idRmdSwitch.isChecked){
+                        cancelAlarm()
+                    }
+                    noteViewModel.updateNote(newNote, tagViewModel.getSelectedTags())
+                } else {
+                    newNote = Note(
+                        title = binding.titleInput.text.toString(),
+                        content = html,
+                        notify = binding.idRmdSwitch.isChecked,
+                        notifyAt = calendar.time.time,
+                        createdAt = calendar.time.time,
+                        folderId = folder?.id // the note does not goes to any folder for now
+                    )
+                    if (binding.idRmdSwitch.isChecked) {
+                        startAlarm(calendar)
+                    }
+                    noteViewModel.insertNote(newNote, tagViewModel.getSelectedTags())
+                }
 
-            val data = Intent()
-            data.putExtra("note", newNote)
-            setResult(RESULT_OK, data)
-            this.finish()
+                val data = Intent()
+                data.putExtra("note", newNote)
+                setResult(RESULT_OK, data)
+                Toast.makeText(this, "$title Added!", Toast.LENGTH_SHORT).show()
+                this.finish()
+            }
         }
         configureRichText()
         loadColorSpinner()
@@ -221,9 +225,11 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                     var start: Int = binding.contentInput.selectionStart
                     var end: Int = binding.contentInput.selectionEnd
                     var sb = SpannableStringBuilder(binding.contentInput.text)
-//                    var spansback = sb.getSpans(start, end, ForegroundColorSpan::class.java)
-//                    for (foregroundColorSpan in spansback) sb.removeSpan(foregroundColorSpan)
+                    var spansback = sb.getSpans(start, end, ForegroundColorSpan::class.java)
+                    for (foregroundColorSpan in spansback) sb.removeSpan(foregroundColorSpan)
                     sb.setSpan(ForegroundColorSpan(Color.parseColor(selectedColor.colorHash)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+//                    var stringtest : String = Html.toHtml(sb, Html.FROM_HTML_MODE_LEGACY)
+//                    var after : Spanned? = Html.fromHtml(stringtest, Html.FROM_HTML_MODE_LEGACY, imgGetter, null)
                     binding.contentInput.text = sb
                 }
                 override fun onNothingSelected(p0: AdapterView<*>?) {}
@@ -318,19 +324,19 @@ class AddNoteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     // Rich Text span
     private fun configureRichText(){
         binding.boldText.setOnClickListener{
-            Span.BoldText(binding);
+            Span.BoldText(binding, this);
         }
 
         binding.italicText.setOnClickListener{
-            Span.ItalicText(binding)
+            Span.ItalicText(binding, this)
         }
 
         binding.underlineText.setOnClickListener{
-            Span.UnderlingText(binding)
+            Span.UnderlingText(binding, this)
         }
 
         binding.resetText.setOnClickListener {
-            Span.ResetText(binding)
+            Span.ResetText(binding,this)
         }
     }
 
