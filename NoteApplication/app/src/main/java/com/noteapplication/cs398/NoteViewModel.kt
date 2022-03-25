@@ -56,15 +56,8 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-    fun insertNote(note: Note, tags: List<Tag>? = null) = viewModelScope.launch(Dispatchers.IO) {
+    fun insertNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {
         dao.insert(note)
-        tags?.let { _ ->
-            // insert given note-tag references
-            tags.forEach {
-                dao.insert(it)
-                dao.insert(TagNoteCrossRef(tagId = it.id, noteId = note.id))
-            }
-        }
     }
 
     fun notifyChanged(note: Note) = viewModelScope.launch(Dispatchers.IO) {
