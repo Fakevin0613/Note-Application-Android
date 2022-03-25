@@ -1,1 +1,18 @@
+Date 2022/03/21
+Fifth meeting (offline) for Sprint 3
 
+
+What have you completed since last meeting?
+Kevin: Rich text feature are set up but has bugs
+Insung: working on constructing spring service
+Shonn: solvign bugs in tags 
+
+What are you going to do?
+Kevin: continue working on rich text features
+Insung: extend database in android application to suit DB in the service
+Shonn: help insung with settign up services
+
+What obstacles are in your way?
+Kevin: rich text through spannable string cannot be reset, need to find a way to set text back to normal
+Insung: had trouble converting android application's table entities to proper JSON format
+- used GSON parsing to convert entities into JSON format
