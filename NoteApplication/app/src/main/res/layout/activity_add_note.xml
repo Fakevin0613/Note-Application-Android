@@ -35,7 +35,6 @@
                 android:layout_weight="1"
                 android:text="Save"
                 android:textAllCaps="false"
-                android:textColor="@color/blue"
                 android:textSize="10pt"
                 android:textAlignment="textEnd"
                 android:background="@android:color/transparent">
@@ -67,6 +66,7 @@
                     android:layout_height="25dp"
                     android:background="@drawable/reset"
                     android:contentDescription="@string/order"
+                    android:layout_marginStart="10dp"
                     android:id="@+id/resetText"
                     />
             <ImageButton
@@ -74,6 +74,7 @@
                     android:layout_height="25dp"
                     android:background="@drawable/bold"
                     android:contentDescription="@string/order"
+                    android:layout_marginStart="8dp"
                     android:id="@+id/boldText"
                     />
             <ImageButton
@@ -81,6 +82,7 @@
                     android:layout_height="25dp"
                     android:background="@drawable/italic"
                     android:contentDescription="@string/order"
+                    android:layout_marginStart="7dp"
                     android:id="@+id/italicText"
                     />
             <ImageButton
@@ -88,15 +90,17 @@
                     android:layout_height="25dp"
                     android:background="@drawable/underline"
                     android:id="@+id/underlineText"
-
-                    android:contentDescription="@string/order"/>
+                    android:contentDescription="@string/order"
+                    android:layout_marginStart="7dp"
+                    />
 
             <ImageButton
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:background="@drawable/image"
                     android:contentDescription="@string/order"
-                    android:id="@+id/addImage"/>
+                    android:id="@+id/addImage"
+                    android:layout_marginStart="10dp"/>
 
             <Spinner
                     android:layout_width="25dp"
@@ -105,6 +109,7 @@
                     android:contentDescription="@string/order"
                     android:background="@drawable/highlight"
                     android:spinnerMode="dropdown"
+                    android:layout_marginStart="11dp"
                     />
         </LinearLayout>
 
