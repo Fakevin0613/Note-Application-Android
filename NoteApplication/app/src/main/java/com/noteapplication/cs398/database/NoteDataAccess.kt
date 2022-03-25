@@ -7,19 +7,23 @@ import java.util.*
 
 @Dao
 interface NoteDataAccess {
-    @Insert(onConflict = OnConflictStrategy.REPLACE, entity = Note::class)
+    @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Note::class)
     suspend fun insert(note: Note): Long
-    @Insert(onConflict = OnConflictStrategy.REPLACE, entity = Folder::class)
+    @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Folder::class)
     suspend fun insert(folder: Folder): Long
-    @Insert(onConflict = OnConflictStrategy.REPLACE, entity = Tag::class)
+    @Insert(onConflict = OnConflictStrategy.IGNORE, entity = Tag::class)
     suspend fun insert(tag: Tag): Long
-    @Insert(onConflict = OnConflictStrategy.REPLACE, entity = TagNoteCrossRef::class)
-    suspend fun insert(tagNoteCrossRef: TagNoteCrossRef)
+    @Insert(onConflict = OnConflictStrategy.IGNORE, entity = TagNoteCrossRef::class)
+    suspend fun insert(tagNoteCrossRef: TagNoteCrossRef): Long
 
     @Update(entity = Note::class)
     suspend fun update(note: Note)
     @Update(entity = Folder::class)
     suspend fun update(folder: Folder)
+    @Update(entity = Tag::class)
+    suspend fun update(tag: Tag)
+    @Update(entity = TagNoteCrossRef::class)
+    suspend fun update(tagNoteCrossRef: TagNoteCrossRef)
 
     @Delete(entity = Note::class)
     suspend fun delete(note: Note)

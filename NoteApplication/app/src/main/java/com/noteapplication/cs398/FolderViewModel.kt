@@ -82,22 +82,26 @@ class FolderViewModel(application: Application) : AndroidViewModel(application) 
                 viewModelScope.launch(Dispatchers.IO) {
                     (result["folders"] as JSONArray?)?.let {
                         for (i in (0 until it.length())) {
-                            dao.insert(gson.fromJson(it[i].toString(), Folder::class.java))
+                            val item = gson.fromJson(it[i].toString(), Folder::class.java)
+                            if(dao.insert(item) == -1L) dao.update(item)
                         }
                     }
                     (result["tags"] as JSONArray?)?.let {
                         for (i in (0 until it.length())) {
-                            dao.insert(gson.fromJson(it[i].toString(), Tag::class.java))
+                            val item = gson.fromJson(it[i].toString(), Tag::class.java)
+                            if(dao.insert(item) == -1L) dao.update(item)
                         }
                     }
                     (result["notes"] as JSONArray?)?.let {
                         for (i in (0 until it.length())) {
-                            dao.insert(gson.fromJson(it[i].toString(), Note::class.java))
+                            val item = gson.fromJson(it[i].toString(), Note::class.java)
+                            if(dao.insert(item) == -1L) dao.update(item)
                         }
                     }
                     (result["refs"] as JSONArray?)?.let {
                         for (i in (0 until it.length())) {
-                            dao.insert(gson.fromJson(it[i].toString(), TagNoteCrossRef::class.java))
+                            val item = gson.fromJson(it[i].toString(), TagNoteCrossRef::class.java)
+                            if(dao.insert(item) == -1L) dao.update(item)
                         }
                     }
                     (result["deletes"] as JSONArray?)?.let {
