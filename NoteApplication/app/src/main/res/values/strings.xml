@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">noteApplication</string>
+    <string name="app_name">Unote</string>
     <string name="add_new_note">Add new note</string>
     <string name="add_new_tag">Add new tag</string>
     <string name="filter">filter</string>
