@@ -73,7 +73,7 @@ class Span {
 
                 var spansback = sb.getSpans(start, end, ForegroundColorSpan::class.java)
                 for (foregroundColorSpan in spansback) sb.removeSpan(foregroundColorSpan)
-                sb.setSpan(ForegroundColorSpan(Color.parseColor("#080400")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+//                sb.setSpan(ForegroundColorSpan(Color.parseColor("#080400")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
                 binding.contentInput.text = sb
             }
