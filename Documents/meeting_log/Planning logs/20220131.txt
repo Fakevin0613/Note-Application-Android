@@ -1,0 +1,12 @@
+Date Monday Jan 31 Team 114
+
+Present: All
+
+Agenda
+- Add requirements as git issues
+- Set milestones (sprints) setup.
+
+Decision
+- documents(including project plan, interview questions, requirements, meeting log) are moved to git
+- class diagram in progress
+- milestones are issues are set in git

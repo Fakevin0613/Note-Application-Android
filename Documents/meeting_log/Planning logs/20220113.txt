@@ -1,0 +1,15 @@
+Date Monday Jan 13 Team 114
+
+Present: All
+
+Agenda
+address project purpose and target audience
+
+Decisions
+- the purpose of the project has been decided to be "a note taking app that majorly takes care of weekly schedules of students"
+- the target audience is "students" but anyone with major weekly schedule are applicable
+- major features of the application has be settled
+
+TODO
+- Design efficient interview, with helpful questions and informations to introduce our app.
+- interview target users regarding the decisions

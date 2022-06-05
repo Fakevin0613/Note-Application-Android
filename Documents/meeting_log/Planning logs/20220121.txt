@@ -1,0 +1,11 @@
+Date Monday Jan 21 Team 114
+
+Present: All
+
+Agenda
+- Draw architectural diagram
+- Add Development Review metarials to gitlab
+
+TODO
+- Review Design Review materials from gitlab - see if they are organized enough to be submitted
+- think about system diagram :)

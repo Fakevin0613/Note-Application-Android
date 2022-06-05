@@ -1,0 +1,11 @@
+Date Wedsday Team 114
+
+Present: All
+
+
+Agenda
+- Set up GitLab and get project template set up
+
+TODO
+- set up remote repository
+- get project running locally on teammembers computer
